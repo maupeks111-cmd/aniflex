@@ -1,183 +1,189 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANIFLEX 3.0</title>
+<title>ANIFLEX FINAL 7.0</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0b0b;
-  color: white;
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:white;
 }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  background: #000;
-  position: sticky;
-  top: 0;
+header{
+display:flex;
+justify-content:space-between;
+padding:10px;
+background:black;
 }
 
-.logo {
-  color: red;
-  font-size: 22px;
-  font-weight: bold;
+.logo{color:red;font-weight:bold}
+
+/* LOGIN */
+#login{
+display:flex;
+flex-direction:column;
+gap:10px;
+padding:20px;
 }
 
-.search {
-  width: 45%;
-  padding: 8px;
-  border-radius: 6px;
-  border: none;
+input{
+padding:10px;
+border:none;
+border-radius:6px;
 }
 
-/* HERO */
-.hero {
-  padding: 15px;
-  font-size: 18px;
+button{
+padding:10px;
+border:none;
+background:red;
+color:white;
 }
 
-/* GRID */
-.grid {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding: 10px;
+/* HOME */
+#app{
+display:none;
 }
 
-/* CARD (ПОСТЕРЫ) */
-.card {
-  min-width: 140px;
-  height: 200px;
-  border-radius: 12px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-end;
-  transition: 0.2s;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:10px;
 }
 
-.card:active {
-  transform: scale(0.97);
+.card{
+height:250px;
+border-radius:12px;
+background-size:cover;
+background-position:center;
+position:relative;
+cursor:pointer;
 }
 
-.card span {
-  background: rgba(0,0,0,0.6);
-  width: 100%;
-  font-size: 12px;
-  padding: 5px;
-  text-align: center;
+.card span{
+position:absolute;
+bottom:0;
+width:100%;
+background:rgba(0,0,0,0.7);
+text-align:center;
+font-size:12px;
+padding:5px;
 }
 
 /* PLAYER */
-.player {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+.player{
+position:fixed;
+inset:0;
+background:black;
+display:none;
+flex-direction:column;
 }
 
-.player iframe {
-  width: 95%;
-  height: 75%;
-  border: none;
+iframe{
+width:100%;
+height:90%;
+border:none;
 }
 
-.close {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: red;
-  border: none;
-  color: white;
-}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">ANIFLEX 3.0</div>
-  <input class="search" placeholder="Поиск..." oninput="searchAnime(this.value)">
+<div class="logo">ANIFLEX FINAL 7.0</div>
+<button onclick="logout()">Выйти</button>
 </header>
 
-<div class="hero">
-🔥 Аниме как Netflix (версия 3.0)
+<!-- LOGIN -->
+<div id="login">
+<h3>Вход</h3>
+<input id="user" placeholder="логин">
+<input id="pass" type="password" placeholder="пароль">
+<button onclick="login()">Войти / создать</button>
 </div>
 
+<!-- APP -->
+<div id="app">
+
+<h3 style="padding:10px">🔥 Популярное</h3>
 <div class="grid" id="list"></div>
 
+</div>
+
+<!-- PLAYER -->
 <div class="player" id="player">
-  <iframe id="frame"></iframe>
-  <button class="close" onclick="closePlayer()">Закрыть</button>
+<iframe id="frame"></iframe>
+<button onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
 
 const anime = [
-  {
-    title: "Гяруко 1 серия",
-    poster: "https://via.placeholder.com/300x400?text=Gyaruko+1",
-    video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
-  },
-  {
-    title: "Гяруко 2 серия",
-    poster: "https://via.placeholder.com/300x400?text=Gyaruko+2",
-    video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022"
-  },
-  {
-    title: "Гяруко 3 серия",
-    poster: "https://via.placeholder.com/300x400?text=Gyaruko+3",
-    video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239023"
-  }
+{
+title:"Гяруко 1",
+poster:"https://via.placeholder.com/400x600?text=Ep1",
+video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
+},
+{
+title:"Гяруко 2",
+poster:"https://via.placeholder.com/400x600?text=Ep2",
+video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022"
+}
 ];
 
-const list = document.getElementById("list");
+/* LOGIN SYSTEM (LOCAL) */
+function login(){
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
 
-function render(data){
-  list.innerHTML = "";
+if(!u||!p) return;
 
-  data.forEach(a => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.style.backgroundImage = `url(${a.poster})`;
-
-    div.innerHTML = `<span>${a.title}</span>`;
-
-    div.onclick = () => play(a.video);
-
-    list.appendChild(div);
-  });
+localStorage.setItem("user",u);
+document.getElementById("login").style.display="none";
+document.getElementById("app").style.display="block";
+render();
 }
 
+function logout(){
+localStorage.removeItem("user");
+location.reload();
+}
+
+if(localStorage.getItem("user")){
+document.getElementById("login").style.display="none";
+document.getElementById("app").style.display="block";
+}
+
+/* RENDER */
+function render(){
+const list=document.getElementById("list");
+list.innerHTML="";
+
+anime.forEach(a=>{
+const div=document.createElement("div");
+div.className="card";
+div.style.backgroundImage=`url(${a.poster})`;
+div.innerHTML=`<span>${a.title}</span>`;
+div.onclick=()=>play(a.video);
+list.appendChild(div);
+});
+}
+
+/* PLAYER */
 function play(url){
-  document.getElementById("frame").src = url;
-  document.getElementById("player").style.display = "flex";
+document.getElementById("frame").src=url;
+document.getElementById("player").style.display="flex";
 }
 
 function closePlayer(){
-  document.getElementById("frame").src = "";
-  document.getElementById("player").style.display = "none";
+document.getElementById("frame").src="";
+document.getElementById("player").style.display="none";
 }
-
-function searchAnime(text){
-  const filtered = anime.filter(a =>
-    a.title.toLowerCase().includes(text.toLowerCase())
-  );
-  render(filtered);
-}
-
-render(anime);
 
 </script>
 
