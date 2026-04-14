@@ -49,10 +49,6 @@
       padding: 20px;
     }
 
-    .row h2 {
-      margin-bottom: 10px;
-    }
-
     .cards {
       display: flex;
       gap: 10px;
@@ -60,7 +56,7 @@
     }
 
     .card {
-      min-width: 150px;
+      min-width: 180px;
       background: #222;
       border-radius: 10px;
       padding: 10px;
@@ -78,15 +74,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
 
-    video {
-      width: 80%;
+    #videoPlayer {
+      width: 90%;
+      height: 80%;
     }
 
     .close {
@@ -112,58 +109,27 @@
 </div>
 
 <div class="row">
-  <h2>Популярное</h2>
+  <h2>Гяруко — серии</h2>
   <div class="cards" id="animeList"></div>
 </div>
 
 <div class="player" id="player">
-  <video controls id="videoPlayer"></video>
+  <div id="videoPlayer"></div>
   <button class="close" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
   const anime = [
-    { title: "Гяруко 1 серия", video: "https://vkvideo.ru/video-229445104_456239021?list=ln-synXZZvTuZOD2Kzh9y" },
-    { title: "Demo Anime 2", video: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
-    { title: "Demo Anime 3", video: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" }
+    {
+      title: "Гяруко - 1 серия",
+      video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
+    },
+    {
+      title: "Гяруко - 2 серия",
+      video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022"
+    }
   ];
 
   const list = document.getElementById("animeList");
 
-  function render(data) {
-    list.innerHTML = "";
-    data.forEach(a => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `<p>${a.title}</p>`;
-      card.onclick = () => play(a.video);
-      list.appendChild(card);
-    });
-  }
-
-  function play(url) {
-    const player = document.getElementById("player");
-    const video = document.getElementById("videoPlayer");
-
-    video.src = url;
-    player.style.display = "flex";
-  }
-
-  function closePlayer() {
-    const player = document.getElementById("player");
-    const video = document.getElementById("videoPlayer");
-
-    video.pause();
-    player.style.display = "none";
-  }
-
-  function searchAnime(text) {
-    const filtered = anime.filter(a => a.title.toLowerCase().includes(text.toLowerCase()));
-    render(filtered);
-  }
-
-  render(anime);
-</script>
-
-</body>
-</html>
+  function render
