@@ -13,15 +13,13 @@ body {
   color: white;
 }
 
-/* TOP BAR */
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px;
   background: #000;
-  position: sticky;
-  top: 0;
 }
 
 .logo {
@@ -37,20 +35,10 @@ header {
   border: none;
 }
 
-/* HERO */
+/* TITLE */
 .hero {
   padding: 20px;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* ROW */
-.row {
-  padding: 10px 16px;
-}
-
-.row h3 {
-  margin-bottom: 10px;
+  font-size: 20px;
 }
 
 /* CARDS */
@@ -58,28 +46,22 @@ header {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .card {
-  min-width: 140px;
-  height: 180px;
+  min-width: 150px;
+  height: 160px;
   background: #222;
   border-radius: 12px;
-  display: flex;
-  align-items: flex-end;
   padding: 10px;
   cursor: pointer;
-  position: relative;
-  transition: 0.2s;
+  display: flex;
+  align-items: flex-end;
 }
 
 .card:active {
   transform: scale(0.97);
-}
-
-.card-title {
-  font-size: 13px;
 }
 
 /* PLAYER */
@@ -96,7 +78,7 @@ header {
 
 .player iframe {
   width: 95%;
-  height: 70%;
+  height: 75%;
   border: none;
 }
 
@@ -106,13 +88,7 @@ header {
   background: red;
   border: none;
   color: white;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .search {
-    width: 40%;
-  }
+  cursor: pointer;
 }
 </style>
 </head>
@@ -125,13 +101,10 @@ header {
 </header>
 
 <div class="hero">
-🔥 Смотри аниме как в Netflix
+🔥 Смотри аниме как Netflix
 </div>
 
-<div class="row">
-  <h3>Гяруко</h3>
-  <div class="cards" id="list"></div>
-</div>
+<div class="cards" id="list"></div>
 
 <div class="player" id="player">
   <iframe id="frame"></iframe>
@@ -161,24 +134,25 @@ function render(data){
   list.innerHTML = "";
 
   data.forEach(a => {
-    const div = document.createElement("div");
-    div.className = "card";
+    const card = document.createElement("div");
+    card.className = "card";
+    card.textContent = a.title;
 
-    div.innerHTML = `<div class="card-title">${a.title}</div>`;
+    card.onclick = () => play(a.video);
 
-    div.onclick = () => play(a.video);
-
-    list.appendChild(div);
+    list.appendChild(card);
   });
 }
 
 function play(url){
-  document.getElementById("frame").src = url;
+  const frame = document.getElementById("frame");
+  frame.src = url;
   document.getElementById("player").style.display = "flex";
 }
 
 function closePlayer(){
-  document.getElementById("frame").src = "";
+  const frame = document.getElementById("frame");
+  frame.src = "";
   document.getElementById("player").style.display = "none";
 }
 
