@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANIFLEX ULTRA 9.0</title>
+<title>ANIFLEX GOD MODE 10.0</title>
 
 <style>
 body{
@@ -15,10 +15,21 @@ color:white;
 
 /* HEADER */
 header{
-text-align:center;
 padding:10px;
 background:black;
 color:red;
+font-weight:bold;
+text-align:center;
+}
+
+/* HERO */
+.hero{
+height:200px;
+background:url('https://i.imgur.com/1ZQZ1Zm.jpeg') center/cover;
+display:flex;
+align-items:flex-end;
+padding:20px;
+font-size:22px;
 font-weight:bold;
 }
 
@@ -28,66 +39,71 @@ position:fixed;
 bottom:0;
 width:100%;
 display:flex;
-background:black;
+background:#111;
+border-top:1px solid #222;
 }
 
 .nav div{
 flex:1;
 text-align:center;
-padding:10px;
+padding:12px;
 cursor:pointer;
 }
 
 /* PAGES */
-.page{display:none;padding-bottom:60px;}
+.page{display:none;padding-bottom:70px;}
 .active{display:block;}
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:10px;
+gap:12px;
+padding:12px;
 }
 
 .card{
-height:240px;
-border-radius:12px;
+height:250px;
+border-radius:14px;
 background-size:cover;
 background-position:center;
 position:relative;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+overflow:hidden;
+}
+
+.card::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
 }
 
 .card span{
 position:absolute;
 bottom:0;
 width:100%;
-background:rgba(0,0,0,0.7);
 text-align:center;
-font-size:12px;
-padding:5px;
+padding:6px;
+font-size:13px;
+z-index:2;
 }
 
 /* ANIME PAGE */
-.anime-page{
-padding:10px;
-}
-
 .poster{
 width:100%;
-border-radius:12px;
+border-radius:14px;
 }
 
-.episodes{
-margin-top:10px;
+.anime-page{
+padding:12px;
 }
 
 .ep{
-background:#222;
-padding:10px;
-margin:5px 0;
-border-radius:6px;
-cursor:pointer;
+background:#1a1a1a;
+padding:12px;
+margin:6px 0;
+border-radius:8px;
 }
 
 /* PLAYER */
@@ -102,6 +118,7 @@ flex-direction:column;
 iframe{
 width:100%;
 height:90%;
+border:none;
 }
 
 button{
@@ -109,6 +126,15 @@ padding:10px;
 background:red;
 border:none;
 color:white;
+margin-top:10px;
+}
+
+input{
+width:90%;
+margin:10px;
+padding:10px;
+border-radius:6px;
+border:none;
 }
 
 </style>
@@ -116,11 +142,14 @@ color:white;
 
 <body>
 
-<header>ANIFLEX ULTRA 9.0 🚀</header>
+<header>ANIFLEX GOD MODE 🔥</header>
+
+<div class="hero">
+🔥 Смотри аниме как в Netflix
+</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-<h3 style="padding:10px">🔥 Популярное</h3>
 <div class="grid" id="homeList"></div>
 </div>
 
@@ -132,11 +161,11 @@ color:white;
 
 <!-- SEARCH -->
 <div id="search" class="page">
-<input placeholder="Поиск..." oninput="search(this.value)" style="width:90%;margin:10px;padding:10px;">
+<input placeholder="Поиск..." oninput="search(this.value)">
 <div class="grid" id="searchList"></div>
 </div>
 
-<!-- ANIME PAGE -->
+<!-- ANIME -->
 <div id="animePage" class="page">
 <div class="anime-page" id="animeInfo"></div>
 </div>
@@ -160,10 +189,18 @@ const anime = [
 {
 id:1,
 title:"Гяруко",
-poster:"https://via.placeholder.com/400x600?text=Gyaruko",
+poster:"https://i.imgur.com/jx17oHT.jpeg",
 episodes:[
-"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021",
-"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022"
+{
+title:"1 серия",
+video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021",
+cover:"https://i.imgur.com/zYIlgBl.jpeg"
+},
+{
+title:"2 серия",
+video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022",
+cover:"https://i.imgur.com/fHyEMsl.jpeg"
+}
 ]
 }
 ];
@@ -174,7 +211,7 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* RENDER HOME */
+/* HOME */
 function renderHome(){
 const list=document.getElementById("homeList");
 list.innerHTML="";
@@ -189,7 +226,7 @@ list.appendChild(div);
 });
 }
 
-/* OPEN ANIME */
+/* ANIME PAGE */
 function openAnime(a){
 openPage("animePage");
 
@@ -199,9 +236,15 @@ box.innerHTML=`
 <img class="poster" src="${a.poster}">
 <h2>${a.title}</h2>
 <button onclick='toggleFav(${JSON.stringify(a)})'>❤️ В избранное</button>
-<div class="episodes">
-${a.episodes.map((v,i)=>`<div class="ep" onclick="play('${v}')">Серия ${i+1}</div>`).join("")}
+
+<h3>Серии:</h3>
+
+${a.episodes.map(ep=>`
+<div class="ep" onclick="play('${ep.video}')">
+<img src="${ep.cover}" style="width:100%;border-radius:8px;">
+<p>${ep.title}</p>
 </div>
+`).join("")}
 `;
 }
 
@@ -209,7 +252,6 @@ ${a.episodes.map((v,i)=>`<div class="ep" onclick="play('${v}')">Серия ${i+1
 function play(url){
 document.getElementById("frame").src=url;
 document.getElementById("player").style.display="flex";
-saveContinue(url);
 }
 
 function closePlayer(){
@@ -245,11 +287,6 @@ div.innerHTML=`<span>${a.title}</span>`;
 div.onclick=()=>openAnime(a);
 box.appendChild(div);
 });
-}
-
-/* CONTINUE */
-function saveContinue(url){
-localStorage.setItem("last",url);
 }
 
 /* SEARCH */
