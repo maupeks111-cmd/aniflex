@@ -210,7 +210,7 @@ cover:"https://yandex-images.clstorage.net/Ii9c8C399/d60fcciCh/rQqUhoSLel_Ps7xku
 },
 {
 title:"2 серия",
-video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022",
+video:"https://vkvideo.ru/video-229445104_456239024?list=ln-plbjQjvrGCiaeNiuek",
 cover:"http://avatars.mds.yandex.net/get-vthumb/4568404/7d84b187d1b46b6320f74b6789f9b2ed/800x450"
 }
 ]
