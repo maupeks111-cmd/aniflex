@@ -3,70 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ANIFLEX</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #141414;
-  color: white;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 30px;
-  background: black;
-}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #141414;
+    color: white;
+  }
 
-.logo {
-  color: red;
-  font-size: 24px;
-  font-weight: bold;
-}
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #000;
+  }
 
-.cards {
-  display: flex;
-  gap: 10px;
-  padding: 20px;
-  overflow-x: auto;
-}
+  .logo {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-.card {
-  min-width: 180px;
-  background: #222;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+  .search {
+    width: 50%;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+  }
 
-.card:hover {
-  transform: scale(1.05);
-}
+  .banner {
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+  }
 
-.player {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+  .row {
+    padding: 10px;
+  }
 
-iframe {
-  width: 90%;
-  height: 80%;
-}
+  .cards {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
 
-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: red;
-  color: white;
-  border: none;
-}
+  .card {
+    min-width: 160px;
+    background: #222;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .card:active {
+    transform: scale(0.98);
+  }
+
+  /* ПЛЕЕР */
+  .player {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .player iframe {
+    width: 95%;
+    height: 70%;
+    border: none;
+  }
+
+  .close {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: red;
+    border: none;
+    color: white;
+  }
+
+  /* адаптация */
+  @media (max-width: 600px) {
+    .search {
+      width: 40%;
+    }
+  }
 </style>
 </head>
 
@@ -74,49 +107,69 @@ button {
 
 <header>
   <div class="logo">ANIFLEX</div>
+  <input class="search" placeholder="Поиск..." oninput="searchAnime(this.value)">
 </header>
 
-<h2 style="padding:20px;">Гяруко — серии</h2>
+<div class="banner">
+  🔥 Смотри аниме бесплатно
+</div>
 
-<div class="cards" id="list"></div>
+<div class="row">
+  <h3>Гяруко — серии</h3>
+  <div class="cards" id="list"></div>
+</div>
 
 <div class="player" id="player">
-  <div id="frame"></div>
-  <button onclick="closePlayer()">Закрыть</button>
+  <iframe id="frame"></iframe>
+  <button class="close" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
 const anime = [
   {
-    title: "Гяруко 1 серия",
+    title: "Гяруко - 1 серия",
     video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
   },
   {
-    title: "Гяруко 2 серия",
+    title: "Гяруко - 2 серия",
     video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022"
   }
 ];
 
 const list = document.getElementById("list");
 
-anime.forEach(a => {
-  let div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = a.title;
-  div.onclick = () => play(a.video);
-  list.appendChild(div);
-});
+function render(data){
+  list.innerHTML = "";
 
-function play(url) {
+  data.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = item.title;
+
+    div.onclick = () => play(item.video);
+
+    list.appendChild(div);
+  });
+}
+
+function play(url){
+  document.getElementById("frame").src = url;
   document.getElementById("player").style.display = "flex";
-  document.getElementById("frame").innerHTML =
-    `<iframe src="${url}" allowfullscreen></iframe>`;
 }
 
-function closePlayer() {
+function closePlayer(){
+  document.getElementById("frame").src = "";
   document.getElementById("player").style.display = "none";
-  document.getElementById("frame").innerHTML = "";
 }
+
+function searchAnime(text){
+  const filtered = anime.filter(a =>
+    a.title.toLowerCase().includes(text.toLowerCase())
+  );
+  render(filtered);
+}
+
+render(anime);
 </script>
 
 </body>
