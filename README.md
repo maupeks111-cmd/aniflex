@@ -122,7 +122,7 @@
   const anime = [
     {
       title: "Гяруко - 1 серия",
-      video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
+      video: "[https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021](https://drive.google.com/file/d/1KbOa3HH80a5lkAI7tB35ZPIPQ8c7BTAs/view?usp=sharing)"
     },
     {
       title: "Гяруко - 2 серия",
