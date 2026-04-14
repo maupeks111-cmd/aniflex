@@ -81,9 +81,10 @@
       flex-direction: column;
     }
 
-    #videoPlayer {
+    .player iframe {
       width: 90%;
       height: 80%;
+      border: none;
     }
 
     .close {
@@ -114,7 +115,7 @@
 </div>
 
 <div class="player" id="player">
-  <div id="videoPlayer"></div>
+  <iframe id="videoFrame"></iframe>
   <button class="close" onclick="closePlayer()">Закрыть</button>
 </div>
 
@@ -122,7 +123,7 @@
   const anime = [
     {
       title: "Гяруко - 1 серия",
-      video: "https://drive.google.com/file/d/1KbOa3HH80a5lkAI7tB35ZPIPQ8c7BTAs/view?usp=sharing"
+      video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
     },
     {
       title: "Гяруко - 2 серия",
@@ -132,4 +133,42 @@
 
   const list = document.getElementById("animeList");
 
-  function render
+  function render(data) {
+    list.innerHTML = "";
+    data.forEach(a => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<p>${a.title}</p>`;
+      card.onclick = () => play(a.video);
+      list.appendChild(card);
+    });
+  }
+
+  function play(url) {
+    const player = document.getElementById("player");
+    const frame = document.getElementById("videoFrame");
+
+    frame.src = url;
+    player.style.display = "flex";
+  }
+
+  function closePlayer() {
+    const player = document.getElementById("player");
+    const frame = document.getElementById("videoFrame");
+
+    frame.src = "";
+    player.style.display = "none";
+  }
+
+  function searchAnime(text) {
+    const filtered = anime.filter(a =>
+      a.title.toLowerCase().includes(text.toLowerCase())
+    );
+    render(filtered);
+  }
+
+  render(anime);
+</script>
+
+</body>
+</html>
