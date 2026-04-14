@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANIFLEX GOD MODE 10.0</title>
+<title>ANIFLEX</title>
 
 <style>
 body{
@@ -23,8 +24,8 @@ text-align:center;
 
 /* HERO */
 .hero{
-height:200px;
-background:url('https://i.imgur.com/1ZQZ1Zm.jpeg') center/cover;
+height:220px;
+background:url('https://avatars.mds.yandex.net/i?id=4860fda7eb409a1b1179e9239913ff1f3dd36462-5877782-images-thumbs&n=13') center/cover;
 display:flex;
 align-items:flex-end;
 padding:20px;
@@ -50,7 +51,7 @@ cursor:pointer;
 }
 
 /* PAGES */
-.page{display:none;padding-bottom:70px;}
+.page{display:none;padding-bottom:80px;}
 .active{display:block;}
 
 /* GRID */
@@ -75,7 +76,7 @@ overflow:hidden;
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
 }
 
 .card span{
@@ -100,9 +101,22 @@ padding:12px;
 
 .ep{
 background:#1a1a1a;
-padding:12px;
+padding:10px;
+margin:8px 0;
+border-radius:10px;
+}
+
+/* FOOTER LINKS */
+.links{
+padding:15px;
+text-align:center;
+}
+
+.links a{
+display:block;
 margin:6px 0;
-border-radius:8px;
+color:#ff4444;
+text-decoration:none;
 }
 
 /* PLAYER */
@@ -141,21 +155,22 @@ border:none;
 
 <body>
 
-<header>ANIFLEX GOD MODE 🔥</header>
+<header>ANIFLEX 🔥</header>
 
 <div class="hero">
-🔥 Смотри аниме как в Netflix
+🔥 Смотри аниме бесплатно
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
 <div class="grid" id="homeList"></div>
+
+<div class="links">
+<a href="https://vk.com/aniflex1" target="_blank">📺 ВКонтакте</a>
+<a href="https://t.me/Animeflex1x" target="_blank">📱 Telegram</a>
+<a href="https://www.donationalerts.com/r/LaunchPlay" target="_blank">💰 Поддержать проект</a>
 </div>
 
-<!-- FAVORITES -->
-<div id="fav" class="page">
-<h3 style="padding:10px">❤️ Избранное</h3>
-<div class="grid" id="favList"></div>
 </div>
 
 <!-- SEARCH -->
@@ -172,7 +187,6 @@ border:none;
 <!-- NAV -->
 <div class="nav">
 <div onclick="openPage('home')">🏠</div>
-<div onclick="openPage('fav')">❤️</div>
 <div onclick="openPage('search')">🔍</div>
 </div>
 
@@ -186,19 +200,18 @@ border:none;
 
 const anime = [
 {
-id:1,
 title:"Гяруко",
-poster:"https://i.imgur.com/jx17oHT.jpeg",
+poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
 episodes:[
 {
 title:"1 серия",
 video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021",
-cover:"https://i.imgur.com/zYIlgBl.jpeg"
+cover:"https://yandex-images.clstorage.net/Ii9c8C399/d60fcciCh/rQqUhoSLel_Ps7xkurUsfpd0sRARpT-IKj96nVQsjrwEFwiMS4lhyDuYNnp51gWxLzt-dmS1MYmJOPBQo-IozOgP9ZPZmgNDz6ftSJOFRE7XIYFlHfA37DoiHq1RmHY8kdKpeeZsuXXn7X8XLJc0mDoK194x6OkptAXRoHs7tbGJ3kTCUMv_Q0tz2WS-rTg2K6HtzKFkOzVa30tciTBKZNF6SQVi7Pl9841PMxyr0azGPvszGVipsSihFVQXM4mtrf6chrjno0NfC224nmV8QotVERzVSBd93h9bXFE80pghekXdsiixVQOdx_s0xxEMbm6Te42AvRWc5Zksm9_JobUGWPLcV5e3769ZEE5p2Ia_qR2cJdyjccYXz9BFYLZQfZYR6W4MgYnHkbs3kBsx7BI6e4uJfA0VxDGFZGMXgd2NyizatEtva1vz7cwKVSTOt1HRNMnEa8X2348otYDebFnisdXm-B2V-ykrSwSfybB24kMnZURdZYwl8dAba1GViRZMRtRzC09TQ1GEWqnY0tMJIXgRnJ-dytuPiMXYvuQ1_t0ZsoxFnZutt2e0v7UAzgITl-F4RcXErd0EhwcpkbXuoLYIRwu_6wfhFEaNfLKHNR045XzD6WIPe9SFJBo0fcZFcXJ4Zf2bOfOjLJ-FJCZWn7OFtHUtiKWJkG_H3ZGV1qRuLNufgz9jJTiaCXRm4z1B9GHQuzFmM3e8EaAWtJ2CDfHmQAGBfx1TB1xDSbzOxp8n9XBVoSBpcZADD3VJjeqwllRHo3v3g8GQcomI4gfJXWRJKBchFktjqF1o0qjJ9kWlnpC9XcOls4_w2zHEbsK_S9lwbe3wZVXMl2c9fYWK9Fqc-_9Lk3-lDMrVfN5Lhb04LXwffYLLq6iV_AJoAZ4FTX6YKdlTEWtH1K8ZCN7aM69RfDUlnMk5RJ-3WdUZlqTSQFu_Sy8ndbgaNUjKyzGtJKl8UyEGp_vwtXC4"
 },
 {
 title:"2 серия",
 video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022",
-cover:"https://i.imgur.com/fHyEMsl.jpeg"
+cover:"http://avatars.mds.yandex.net/get-vthumb/4568404/7d84b187d1b46b6320f74b6789f9b2ed/800x450"
 }
 ]
 }
@@ -234,7 +247,6 @@ const box=document.getElementById("animeInfo");
 box.innerHTML=`
 <img class="poster" src="${a.poster}">
 <h2>${a.title}</h2>
-<button onclick='toggleFav(${JSON.stringify(a)})'>❤️ В избранное</button>
 
 <h3>Серии:</h3>
 
@@ -258,36 +270,6 @@ document.getElementById("frame").src="";
 document.getElementById("player").style.display="none";
 }
 
-/* FAVORITES */
-function toggleFav(item){
-let fav=JSON.parse(localStorage.getItem("fav"))||[];
-const exists=fav.find(x=>x.id===item.id);
-
-if(exists){
-fav=fav.filter(x=>x.id!==item.id);
-}else{
-fav.push(item);
-}
-
-localStorage.setItem("fav",JSON.stringify(fav));
-renderFav();
-}
-
-function renderFav(){
-const box=document.getElementById("favList");
-let fav=JSON.parse(localStorage.getItem("fav"))||[];
-
-box.innerHTML="";
-fav.forEach(a=>{
-const div=document.createElement("div");
-div.className="card";
-div.style.backgroundImage=`url(${a.poster})`;
-div.innerHTML=`<span>${a.title}</span>`;
-div.onclick=()=>openAnime(a);
-box.appendChild(div);
-});
-}
-
 /* SEARCH */
 function search(text){
 const res=anime.filter(a=>a.title.toLowerCase().includes(text.toLowerCase()));
@@ -305,7 +287,6 @@ box.appendChild(div);
 }
 
 renderHome();
-renderFav();
 
 </script>
 
