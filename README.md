@@ -123,7 +123,7 @@
 
 <script>
   const anime = [
-    { title: "Demo Anime 1", video: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
+    { title: "Гяруко 1 серия", video: "https://vkvideo.ru/video-229445104_456239021?list=ln-synXZZvTuZOD2Kzh9y" },
     { title: "Demo Anime 2", video: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" },
     { title: "Demo Anime 3", video: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" }
   ];
