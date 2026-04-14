@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANIFLEX</title>
+<title>ANIFLEX 3.0</title>
 
 <style>
 body {
@@ -20,6 +19,8 @@ header {
   align-items: center;
   padding: 12px;
   background: #000;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -35,33 +36,44 @@ header {
   border: none;
 }
 
-/* TITLE */
+/* HERO */
 .hero {
-  padding: 20px;
-  font-size: 20px;
+  padding: 15px;
+  font-size: 18px;
 }
 
-/* CARDS */
-.cards {
+/* GRID */
+.grid {
   display: flex;
   gap: 10px;
   overflow-x: auto;
   padding: 10px;
 }
 
+/* CARD (ПОСТЕРЫ) */
 .card {
-  min-width: 150px;
-  height: 160px;
-  background: #222;
+  min-width: 140px;
+  height: 200px;
   border-radius: 12px;
-  padding: 10px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
   cursor: pointer;
   display: flex;
   align-items: flex-end;
+  transition: 0.2s;
 }
 
 .card:active {
   transform: scale(0.97);
+}
+
+.card span {
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
 }
 
 /* PLAYER */
@@ -88,7 +100,6 @@ header {
   background: red;
   border: none;
   color: white;
-  cursor: pointer;
 }
 </style>
 </head>
@@ -96,15 +107,15 @@ header {
 <body>
 
 <header>
-  <div class="logo">ANIFLEX</div>
+  <div class="logo">ANIFLEX 3.0</div>
   <input class="search" placeholder="Поиск..." oninput="searchAnime(this.value)">
 </header>
 
 <div class="hero">
-🔥 Смотри аниме как Netflix
+🔥 Аниме как Netflix (версия 3.0)
 </div>
 
-<div class="cards" id="list"></div>
+<div class="grid" id="list"></div>
 
 <div class="player" id="player">
   <iframe id="frame"></iframe>
@@ -116,14 +127,17 @@ header {
 const anime = [
   {
     title: "Гяруко 1 серия",
+    poster: "https://via.placeholder.com/300x400?text=Gyaruko+1",
     video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"
   },
   {
     title: "Гяруко 2 серия",
+    poster: "https://via.placeholder.com/300x400?text=Gyaruko+2",
     video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239022"
   },
   {
     title: "Гяруко 3 серия",
+    poster: "https://via.placeholder.com/300x400?text=Gyaruko+3",
     video: "https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239023"
   }
 ];
@@ -134,25 +148,25 @@ function render(data){
   list.innerHTML = "";
 
   data.forEach(a => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.textContent = a.title;
+    const div = document.createElement("div");
+    div.className = "card";
+    div.style.backgroundImage = `url(${a.poster})`;
 
-    card.onclick = () => play(a.video);
+    div.innerHTML = `<span>${a.title}</span>`;
 
-    list.appendChild(card);
+    div.onclick = () => play(a.video);
+
+    list.appendChild(div);
   });
 }
 
 function play(url){
-  const frame = document.getElementById("frame");
-  frame.src = url;
+  document.getElementById("frame").src = url;
   document.getElementById("player").style.display = "flex";
 }
 
 function closePlayer(){
-  const frame = document.getElementById("frame");
-  frame.src = "";
+  document.getElementById("frame").src = "";
   document.getElementById("player").style.display = "none";
 }
 
