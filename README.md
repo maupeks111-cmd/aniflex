@@ -5,118 +5,66 @@
 <title>ANIFLEX</title>
 
 <style>
-body{
-margin:0;
-background:#0b0b0f;
-color:white;
-font-family:Arial;
-}
+body{margin:0;background:#0b0b0f;color:white;font-family:Arial;}
 
-/* HEADER */
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:10px;
-background:black;
-position:sticky;
-top:0;
-z-index:100;
+display:flex;justify-content:space-between;align-items:center;
+padding:10px;background:black;position:sticky;top:0;z-index:100;
 }
 
-.logo{
-color:#ff2e63;
-font-size:22px;
-font-weight:bold;
-}
+.logo{color:#ff2e63;font-size:22px;font-weight:bold;}
 
-.search{
-padding:6px;
-border-radius:6px;
-border:none;
-width:40%;
-}
+.search{padding:6px;border-radius:6px;border:none;width:40%;}
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:10px;
-padding:10px;
+gap:10px;padding:10px;
 }
 
 .card{
-height:200px;
-border-radius:12px;
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:flex-end;
-padding:10px;
-cursor:pointer;
-position:relative;
+height:200px;border-radius:12px;
+background-size:cover;background-position:center;
+display:flex;align-items:flex-end;
+padding:10px;cursor:pointer;position:relative;
 }
 
 .fav{
-position:absolute;
-top:5px;
-right:5px;
+position:absolute;top:5px;right:5px;
 background:rgba(0,0,0,0.6);
-padding:5px;
-border-radius:50%;
-cursor:pointer;
+padding:5px;border-radius:50%;
 }
 
-/* PAGE */
-.page{
-display:none;
-padding:10px;
-}
+.page{display:none;padding:10px;}
 
 .ep{
-background:#1b1b25;
-padding:10px;
-margin:5px 0;
-border-radius:6px;
-cursor:pointer;
+background:#1b1b25;padding:10px;
+margin:5px 0;border-radius:6px;cursor:pointer;
 }
 
-.locked{
-opacity:0.4;
-cursor:default;
-}
+.locked{opacity:0.4;cursor:default;}
 
-/* PLAYER */
 .player{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-display:none;
-flex-direction:column;
-z-index:999;
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:black;display:none;flex-direction:column;z-index:999;
 }
 
 video{
-width:100%;
-height:100%;
+width:100%;height:100%;
 object-fit:contain;
 }
 
-/* FOOTER */
+.btn{
+padding:10px;margin:5px;background:#222;
+border:none;color:white;border-radius:6px;
+}
+
 .footer{
-padding:10px;
-text-align:center;
-background:#111;
+text-align:center;background:#111;padding:10px;
 }
 
 .footer a{
-color:#ff2e63;
-display:block;
-margin:5px 0;
-text-decoration:none;
+color:#ff2e63;display:block;margin:5px 0;text-decoration:none;
 }
 </style>
 </head>
@@ -129,26 +77,26 @@ text-decoration:none;
 </header>
 
 <div id="home" class="grid"></div>
-
 <div id="page" class="page"></div>
 
 <div id="player" class="player">
-<video id="video" controls></video>
-<button onclick="closePlayer()">Закрыть</button>
+<video id="video" controls playsinline webkit-playsinline></video>
+<button class="btn" onclick="fullscreen()">⛶ Экран</button>
+<button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <div class="footer">
-<a href="https://vk.com/aniflex1" target="_blank">VK</a>
-<a href="https://t.me/Animeflex1x" target="_blank">Telegram</a>
-<a href="https://www.donationalerts.com/r/LaunchPlay" target="_blank">Донат</a>
+<a href="https://vk.com/aniflex1">VK</a>
+<a href="https://t.me/Animeflex1x">Telegram</a>
+<a href="https://www.donationalerts.com/r/LaunchPlay">Донат</a>
 </div>
 
 <script>
 
-const data = [
+const data=[
 {
 title:"Гяруко",
-poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
 episodes:[
 {t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
 {t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
@@ -164,7 +112,6 @@ episodes:[
 {t:"12 серия (Скоро)",v:""}
 ]
 },
-
 {
 title:"Фарфоровая кукла влюбилась",
 poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
@@ -175,14 +122,13 @@ episodes:[
 }
 ];
 
-let favorites = JSON.parse(localStorage.getItem("fav")) || [];
+let favorites=JSON.parse(localStorage.getItem("fav"))||[];
 
-const home = document.getElementById("home");
+const home=document.getElementById("home");
 
 /* РЕНДЕР */
 function render(list){
 home.innerHTML="";
-
 list.forEach((a,i)=>{
 const div=document.createElement("div");
 div.className="card";
@@ -196,32 +142,26 @@ ${favorites.includes(i)?"❤️":"🤍"}
 `;
 
 div.onclick=()=>openAnime(i);
-
 home.appendChild(div);
 });
 }
-
 render(data);
 
 /* ИЗБРАННОЕ */
 function toggleFav(e,i){
 e.stopPropagation();
-
 if(favorites.includes(i)){
-favorites = favorites.filter(x=>x!==i);
+favorites=favorites.filter(x=>x!==i);
 }else{
 favorites.push(i);
 }
-
 localStorage.setItem("fav",JSON.stringify(favorites));
 render(data);
 }
 
 /* ПОИСК */
 function searchAnime(text){
-const filtered = data.filter(a =>
-a.title.toLowerCase().includes(text.toLowerCase())
-);
+const filtered=data.filter(a=>a.title.toLowerCase().includes(text.toLowerCase()));
 render(filtered);
 }
 
@@ -231,7 +171,7 @@ home.style.display="none";
 const page=document.getElementById("page");
 page.style.display="block";
 
-let html=`<button onclick="back()">⬅ Назад</button>`;
+let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
 
 data[i].episodes.forEach((ep,index)=>{
@@ -248,7 +188,6 @@ page.innerHTML=html;
 function play(a,ep){
 const video=document.getElementById("video");
 video.src=data[a].episodes[ep].v;
-
 document.getElementById("player").style.display="flex";
 video.play();
 }
@@ -259,6 +198,16 @@ const video=document.getElementById("video");
 video.pause();
 video.src="";
 document.getElementById("player").style.display="none";
+}
+
+/* FULLSCREEN */
+function fullscreen(){
+const video=document.getElementById("video");
+if(video.requestFullscreen){
+video.requestFullscreen();
+}else if(video.webkitEnterFullscreen){
+video.webkitEnterFullscreen();
+}
 }
 
 /* НАЗАД */
