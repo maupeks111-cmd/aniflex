@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -12,6 +13,7 @@ color:white;
 font-family:Arial;
 }
 
+/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
@@ -26,38 +28,31 @@ font-weight:bold;
 font-size:22px;
 }
 
-.links a{
-color:white;
-margin-left:10px;
-text-decoration:none;
-font-size:14px;
-}
-
+/* BANNER */
 .banner{
-height:220px;
+height:200px;
 background:url('https://avatars.mds.yandex.net/i?id=4860fda7eb409a1b1179e9239913ff1f3dd36462-5877782-images-thumbs&n=13') center/cover;
 display:flex;
 align-items:flex-end;
 padding:15px;
 font-size:20px;
-font-weight:bold;
 }
 
+/* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 gap:12px;
 padding:12px;
 }
 
 .card{
-height:240px;
+height:230px;
 border-radius:14px;
 background-size:cover;
 background-position:center;
 position:relative;
 cursor:pointer;
-overflow:hidden;
 }
 
 .card::after{
@@ -73,27 +68,31 @@ bottom:0;
 width:100%;
 text-align:center;
 padding:10px;
-z-index:2;
 }
 
+/* PAGE */
 .poster{
 width:100%;
-border-radius:14px;
-margin-bottom:10px;
+border-radius:12px;
 }
 
 .ep{
 background:#1b1b25;
 padding:12px;
 margin:6px 0;
-border-radius:10px;
+border-radius:8px;
 cursor:pointer;
+}
+
+.ep:hover{
+background:#2a2a3a;
 }
 
 .locked{
 opacity:0.4;
 }
 
+/* PLAYER */
 .player{
 position:fixed;
 top:0;
@@ -106,27 +105,31 @@ flex-direction:column;
 z-index:999;
 }
 
-iframe{
+video{
 width:100%;
-height:90%;
-border:none;
+height:100%;
+object-fit:contain;
+background:black;
 }
 
+/* CONTROLS */
 .controls{
+position:absolute;
+top:10px;
+right:10px;
 display:flex;
 gap:10px;
-padding:10px;
 }
 
-button{
-flex:1;
-padding:10px;
-background:#ff2e63;
+.btn{
+background:rgba(0,0,0,0.6);
 border:none;
 color:white;
-border-radius:8px;
+padding:8px;
+border-radius:6px;
 }
 
+/* BACK */
 .back{
 margin:10px 0;
 padding:10px;
@@ -143,17 +146,9 @@ width:100%;
 
 <header>
 <div class="logo">ANIFLEX</div>
-
-<div class="links">
-<a href="https://vk.com/aniflex1" target="_blank">VK</a>
-<a href="https://t.me/Animeflex1x" target="_blank">TG</a>
-<a href="https://www.donationalerts.com/r/LaunchPlay" target="_blank">ДОНАТ</a>
-</div>
 </header>
 
-<div class="banner">
-🔥 Смотри аниме бесплатно
-</div>
+<div class="banner">🔥 Гяруко — все серии</div>
 
 <div id="home">
 <div class="grid" id="homeList"></div>
@@ -162,78 +157,51 @@ width:100%;
 <div id="animePage" style="display:none;padding:12px;"></div>
 
 <div class="player" id="player">
-<iframe id="frame" allowfullscreen></iframe>
+
+<video id="video" controls playsinline></video>
 
 <div class="controls">
-<button onclick="fullscreen()">⛶ Fullscreen</button>
-<button onclick="closePlayer()">✖ Закрыть</button>
+<button class="btn" onclick="fullscreen()">⛶</button>
+<button class="btn" onclick="closePlayer()">✖</button>
 </div>
+
 </div>
 
 <script>
 
-/* ДВА АНИМЕ */
-const animeList = [
-
-{
+const anime = {
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+
 episodes:[
-{title:"1 серия",https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
-{title:"2 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239024"},
-{title:"3 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239032"},
-{title:"4 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239032"},
-{title:"5 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239017"},
-{title:"6 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239018"},
-{title:"7 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239020"},
-{title:"8 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239022"},
-{title:"9 серия",video:"https://v3.animelib.org/ru/anime/11023--oshiete-galko-chan-anime/watch?episode=66990"},
-{title:"10 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239026"},
-{title:"11 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239028"},
+{title:"1 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
+{title:"2 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
+{title:"3 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254741/3_серия_Расскажи_нам_Гяруко_ibivet.mp4"},
+{title:"4 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254759/4_серия_Расскажи_нам_Гяруко_qzigwl.mp4"},
+{title:"5 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254740/5_серия_Расскажи_нам_Гяруко_crtolw.mp4"},
+{title:"6 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
+{title:"7 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
+{title:"8 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
+{title:"9 серия (нет mp4)",video:""},
+{title:"10 серия (нет mp4)",video:""},
+{title:"11 серия (нет mp4)",video:""},
 {title:"12 серия (СКОРО)",video:""}
 ]
-},
-
-{
-title:"Эта фарфоровая влюбилась",
-poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
-episodes:[
-{title:"1 серия (СКОРО)",video:""},
-{title:"2 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"3 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"4 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"5 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"6 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"7 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"8 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"9 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"10 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"11 серия (В РАЗРАБОТКЕ)",video:""},
-{title:"12 серия (В РАЗРАБОТКЕ)",video:""}
-]
-}
-
-];
+};
 
 /* HOME */
 const home=document.getElementById("homeList");
 
-animeList.forEach((anime,index)=>{
 const card=document.createElement("div");
-
 card.className="card";
 card.style.backgroundImage=`url(${anime.poster})`;
 card.innerHTML=`<span>${anime.title}</span>`;
-
-card.onclick=()=>openAnime(index);
+card.onclick=openAnime;
 
 home.appendChild(card);
-});
 
 /* OPEN */
-function openAnime(id){
-const anime=animeList[id];
-
+function openAnime(){
 document.getElementById("home").style.display="none";
 
 const page=document.getElementById("animePage");
@@ -246,7 +214,7 @@ page.innerHTML=`
 <h2>${anime.title}</h2>
 
 ${anime.episodes.map((ep,i)=>`
-<div class="ep ${!ep.video?'locked':''}" ${ep.video?`onclick="play('${ep.video}')"`:''}>
+<div class="ep ${!ep.video?'locked':''}" ${ep.video?`onclick="play(${i})"`:''}>
 ${ep.title}
 </div>
 `).join("")}
@@ -254,20 +222,34 @@ ${ep.title}
 }
 
 /* PLAYER */
-function play(url){
-document.getElementById("frame").src=url;
+function play(i){
+const video=document.getElementById("video");
+video.src=anime.episodes[i].video;
+
 document.getElementById("player").style.display="flex";
+video.play();
 }
 
+/* FULLSCREEN */
 function fullscreen(){
-document.getElementById("frame").requestFullscreen();
+const video=document.getElementById("video");
+
+if(video.requestFullscreen){
+video.requestFullscreen();
+}else if(video.webkitEnterFullscreen){
+video.webkitEnterFullscreen(); // iPhone
+}
 }
 
+/* CLOSE */
 function closePlayer(){
-document.getElementById("frame").src="";
+const video=document.getElementById("video");
+video.pause();
+video.src="";
 document.getElementById("player").style.display="none";
 }
 
+/* BACK */
 function goHome(){
 document.getElementById("animePage").style.display="none";
 document.getElementById("home").style.display="block";
