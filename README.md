@@ -7,7 +7,7 @@
 <style>
 body{
 margin:0;
-background:#0a0a0f;
+background:#0b0b0f;
 color:white;
 font-family:Arial;
 }
@@ -19,76 +19,71 @@ justify-content:space-between;
 align-items:center;
 padding:10px;
 background:black;
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
 color:#ff2e63;
-font-weight:bold;
 font-size:22px;
+font-weight:bold;
 }
 
-/* BANNER */
-.banner{
-height:200px;
-background:url('https://avatars.mds.yandex.net/i?id=4860fda7eb409a1b1179e9239913ff1f3dd36462-5877782-images-thumbs&n=13') center/cover;
-display:flex;
-align-items:flex-end;
-padding:15px;
-font-size:20px;
+.search{
+padding:6px;
+border-radius:6px;
+border:none;
+width:40%;
 }
 
 /* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:12px;
-padding:12px;
-}
-
-.card{
-height:230px;
-border-radius:14px;
-background-size:cover;
-background-position:center;
-position:relative;
-cursor:pointer;
-}
-
-.card::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);
-}
-
-.card span{
-position:absolute;
-bottom:0;
-width:100%;
-text-align:center;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:10px;
 padding:10px;
 }
 
-/* PAGE */
-.poster{
-width:100%;
+.card{
+height:200px;
 border-radius:12px;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:flex-end;
+padding:10px;
+cursor:pointer;
+position:relative;
+}
+
+.fav{
+position:absolute;
+top:5px;
+right:5px;
+background:rgba(0,0,0,0.6);
+padding:5px;
+border-radius:50%;
+cursor:pointer;
+}
+
+/* PAGE */
+.page{
+display:none;
+padding:10px;
 }
 
 .ep{
 background:#1b1b25;
-padding:12px;
-margin:6px 0;
-border-radius:8px;
+padding:10px;
+margin:5px 0;
+border-radius:6px;
 cursor:pointer;
-}
-
-.ep:hover{
-background:#2a2a3a;
 }
 
 .locked{
 opacity:0.4;
+cursor:default;
 }
 
 /* PLAYER */
@@ -108,35 +103,20 @@ video{
 width:100%;
 height:100%;
 object-fit:contain;
-background:black;
 }
 
-/* CONTROLS */
-.controls{
-position:absolute;
-top:10px;
-right:10px;
-display:flex;
-gap:10px;
-}
-
-.btn{
-background:rgba(0,0,0,0.6);
-border:none;
-color:white;
-padding:8px;
-border-radius:6px;
-}
-
-/* BACK */
-.back{
-margin:10px 0;
+/* FOOTER */
+.footer{
 padding:10px;
-background:#222;
-border:none;
-color:white;
-border-radius:8px;
-width:100%;
+text-align:center;
+background:#111;
+}
+
+.footer a{
+color:#ff2e63;
+display:block;
+margin:5px 0;
+text-decoration:none;
 }
 </style>
 </head>
@@ -145,102 +125,135 @@ width:100%;
 
 <header>
 <div class="logo">ANIFLEX</div>
+<input class="search" placeholder="Поиск..." oninput="searchAnime(this.value)">
 </header>
 
-<div class="banner">🔥 Гяруко — все серии</div>
+<div id="home" class="grid"></div>
 
-<div id="home">
-<div class="grid" id="homeList"></div>
+<div id="page" class="page"></div>
+
+<div id="player" class="player">
+<video id="video" controls></video>
+<button onclick="closePlayer()">Закрыть</button>
 </div>
 
-<div id="animePage" style="display:none;padding:12px;"></div>
-
-<div class="player" id="player">
-
-<video id="video" controls playsinline></video>
-
-<div class="controls">
-<button class="btn" onclick="fullscreen()">⛶</button>
-<button class="btn" onclick="closePlayer()">✖</button>
-</div>
-
+<div class="footer">
+<a href="https://vk.com/aniflex1" target="_blank">VK</a>
+<a href="https://t.me/Animeflex1x" target="_blank">Telegram</a>
+<a href="https://www.donationalerts.com/r/LaunchPlay" target="_blank">Донат</a>
 </div>
 
 <script>
 
-const anime = {
+const data = [
+{
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-
 episodes:[
-{title:"1 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
-{title:"2 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
-{title:"3 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254741/3_серия_Расскажи_нам_Гяруко_ibivet.mp4"},
-{title:"4 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254759/4_серия_Расскажи_нам_Гяруко_qzigwl.mp4"},
-{title:"5 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254740/5_серия_Расскажи_нам_Гяруко_crtolw.mp4"},
-{title:"6 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
-{title:"7 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
-{title:"8 серия",video:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
-{title:"9 серия (нет mp4)",video:""},
-{title:"10 серия (нет mp4)",video:""},
-{title:"11 серия (нет mp4)",video:""},
-{title:"12 серия (СКОРО)",video:""}
+{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
+{t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
+{t:"3 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254741/3_серия_Расскажи_нам_Гяруко_ibivet.mp4"},
+{t:"4 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254759/4_серия_Расскажи_нам_Гяруко_qzigwl.mp4"},
+{t:"5 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254740/5_серия_Расскажи_нам_Гяруко_crtolw.mp4"},
+{t:"6 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
+{t:"7 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
+{t:"8 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
+{t:"9 серия (нет)",v:""},
+{t:"10 серия (нет)",v:""},
+{t:"11 серия (нет)",v:""},
+{t:"12 серия (Скоро)",v:""}
 ]
-};
+},
 
-/* HOME */
-const home=document.getElementById("homeList");
+{
+title:"Фарфоровая кукла влюбилась",
+poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
+episodes:[
+{t:"1 серия (Скоро)",v:""},
+{t:"2-12 (в разработке)",v:""}
+]
+}
+];
 
-const card=document.createElement("div");
-card.className="card";
-card.style.backgroundImage=`url(${anime.poster})`;
-card.innerHTML=`<span>${anime.title}</span>`;
-card.onclick=openAnime;
+let favorites = JSON.parse(localStorage.getItem("fav")) || [];
 
-home.appendChild(card);
+const home = document.getElementById("home");
 
-/* OPEN */
-function openAnime(){
-document.getElementById("home").style.display="none";
+/* РЕНДЕР */
+function render(list){
+home.innerHTML="";
 
-const page=document.getElementById("animePage");
-page.style.display="block";
+list.forEach((a,i)=>{
+const div=document.createElement("div");
+div.className="card";
+div.style.backgroundImage=`url(${a.poster})`;
 
-page.innerHTML=`
-<button class="back" onclick="goHome()">⬅ Назад</button>
-
-<img class="poster" src="${anime.poster}">
-<h2>${anime.title}</h2>
-
-${anime.episodes.map((ep,i)=>`
-<div class="ep ${!ep.video?'locked':''}" ${ep.video?`onclick="play(${i})"`:''}>
-${ep.title}
+div.innerHTML=`
+<div class="fav" onclick="toggleFav(event,${i})">
+${favorites.includes(i)?"❤️":"🤍"}
 </div>
-`).join("")}
+<b>${a.title}</b>
 `;
+
+div.onclick=()=>openAnime(i);
+
+home.appendChild(div);
+});
 }
 
-/* PLAYER */
-function play(i){
+render(data);
+
+/* ИЗБРАННОЕ */
+function toggleFav(e,i){
+e.stopPropagation();
+
+if(favorites.includes(i)){
+favorites = favorites.filter(x=>x!==i);
+}else{
+favorites.push(i);
+}
+
+localStorage.setItem("fav",JSON.stringify(favorites));
+render(data);
+}
+
+/* ПОИСК */
+function searchAnime(text){
+const filtered = data.filter(a =>
+a.title.toLowerCase().includes(text.toLowerCase())
+);
+render(filtered);
+}
+
+/* СТРАНИЦА */
+function openAnime(i){
+home.style.display="none";
+const page=document.getElementById("page");
+page.style.display="block";
+
+let html=`<button onclick="back()">⬅ Назад</button>`;
+html+=`<h2>${data[i].title}</h2>`;
+
+data[i].episodes.forEach((ep,index)=>{
+html+=`
+<div class="ep ${!ep.v?'locked':''}" ${ep.v?`onclick="play(${i},${index})"`:''}>
+${ep.t}
+</div>`;
+});
+
+page.innerHTML=html;
+}
+
+/* ПЛЕЕР */
+function play(a,ep){
 const video=document.getElementById("video");
-video.src=anime.episodes[i].video;
+video.src=data[a].episodes[ep].v;
 
 document.getElementById("player").style.display="flex";
 video.play();
 }
 
-/* FULLSCREEN */
-function fullscreen(){
-const video=document.getElementById("video");
-
-if(video.requestFullscreen){
-video.requestFullscreen();
-}else if(video.webkitEnterFullscreen){
-video.webkitEnterFullscreen(); // iPhone
-}
-}
-
-/* CLOSE */
+/* ЗАКРЫТЬ */
 function closePlayer(){
 const video=document.getElementById("video");
 video.pause();
@@ -248,10 +261,10 @@ video.src="";
 document.getElementById("player").style.display="none";
 }
 
-/* BACK */
-function goHome(){
-document.getElementById("animePage").style.display="none";
-document.getElementById("home").style.display="block";
+/* НАЗАД */
+function back(){
+document.getElementById("page").style.display="none";
+home.style.display="grid";
 }
 
 </script>
