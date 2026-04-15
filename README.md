@@ -12,7 +12,6 @@ color:white;
 font-family:Arial;
 }
 
-/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
@@ -34,7 +33,6 @@ text-decoration:none;
 font-size:14px;
 }
 
-/* BANNER */
 .banner{
 height:220px;
 background:url('https://avatars.mds.yandex.net/i?id=4860fda7eb409a1b1179e9239913ff1f3dd36462-5877782-images-thumbs&n=13') center/cover;
@@ -45,7 +43,6 @@ font-size:20px;
 font-weight:bold;
 }
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -79,7 +76,6 @@ padding:10px;
 z-index:2;
 }
 
-/* PAGE */
 .poster{
 width:100%;
 border-radius:14px;
@@ -94,15 +90,10 @@ border-radius:10px;
 cursor:pointer;
 }
 
-.ep:hover{
-background:#2a2a3a;
-}
-
 .locked{
 opacity:0.4;
 }
 
-/* PLAYER */
 .player{
 position:fixed;
 top:0;
@@ -136,7 +127,6 @@ color:white;
 border-radius:8px;
 }
 
-/* BACK */
 .back{
 margin:10px 0;
 padding:10px;
@@ -182,10 +172,12 @@ width:100%;
 
 <script>
 
-const anime = {
+/* ДВА АНИМЕ */
+const animeList = [
+
+{
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-
 episodes:[
 {title:"1 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"},
 {title:"2 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239024"},
@@ -200,21 +192,48 @@ episodes:[
 {title:"11 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239028"},
 {title:"12 серия (СКОРО)",video:""}
 ]
-};
+},
+
+{
+title:"Эта фарфоровая влюбилась",
+poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
+episodes:[
+{title:"1 серия (СКОРО)",video:""},
+{title:"2 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"3 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"4 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"5 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"6 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"7 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"8 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"9 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"10 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"11 серия (В РАЗРАБОТКЕ)",video:""},
+{title:"12 серия (В РАЗРАБОТКЕ)",video:""}
+]
+}
+
+];
 
 /* HOME */
 const home=document.getElementById("homeList");
+
+animeList.forEach((anime,index)=>{
 const card=document.createElement("div");
 
 card.className="card";
 card.style.backgroundImage=`url(${anime.poster})`;
 card.innerHTML=`<span>${anime.title}</span>`;
-card.onclick=openAnime;
+
+card.onclick=()=>openAnime(index);
 
 home.appendChild(card);
+});
 
 /* OPEN */
-function openAnime(){
+function openAnime(id){
+const anime=animeList[id];
+
 document.getElementById("home").style.display="none";
 
 const page=document.getElementById("animePage");
@@ -227,35 +246,28 @@ page.innerHTML=`
 <h2>${anime.title}</h2>
 
 ${anime.episodes.map((ep,i)=>`
-<div class="ep ${!ep.video?'locked':''}" ${ep.video?`onclick="playEpisode(${i})"`:''}>
+<div class="ep ${!ep.video?'locked':''}" ${ep.video?`onclick="play('${ep.video}')"`:''}>
 ${ep.title}
-${!ep.video?'<br>СКОРО':''}
 </div>
 `).join("")}
 `;
 }
 
 /* PLAYER */
-function playEpisode(i){
-document.getElementById("frame").src=anime.episodes[i].video;
+function play(url){
+document.getElementById("frame").src=url;
 document.getElementById("player").style.display="flex";
 }
 
-/* FULLSCREEN */
 function fullscreen(){
-const iframe=document.getElementById("frame");
-if(iframe.requestFullscreen){
-iframe.requestFullscreen();
-}
+document.getElementById("frame").requestFullscreen();
 }
 
-/* CLOSE */
 function closePlayer(){
 document.getElementById("frame").src="";
 document.getElementById("player").style.display="none";
 }
 
-/* BACK */
 function goHome(){
 document.getElementById("animePage").style.display="none";
 document.getElementById("home").style.display="block";
