@@ -8,6 +8,10 @@
 body{
 margin:0;
 background:#0b0b0f;
+background-image:url("https://img.freepik.com/premium-photo/japanese-torii-gate-sunset-with-silhouetted-landscape_1282444-100316.jpg?semt=ais_hybrid&w=740");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 color:white;
 font-family:Arial;
 }
@@ -223,7 +227,6 @@ const page=document.getElementById("page");
 const player=document.getElementById("player");
 const video=document.getElementById("video");
 
-/* ---------------- RENDER ---------------- */
 function render(list){
 home.innerHTML="";
 list.forEach((a,i)=>{
@@ -241,7 +244,6 @@ home.appendChild(div);
 }
 render(data);
 
-/* ---------------- OPEN ---------------- */
 function openAnime(i){
 home.style.display="none";
 page.style.display="block";
@@ -256,7 +258,6 @@ html+=`<div class="ep ${ep.v?'':'lock'}" onclick="play(i=${i},ep=${idx})">${ep.t
 page.innerHTML=html;
 }
 
-/* ---------------- PLAY ---------------- */
 function play(i,ep){
 if(!data[i].episodes[ep].v) return;
 
@@ -268,25 +269,21 @@ last={i,ep};
 localStorage.setItem("last",JSON.stringify(last));
 }
 
-/* ---------------- CLOSE ---------------- */
 function closePlayer(){
 video.pause();
 video.src="";
 player.style.display="none";
 }
 
-/* ---------------- BACK ---------------- */
 function back(){
 page.style.display="none";
 home.style.display="grid";
 }
 
-/* ---------------- SEARCH ---------------- */
 function search(t){
 render(data.filter(a=>a.title.toLowerCase().includes(t.toLowerCase())));
 }
 
-/* ---------------- FAVORITES ---------------- */
 function showFav(){
 render(data.filter((_,i)=>fav.includes(i)));
 }
@@ -295,7 +292,6 @@ function showAll(){
 render(data);
 }
 
-/* ---------------- RESUME ---------------- */
 function resumeLast(){
 let l=JSON.parse(localStorage.getItem("last"));
 if(!l) return;
