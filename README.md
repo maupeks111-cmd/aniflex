@@ -30,26 +30,31 @@ background:rgba(0,0,0,0.5);
 z-index:-1;
 }
 
-/* header */
+/* HEADER (ИЗМЕНЕНО) */
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:12px;
-background:#111;
+background:white;
 position:sticky;
 top:0;
 z-index:10;
+border-radius:0 0 20px 20px;
+box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* LOGO (ИЗМЕНЕНО) */
 .logo{
 font-size:22px;
 font-weight:bold;
-background:linear-gradient(90deg,#ff2e63,#6a5af9);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+color:black;
+font-family:"Courier New", monospace;
+text-transform:uppercase;
+letter-spacing:4px;
 }
 
+/* search */
 .search{
 width:40%;
 padding:8px;
@@ -116,6 +121,7 @@ display:none;
 padding:10px;
 }
 
+/* ep */
 .ep{
 background:#1a1a1a;
 padding:10px;
@@ -196,10 +202,10 @@ episodes:[
 {t:"6 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
 {t:"7 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
 {t:"8 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
-{t:"9 серия",v:""},
-{t:"10 серия",v:""},
-{t:"11 серия",v:""},
-{t:"12 серия",v:""}
+{t:"9 серия (есть в вк)",v:""},
+{t:"10 серия (есть в вк)",v:""},
+{t:"11 серия (есть в вк)",v:""},
+{t:"12 серия В РАЗРАБОДКЕ",v:""}
 ]
 },
 
@@ -247,7 +253,6 @@ const page=document.getElementById("page");
 const player=document.getElementById("player");
 const video=document.getElementById("video");
 
-/* render */
 function render(list){
 home.innerHTML="";
 list.forEach((item,i)=>{
@@ -262,7 +267,6 @@ home.appendChild(div);
 
 render(data);
 
-/* open anime */
 function openAnime(i){
 home.style.display="none";
 page.style.display="block";
@@ -277,7 +281,6 @@ html+=`<div class="ep ${ep.v?'':'lock'}" onclick="play(${i},${idx})">${ep.t}</di
 page.innerHTML=html;
 }
 
-/* play */
 function play(i,ep){
 if(!data[i].episodes[ep].v) return;
 
@@ -289,29 +292,24 @@ last={i,ep};
 localStorage.setItem("last",JSON.stringify(last));
 }
 
-/* close */
 function closePlayer(){
 video.pause();
 video.src="";
 player.style.display="none";
 }
 
-/* back */
 function back(){
 page.style.display="none";
 home.style.display="grid";
 }
 
-/* search */
 function search(t){
 render(data.filter(a=>a.title.toLowerCase().includes(t.toLowerCase())));
 }
 
-/* fav */
 function showAll(){render(data);}
 function showFav(){render(data.filter((_,i)=>fav.includes(i)));}
 
-/* continue */
 function resumeLast(){
 let l=JSON.parse(localStorage.getItem("last"));
 if(!l) return;
