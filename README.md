@@ -17,20 +17,9 @@ background:black;
 
 .logo{color:red;font-weight:bold;}
 
-.links a{
-color:white;
-margin-left:10px;
-text-decoration:none;
-font-size:14px;
-}
-
 .hero{
-height:180px;
-background:#111;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:20px;
+padding:15px;
+text-align:center;
 }
 
 /* GRID */
@@ -84,13 +73,12 @@ flex-direction:column;
 z-index:999;
 }
 
-video{
+iframe{
 width:100%;
 height:90%;
-background:black;
+border:none;
 }
 
-/* CONTROLS */
 .controls{
 display:flex;
 gap:10px;
@@ -112,15 +100,9 @@ border-radius:6px;
 
 <header>
 <div class="logo">ANIFLEX</div>
-
-<div class="links">
-<a href="https://vk.com/aniflex1" target="_blank">VK</a>
-<a href="https://t.me/Animeflex1x" target="_blank">TG</a>
-<a href="https://www.donationalerts.com/r/LaunchPlay" target="_blank">ДОНАТ</a>
-</div>
 </header>
 
-<div class="hero">🔥 Без рекламы. Чистый плеер</div>
+<div class="hero">🔥 Гяруко — все серии</div>
 
 <div id="home">
 <div class="grid" id="homeList"></div>
@@ -129,7 +111,7 @@ border-radius:6px;
 <div id="animePage" style="display:none;padding:10px;"></div>
 
 <div class="player" id="player">
-<video id="video" controls></video>
+<iframe id="frame" allowfullscreen></iframe>
 
 <div class="controls">
 <button onclick="fullscreen()">⛶ Fullscreen</button>
@@ -144,22 +126,20 @@ title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
 
 episodes:[
-{title:"1 серия",video:"PASTE_MP4"},
-{title:"2 серия",video:"PASTE_MP4"},
-{title:"3 серия",video:"PASTE_MP4"},
-{title:"4 серия",video:"PASTE_MP4"},
-{title:"5 серия",video:"PASTE_MP4"},
-{title:"6 серия",video:"PASTE_MP4"},
-{title:"7 серия",video:"PASTE_MP4"},
-{title:"8 серия",video:"PASTE_MP4"},
-{title:"9 серия",video:"PASTE_MP4"},
-{title:"10 серия",video:"PASTE_MP4"},
-{title:"11 серия",video:"PASTE_MP4"},
+{title:"1 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"},
+{title:"2 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239024"},
+{title:"3 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239032"},
+{title:"4 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239032"},
+{title:"5 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239017"},
+{title:"6 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239018"},
+{title:"7 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239020"},
+{title:"8 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239022"},
+{title:"9 серия",video:"https://v3.animelib.org/ru/anime/11023--oshiete-galko-chan-anime/watch?episode=66990"},
+{title:"10 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239026"},
+{title:"11 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239028"},
 {title:"12 серия (СКОРО)",video:""}
 ]
 };
-
-let currentIndex=0;
 
 /* HOME */
 const home=document.getElementById("homeList");
@@ -196,32 +176,25 @@ ${!ep.video?'<br>СКОРО':''}
 
 /* PLAYER */
 function playEpisode(i){
-currentIndex=i;
-
-const video=document.getElementById("video");
-video.src=anime.episodes[i].video;
-
+document.getElementById("frame").src=anime.episodes[i].video;
 document.getElementById("player").style.display="flex";
-video.play();
 }
 
 /* FULLSCREEN */
 function fullscreen(){
-const video=document.getElementById("video");
-if(video.requestFullscreen){
-video.requestFullscreen();
+const iframe=document.getElementById("frame");
+if(iframe.requestFullscreen){
+iframe.requestFullscreen();
 }
 }
 
 /* CLOSE */
 function closePlayer(){
-const video=document.getElementById("video");
-video.pause();
-video.src="";
+document.getElementById("frame").src="";
 document.getElementById("player").style.display="none";
 }
 
-/* HOME BACK */
+/* BACK */
 function goHome(){
 document.getElementById("animePage").style.display="none";
 document.getElementById("home").style.display="block";
