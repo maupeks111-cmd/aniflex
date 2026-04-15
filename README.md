@@ -3,23 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANIFLEX FINAL</title>
+<title>ANIFLEX</title>
 
 <style>
 body{margin:0;background:#0b0b0b;color:white;font-family:Arial;}
 
-/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:10px;
 background:black;
 }
 
-.logo{color:red;font-weight:bold;font-size:20px;}
+.logo{color:red;font-weight:bold;}
 
-/* LINKS */
 .links a{
 color:white;
 margin-left:10px;
@@ -27,13 +24,12 @@ text-decoration:none;
 font-size:14px;
 }
 
-/* HERO */
 .hero{
 height:180px;
-background:url('https://avatars.mds.yandex.net/i?id=4860fda7eb409a1b1179e9239913ff1f3dd36462-5877782-images-thumbs&n=13') center/cover;
+background:#111;
 display:flex;
-align-items:flex-end;
-padding:15px;
+align-items:center;
+justify-content:center;
 font-size:20px;
 }
 
@@ -50,6 +46,7 @@ height:220px;
 border-radius:12px;
 background-size:cover;
 position:relative;
+cursor:pointer;
 }
 
 .card span{
@@ -72,8 +69,6 @@ border-radius:8px;
 cursor:pointer;
 }
 
-.ep:hover{background:#2a2a2a;}
-
 .locked{opacity:0.4;cursor:default;}
 
 /* PLAYER */
@@ -89,26 +84,26 @@ flex-direction:column;
 z-index:999;
 }
 
-iframe{
+video{
 width:100%;
 height:90%;
-border:none;
+background:black;
 }
 
-.progress{
-height:4px;
-background:red;
-width:0%;
+/* CONTROLS */
+.controls{
+display:flex;
+gap:10px;
+padding:10px;
 }
 
-/* BUTTON */
 button{
+flex:1;
 background:red;
 border:none;
 color:white;
 padding:10px;
-margin-top:10px;
-width:100%;
+border-radius:6px;
 }
 </style>
 </head>
@@ -125,7 +120,7 @@ width:100%;
 </div>
 </header>
 
-<div class="hero">🔥 Смотри аниме бесплатно</div>
+<div class="hero">🔥 Без рекламы. Чистый плеер</div>
 
 <div id="home">
 <div class="grid" id="homeList"></div>
@@ -134,9 +129,12 @@ width:100%;
 <div id="animePage" style="display:none;padding:10px;"></div>
 
 <div class="player" id="player">
-<div class="progress" id="progress"></div>
-<iframe id="frame" allowfullscreen></iframe>
-<button onclick="closePlayer()">Закрыть</button>
+<video id="video" controls></video>
+
+<div class="controls">
+<button onclick="fullscreen()">⛶ Fullscreen</button>
+<button onclick="closePlayer()">✖ Закрыть</button>
+</div>
 </div>
 
 <script>
@@ -144,18 +142,19 @@ width:100%;
 const anime = {
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+
 episodes:[
-{title:"1 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239021"},
-{title:"2 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239024"},
-{title:"3 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239032"},
-{title:"4 серия",video:"https://vkvideo.ru/video_ext.php?oid=-229445104&id=456239032"},
-{title:"5 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239017"},
-{title:"6 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239018"},
-{title:"7 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239020"},
-{title:"8 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239022"},
-{title:"9 серия",video:"https://v3.animelib.org/ru/anime/11023--oshiete-galko-chan-anime/watch?episode=66990&player=Animelib"},
-{title:"10 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239026"},
-{title:"11 серия",video:"https://vkvideo.ru/video_ext.php?oid=-231918162&id=456239028"},
+{title:"1 серия",video:"PASTE_MP4"},
+{title:"2 серия",video:"PASTE_MP4"},
+{title:"3 серия",video:"PASTE_MP4"},
+{title:"4 серия",video:"PASTE_MP4"},
+{title:"5 серия",video:"PASTE_MP4"},
+{title:"6 серия",video:"PASTE_MP4"},
+{title:"7 серия",video:"PASTE_MP4"},
+{title:"8 серия",video:"PASTE_MP4"},
+{title:"9 серия",video:"PASTE_MP4"},
+{title:"10 серия",video:"PASTE_MP4"},
+{title:"11 серия",video:"PASTE_MP4"},
 {title:"12 серия (СКОРО)",video:""}
 ]
 };
@@ -165,23 +164,26 @@ let currentIndex=0;
 /* HOME */
 const home=document.getElementById("homeList");
 const card=document.createElement("div");
+
 card.className="card";
 card.style.backgroundImage=`url(${anime.poster})`;
 card.innerHTML=`<span>${anime.title}</span>`;
 card.onclick=openAnime;
+
 home.appendChild(card);
 
-/* OPEN ANIME */
+/* OPEN */
 function openAnime(){
 document.getElementById("home").style.display="none";
+
 const page=document.getElementById("animePage");
 page.style.display="block";
 
 page.innerHTML=`
+<button onclick="goHome()">⬅ Назад</button>
+
 <img class="poster" src="${anime.poster}">
 <h2>${anime.title}</h2>
-
-<button onclick="playEpisode(0)">▶ Смотреть с 1 серии</button>
 
 ${anime.episodes.map((ep,i)=>`
 <div class="ep ${!ep.video?'locked':''}" ${ep.video?`onclick="playEpisode(${i})"`:''}>
@@ -195,36 +197,34 @@ ${!ep.video?'<br>СКОРО':''}
 /* PLAYER */
 function playEpisode(i){
 currentIndex=i;
-document.getElementById("frame").src=anime.episodes[i].video;
+
+const video=document.getElementById("video");
+video.src=anime.episodes[i].video;
+
 document.getElementById("player").style.display="flex";
-
-/* авто-прогресс */
-let p=0;
-const bar=document.getElementById("progress");
-const interval=setInterval(()=>{
-p+=1;
-bar.style.width=p+"%";
-if(p>=100){
-clearInterval(interval);
-nextEpisode();
-}
-},300);
+video.play();
 }
 
-/* NEXT */
-function nextEpisode(){
-if(currentIndex<anime.episodes.length-1){
-currentIndex++;
-if(anime.episodes[currentIndex].video){
-playEpisode(currentIndex);
-}
+/* FULLSCREEN */
+function fullscreen(){
+const video=document.getElementById("video");
+if(video.requestFullscreen){
+video.requestFullscreen();
 }
 }
 
 /* CLOSE */
 function closePlayer(){
-document.getElementById("frame").src="";
+const video=document.getElementById("video");
+video.pause();
+video.src="";
 document.getElementById("player").style.display="none";
+}
+
+/* HOME BACK */
+function goHome(){
+document.getElementById("animePage").style.display="none";
+document.getElementById("home").style.display="block";
 }
 
 </script>
