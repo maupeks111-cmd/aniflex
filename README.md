@@ -213,7 +213,7 @@ episodes:[
 title:"Фарфоровая кукла (1 сезон)",
 poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
 episodes:[
-{t:"1 серия — СКОРО БУДЕТ",v:""},
+{t:"1 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=VID_20260416_110510_423_o8ndmt"},
 {t:"2 серия (в разработке)",v:""},
 {t:"3 серия (в разработке)",v:""},
 {t:"4 серия (в разработке)",v:""},
