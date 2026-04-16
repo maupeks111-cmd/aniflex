@@ -30,7 +30,7 @@ background:rgba(0,0,0,0.5);
 z-index:-1;
 }
 
-/* HEADER (ИЗМЕНЕНО) */
+/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
@@ -44,7 +44,7 @@ border-radius:0 0 20px 20px;
 box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* LOGO (ИЗМЕНЕНО) */
+/* LOGO */
 .logo{
 font-size:22px;
 font-weight:bold;
