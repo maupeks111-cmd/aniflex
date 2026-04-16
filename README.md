@@ -239,7 +239,7 @@ v:""
 
 {
 title:"Форма голоса (фильм)",
-poster:"https://static.okko.tv/images/v4/258f2d40-cc36-4c79-a13f-a6ebe3ae6ea8?presetId=4000",
+poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
 episodes:[{t:"Фильм (скоро)",v:""}]
 }
 
