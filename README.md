@@ -44,7 +44,6 @@ border-radius:0 0 20px 20px;
 box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* LOGO */
 .logo{
 font-size:22px;
 font-weight:bold;
@@ -54,12 +53,12 @@ text-transform:uppercase;
 letter-spacing:4px;
 }
 
-/* search */
 .search{
 width:40%;
 padding:8px;
 border-radius:8px;
 border:none;
+outline:none;
 }
 
 /* nav */
@@ -157,6 +156,7 @@ background:#222;
 color:white;
 border:none;
 border-radius:8px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -182,13 +182,13 @@ border-radius:8px;
 <div id="page" class="page"></div>
 
 <div id="player" class="player">
-<video id="video" controls></video>
+<video id="video" controls playsinline webkit-playsinline></video>
 <button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
 
-const data=[
+const data = [
 
 {
 title:"Гяруко",
@@ -213,7 +213,7 @@ episodes:[
 title:"Фарфоровая кукла (1 сезон)",
 poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
 episodes:[
-{t:"1 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=VID_20260416_110510_423_o8ndmt"},
+{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"},
 {t:"2 серия (в разработке)",v:""},
 {t:"3 серия (в разработке)",v:""},
 {t:"4 серия (в разработке)",v:""},
@@ -245,22 +245,25 @@ episodes:[{t:"Фильм (скоро)",v:""}]
 
 ];
 
-let fav=[];
-let last=null;
+let fav = [];
+let last = null;
 
-const home=document.getElementById("home");
-const page=document.getElementById("page");
-const player=document.getElementById("player");
-const video=document.getElementById("video");
+const home = document.getElementById("home");
+const page = document.getElementById("page");
+const player = document.getElementById("player");
+const video = document.getElementById("video");
 
 function render(list){
 home.innerHTML="";
-list.forEach((item,i)=>{
-let div=document.createElement("div");
+list.forEach(item=>{
+const index = data.indexOf(item);
+
+const div=document.createElement("div");
 div.className="card";
 div.style.backgroundImage=`url(${item.poster})`;
 div.innerHTML=`<div class="title">${item.title}</div>`;
-div.onclick=()=>openAnime(i);
+div.onclick=()=>openAnime(index);
+
 home.appendChild(div);
 });
 }
@@ -282,9 +285,10 @@ page.innerHTML=html;
 }
 
 function play(i,ep){
-if(!data[i].episodes[ep].v) return;
+const item = data[i].episodes[ep];
+if(!item.v) return;
 
-video.src=data[i].episodes[ep].v;
+video.src = item.v;
 player.style.display="flex";
 video.play();
 
@@ -304,14 +308,17 @@ home.style.display="grid";
 }
 
 function search(t){
-render(data.filter(a=>a.title.toLowerCase().includes(t.toLowerCase())));
+const filtered = data.filter(a =>
+a.title.toLowerCase().includes(t.toLowerCase())
+);
+render(filtered);
 }
 
 function showAll(){render(data);}
 function showFav(){render(data.filter((_,i)=>fav.includes(i)));}
 
 function resumeLast(){
-let l=JSON.parse(localStorage.getItem("last"));
+const l=JSON.parse(localStorage.getItem("last"));
 if(!l) return;
 play(l.i,l.ep);
 }
