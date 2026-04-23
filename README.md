@@ -120,7 +120,7 @@ display:none;
 padding:10px;
 }
 
-/* НОВОЕ: описание */
+/* описание */
 .info{
 background:#1c1c1c;
 padding:15px;
@@ -215,19 +215,9 @@ cursor:pointer;
 const data = [
 
 {
-title:"Клинок рассекающих демонов (1 сезон)",
-poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
-desc:"История Тандзиро Камадо, который становится охотником на демонов после того, как его семья была уничтожена, а сестра превращена в демона.",
-episodes:Array.from({length:12},(_,i)=>({
-t:`${i+1} серия (скоро)`,
-v:""
-}))
-},
-
-{
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
-desc:"Комедийное аниме про школьницу Гяруко и её повседневную жизнь.",
+desc:"Комедийное аниме про жизнь яркой школьницы Гяруко и её друзей.",
 episodes:[
 {t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
 {t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
@@ -242,6 +232,43 @@ episodes:[
 {t:"11 серия (есть в вк)",v:""},
 {t:"12 серия В РАЗРАБОДКЕ",v:""}
 ]
+},
+
+{
+title:"Фарфоровая кукла (1 сезон)",
+poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
+desc:"Романтическая история про косплей, любовь и школьную жизнь.",
+episodes:[
+{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"},
+...Array.from({length:11},(_,i)=>({t:`${i+2} серия (в разработке)`,v:""}))
+]
+},
+
+{
+title:"Сенко-сан",
+poster:"https://i.pinimg.com/736x/64/97/89/649789acb22b072a7fb783ca173d6408.jpg",
+desc:"Милая история о лисичке-духе, которая заботится о уставшем офисном работнике.",
+episodes:Array.from({length:12},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
+},
+
+{
+title:"Форма голоса (фильм)",
+poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
+desc:"Трогательная история о дружбе, травле и попытке исправить ошибки прошлого.",
+episodes:[{t:"Фильм (скоро)",v:""}]
+},
+
+{
+title:"Клинок рассекающих демонов (1 сезон)",
+poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
+desc:"История Тандзиро, который становится охотником на демонов ради спасения сестры.",
+episodes:Array.from({length:26},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 }
 
 ];
@@ -278,11 +305,10 @@ page.style.display="block";
 let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
 
-/* НОВЫЙ БЛОК */
 html+=`
 <div class="info">
 <img src="${data[i].poster}">
-<div class="info-text">${data[i].desc || "Описание скоро появится..."}</div>
+<div class="info-text">${data[i].desc}</div>
 </div>
 `;
 
