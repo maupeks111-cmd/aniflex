@@ -241,6 +241,16 @@ v:""
 title:"Форма голоса (фильм)",
 poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
 episodes:[{t:"Фильм (скоро)",v:""}]
+},
+
+/* ДОБАВИЛ ТВОЁ АНИМЕ */
+{
+title:"Клинок рассекающих демонов (1 сезон)",
+poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
+episodes:Array.from({length:12},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 }
 
 ];
