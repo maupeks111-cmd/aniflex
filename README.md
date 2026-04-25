@@ -257,7 +257,7 @@ episodes:[{t:"Фильм (скоро)",v:""}]
 
 {
 title:"Вечера с кошкой",
-poster:"https://shikimori.one/uploads/poster/animes/51692/main-8f221f4b0e5d093ed375a5f6c8f62a6f.webp",
+poster:"https://static.kinoafisha.info/k/series_posters/480/upload/series/posters/4/7/4/13474/338468001759996357.jpg",
 episodes:Array.from({length:30},(_,i)=>({
 t:`${i+1} серия (скоро)`,
 v:""
