@@ -86,7 +86,6 @@ gap:10px;
 padding:10px;
 }
 
-/* анимация карточек */
 .card{
 height:220px;
 border-radius:14px;
@@ -125,7 +124,6 @@ border-radius:8px;
 font-size:13px;
 }
 
-/* рейтинг */
 .rating{
 position:absolute;
 top:8px;
@@ -136,7 +134,6 @@ border-radius:6px;
 font-size:12px;
 }
 
-/* page */
 .page{
 display:none;
 padding:10px;
@@ -158,7 +155,6 @@ background:rgba(0,0,0,0.7);
 z-index:-1;
 }
 
-/* описание */
 .info{
 background:#1c1c1c;
 padding:15px;
@@ -182,7 +178,6 @@ line-height:1.4;
 color:#ddd;
 }
 
-/* ep */
 .ep{
 background:#1a1a1a;
 padding:10px;
@@ -200,7 +195,6 @@ background:#2a2a2a;
 opacity:0.4;
 }
 
-/* player */
 .player{
 position:fixed;
 inset:0;
@@ -224,6 +218,18 @@ color:white;
 border:none;
 border-radius:8px;
 cursor:pointer;
+}
+
+/* кнопка звука */
+.sound-toggle{
+position:fixed;
+bottom:15px;
+right:15px;
+background:#111;
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+z-index:1000;
 }
 </style>
 </head>
@@ -253,158 +259,69 @@ cursor:pointer;
 <button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
-<!-- 🔊 ЗВУКИ -->
+<!-- 🔊 звуки -->
 <audio id="cardSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
 <audio id="btnSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
 <audio id="epSound" src="https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"></audio>
 
+<div class="sound-toggle" onclick="toggleSound()">🔊</div>
+
 <script>
 
-const data = [
+let soundEnabled = true;
+let gameMode = false;
 
-{
-title:"Вечера с кошкой (1 сезон)",
-poster:"https://shikimori.io/uploads/poster/animes/51692/main-8f221f4b0e5d093ed375a5f6c8f62a6f.webp",
-desc:"Уютное аниме про жизнь с милой кошкой.",
-rating:"⭐ 8.5",
-episodes:Array.from({length:30},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
-},
-
-{
-title:"Клинок рассекающих демонов (1 сезон)",
-poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
-desc:"Тандзиро становится охотником на демонов.",
-rating:"⭐ 9.5",
-episodes:Array.from({length:26},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
-},
-
-{
-title:"Гяруко",
-poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
-desc:"Комедия про школьную жизнь.",
-rating:"⭐ 7.5",
-episodes:[
-{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
-{t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
-{t:"3 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254741/3_серия_Расскажи_нам_Гяруко_ibivet.mp4"},
-{t:"4 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254759/4_серия_Расскажи_нам_Гяруко_qzigwl.mp4"},
-{t:"5 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254740/5_серия_Расскажи_нам_Гяруко_crtolw.mp4"},
-{t:"6 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
-{t:"7 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
-{t:"8 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
-{t:"9 серия (есть в вк)",v:""},
-{t:"10 серия (есть в вк)",v:""},
-{t:"11 серия (есть в вк)",v:""},
-{t:"12 серия В РАЗРАБОДКЕ",v:""}
-]
-},
-
-{
-title:"Фарфоровая кукла (1 сезон)",
-poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
-desc:"Романтика и косплей.",
-rating:"⭐ 8.7",
-episodes:[
-{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"},
-...Array.from({length:11},(_,i)=>({t:`${i+2} серия (в разработке)`,v:""}))
-]
-},
-
-{
-title:"Сенко-сан",
-poster:"https://i.pinimg.com/736x/64/97/89/649789acb22b072a7fb783ca173d6408.jpg",
-desc:"Лисичка-дух помогает человеку.",
-rating:"⭐ 8.0",
-episodes:Array.from({length:12},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
-},
-
-{
-title:"Форма голоса (фильм)",
-poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
-desc:"История искупления и дружбы.",
-rating:"⭐ 9.0",
-episodes:[{t:"Фильм (скоро)",v:""}]
-}
-
-];
-
-const home = document.getElementById("home");
-const page = document.getElementById("page");
-
-function render(list){
-home.innerHTML="";
-list.forEach(item=>{
-const index = data.indexOf(item);
-
-const div=document.createElement("div");
-div.className="card";
-div.style.backgroundImage=`url(${item.poster})`;
-div.innerHTML=`
-<div class="rating">${item.rating}</div>
-<div class="title">${item.title}</div>
-`;
-div.onclick=()=>openAnime(index);
-
-home.appendChild(div);
-});
-}
-
-render(data);
-
-function openAnime(i){
-home.style.display="none";
-page.style.display="block";
-page.style.backgroundImage=`url(${data[i].poster})`;
-
-let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
-html+=`<h2>${data[i].title}</h2>`;
-html+=`<div class="rating">${data[i].rating}</div>`;
-
-html+=`
-<div class="info">
-<img src="${data[i].poster}">
-<div class="info-text">${data[i].desc}</div>
-</div>
-`;
-
-data[i].episodes.forEach(ep=>{
-html+=`<div class="ep ${ep.v?'':'lock'}">${ep.t}</div>`;
-});
-
-page.innerHTML=html;
-}
-
-function back(){
-page.style.display="none";
-home.style.display="grid";
-}
-
-function search(t){
-const filtered = data.filter(a =>
-a.title.toLowerCase().includes(t.toLowerCase())
-);
-render(filtered);
-}
-
-function showAll(){render(data);}
-
-/* 🔊 ЗВУКИ */
 const cardSound = document.getElementById("cardSound");
 const btnSound = document.getElementById("btnSound");
 const epSound = document.getElementById("epSound");
 
+/* громкость режимов */
+function updateVolume(){
+let vol = gameMode ? 1 : 0.5;
+cardSound.volume = vol;
+btnSound.volume = vol;
+epSound.volume = vol;
+}
+updateVolume();
+
+function toggleSound(){
+soundEnabled = !soundEnabled;
+document.querySelector(".sound-toggle").innerText = soundEnabled ? "🔊" : "🔇";
+}
+
+/* двойной клик = игровой режим */
+document.querySelector(".sound-toggle").ondblclick = ()=>{
+gameMode = !gameMode;
+updateVolume();
+};
+
+/* hover */
 document.addEventListener("mouseover", (e)=>{
+if(!soundEnabled) return;
+
 if(e.target.closest(".card")){
-cardSound.currentTime = 0;
-cardSound.play();
+cardSound.currentTime=0; cardSound.play();
 }
 if(e.target.closest(".btn") || e.target.closest(".nav button")){
-btnSound.currentTime = 0;
-btnSound.play();
+btnSound.currentTime=0; btnSound.play();
 }
 if(e.target.closest(".ep")){
-epSound.currentTime = 0;
-epSound.play();
+epSound.currentTime=0; epSound.play();
+}
+});
+
+/* click */
+document.addEventListener("click", (e)=>{
+if(!soundEnabled) return;
+
+if(e.target.closest(".card")){
+cardSound.currentTime=0; cardSound.play();
+}
+if(e.target.closest(".btn") || e.target.closest(".nav button")){
+btnSound.currentTime=0; btnSound.play();
+}
+if(e.target.closest(".ep")){
+epSound.currentTime=0; epSound.play();
 }
 });
 
