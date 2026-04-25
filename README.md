@@ -253,6 +253,11 @@ cursor:pointer;
 <button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
+<!-- 🔊 ЗВУКИ -->
+<audio id="cardSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+<audio id="btnSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+<audio id="epSound" src="https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3"></audio>
+
 <script>
 
 const data = [
@@ -382,6 +387,26 @@ render(filtered);
 }
 
 function showAll(){render(data);}
+
+/* 🔊 ЗВУКИ */
+const cardSound = document.getElementById("cardSound");
+const btnSound = document.getElementById("btnSound");
+const epSound = document.getElementById("epSound");
+
+document.addEventListener("mouseover", (e)=>{
+if(e.target.closest(".card")){
+cardSound.currentTime = 0;
+cardSound.play();
+}
+if(e.target.closest(".btn") || e.target.closest(".nav button")){
+btnSound.currentTime = 0;
+btnSound.play();
+}
+if(e.target.closest(".ep")){
+epSound.currentTime = 0;
+epSound.play();
+}
+});
 
 </script>
 
