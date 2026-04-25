@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -6,77 +5,165 @@
 <title>ANIFLEX</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#000;color:white;overflow-x:hidden;}
+body{
+margin:0;
+font-family:Arial;
+background:#111;
+color:white;
+overflow-x:hidden;
+}
 
+/* фон */
 body::before{
-content:"";position:fixed;inset:0;
+content:"";
+position:fixed;
+inset:0;
 background:url("https://img.freepik.com/premium-photo/japanese-torii-gate-sunset-with-silhouetted-landscape_1282444-100316.jpg");
 background-size:cover;
+background-position:center;
 z-index:-2;
 }
 body::after{
-content:"";position:fixed;inset:0;
-background:rgba(0,0,0,0.6);
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.55);
 z-index:-1;
 }
 
+/* HEADER */
 header{
-display:flex;justify-content:space-between;
-padding:12px;background:white;
-border-radius:0 0 20px 20px;
-}
-.logo{color:black;font-weight:bold;}
-.search{padding:8px;border-radius:8px;border:none;width:40%;}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:10px;
-padding:10px;
-}
-
-.card{
-height:220px;
-border-radius:14px;
-background-size:cover;
-background-position:center;
 display:flex;
-align-items:flex-end;
-padding:10px;
-cursor:pointer;
-position:relative;
-transition:0.3s;
+justify-content:space-between;
+align-items:center;
+padding:12px;
+background:white;
+border-radius:0 0 20px 20px;
+position:sticky;
+top:0;
+z-index:10;
 }
-.card:hover{transform:scale(1.05);}
-.card::before{
-content:"";position:absolute;inset:0;
-background:rgba(0,0,0,0.4);
-border-radius:14px;
+
+.logo{
+font-weight:bold;
+font-family:monospace;
+color:black;
+letter-spacing:3px;
 }
-.title{
-position:relative;
-background:rgba(0,0,0,0.7);
-padding:6px;
+
+.search{
+padding:8px;
 border-radius:8px;
-font-size:13px;
+border:none;
+width:40%;
+outline:none;
 }
 
-.page{display:none;padding:10px;}
-
-.ep{
-background:#1a1a1a;
-margin:6px 0;
+/* NAV */
+.nav{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
 padding:10px;
+}
+
+.nav button{
+background:#222;
+color:white;
+border:none;
+padding:8px 12px;
 border-radius:10px;
 cursor:pointer;
+transition:0.2s;
 }
+
+.nav button:hover{
+transform:scale(1.05);
+background:#444;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:12px;
+padding:10px;
+}
+
+/* CARD Netflix */
+.card{
+height:240px;
+border-radius:16px;
+background-size:cover;
+background-position:center;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+transition:0.3s;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+}
+
+.card:hover{
+transform:scale(1.07);
+z-index:5;
+filter:brightness(1.1);
+}
+
+.title{
+position:absolute;
+bottom:10px;
+left:10px;
+background:rgba(0,0,0,0.75);
+padding:6px 10px;
+border-radius:10px;
+font-size:13px;
+backdrop-filter:blur(6px);
+}
+
+.badge{
+position:absolute;
+top:8px;
+right:8px;
+background:red;
+font-size:10px;
+padding:3px 6px;
+border-radius:6px;
+}
+
+/* PAGE */
+.page{
+display:none;
+padding:10px;
+}
+
+.ep{
+background:#1c1c1c;
+padding:10px;
+margin:6px 0;
+border-radius:10px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.ep:hover{
+background:#333;
+transform:scale(1.02);
+}
+
 .lock{opacity:0.4;}
 
 .player{
-position:fixed;inset:0;
+position:fixed;
+inset:0;
 background:black;
 display:none;
-flex-direction:column;
 z-index:999;
 }
 
@@ -93,6 +180,7 @@ background:#222;
 color:white;
 border:none;
 border-radius:8px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -104,30 +192,38 @@ border-radius:8px;
 <input class="search" placeholder="Поиск..." oninput="search(this.value)">
 </header>
 
+<div class="nav">
+<button onclick="showAll()">🏠 Главная</button>
+<button onclick="resumeLast()">▶️ Продолжить</button>
+
+<a href="https://vk.com/aniflex1"><button>VK</button></a>
+<a href="https://t.me/Animeflex1x"><button>TG</button></a>
+<a href="https://www.donationalerts.com/r/LaunchPlay"><button>💰 Донат</button></a>
+</div>
+
 <div id="home" class="grid"></div>
 <div id="page" class="page"></div>
 
 <div id="player" class="player">
-<video id="video" controls></video>
+<video id="video" controls playsinline></video>
 <button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
 
-const data = [
+const data=[
 
 {
 title:"Клинок рассекающих демонов",
 poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
-episodes:Array.from({length:26},(_,i)=>({
-t:`${i+1} серия (скоро)`,
-v:""
-}))
+desc:"1 сезон",
+episodes:Array.from({length:26},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
 },
 
 {
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
+desc:"8 серий доступно",
 episodes:[
 {t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
 {t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
@@ -137,113 +233,105 @@ episodes:[
 {t:"6 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
 {t:"7 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
 {t:"8 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
-{t:"9 серия (вк)",v:""},
-{t:"10 серия (вк)",v:""},
-{t:"11 серия (вк)",v:""},
-{t:"12 серия (скоро)",v:""}
+{t:"9 (вк)",v:""},
+{t:"10 (вк)",v:""},
+{t:"11 (вк)",v:""},
+{t:"12 (скоро)",v:""}
 ]
 },
 
 {
-title:"Фарфоровая кукла (1 сезон)",
+title:"Фарфоровая кукла",
 poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
+desc:"1 сезон",
 episodes:[
 {t:"1 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=VID_20260416_110510_423_o8ndmt"},
-{t:"2 серия (скоро)",v:""},
-{t:"3 серия (скоро)",v:""},
-{t:"4 серия (скоро)",v:""},
-{t:"5 серия (скоро)",v:""},
-{t:"6 серия (скоро)",v:""},
-{t:"7 серия (скоро)",v:""},
-{t:"8 серия (скоро)",v:""},
-{t:"9 серия (скоро)",v:""},
-{t:"10 серия (скоро)",v:""},
-{t:"11 серия (скоро)",v:""},
+{t:"2 серия (скоро)",v:""}
+{t:"3 серия (скоро)",v:""}
+{t:"4 серия (скоро)",v:""}
+{t:"5 серия (скоро)",v:""}
+{t:"6 серия (скоро)",v:""}
+{t:"7 серия (скоро)",v:""}
+{t:"8 серия (скоро)",v:""}
+{t:"9 серия (скоро)",v:""}
+{t:"10 серия (скоро)",v:""}
+{t:"11 серия (скоро)",v:""}
 {t:"12 серия (скоро)",v:""}
 ]
-},
-
-{
-title:"Вечера с кошкой",
-poster:"https://shikimori.io/uploads/poster/animes/51692/main-8f221f4b0e5d093ed375a5f6c8f62a6f.webp",
-episodes:Array.from({length:30},(_,i)=>({
-t:`${i+1} серия (скоро)`,
-v:""
-}))
 },
 
 {
 title:"Сенко-сан",
 poster:"https://i.pinimg.com/736x/64/97/89/649789acb22b072a7fb783ca173d6408.jpg",
-episodes:Array.from({length:12},(_,i)=>({
-t:`${i+1} серия (скоро)`,
-v:""
-}))
+desc:"1 сезон",
+episodes:Array.from({length:12},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
 },
 
 {
-title:"Форма голоса (фильм)",
+title:"Форма голоса",
 poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
+desc:"Фильм",
 episodes:[{t:"Фильм (скоро)",v:""}]
+},
+
+{
+title:"Вечера с кошкой",
+poster:"https://shikimori.one/uploads/poster/animes/51692/main-8f221f4b0e5d093ed375a5f6c8f62a6f.webp",
+desc:"30 серий",
+episodes:Array.from({length:30},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
 }
 
 ];
 
-let currentData = data;
+let home=document.getElementById("home");
+let page=document.getElementById("page");
+let player=document.getElementById("player");
+let video=document.getElementById("video");
 
-const home=document.getElementById("home");
-const page=document.getElementById("page");
-const player=document.getElementById("player");
-const video=document.getElementById("video");
-
-/* render */
 function render(list){
 home.innerHTML="";
-currentData=list;
-
 list.forEach(item=>{
-const i=data.indexOf(item);
+let i=data.indexOf(item);
 
-const div=document.createElement("div");
+let div=document.createElement("div");
 div.className="card";
 div.style.backgroundImage=`url(${item.poster})`;
-div.innerHTML=`<div class="title">${item.title}</div>`;
-div.onclick=()=>openAnime(i);
+div.innerHTML=`
+<div class="badge">ANIFLEX</div>
+<div class="title">${item.title}</div>
+`;
+div.onclick=()=>open(i);
 home.appendChild(div);
 });
 }
 
 render(data);
 
-/* open */
-function openAnime(i){
+function open(i){
 home.style.display="none";
 page.style.display="block";
 
-let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
+let html=`<button class="btn" onclick="back()">Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
+html+=`<p>${data[i].desc}</p>`;
 
-data[i].episodes.forEach((ep,idx)=>{
-html+=`<div class="ep ${ep.v?'':'lock'}">${ep.t}</div>`;
+data[i].episodes.forEach(e=>{
+html+=`<div class="ep ${e.v?'':'lock'}" onclick="play('${e.v}')">${e.t}</div>`;
 });
 
 page.innerHTML=html;
 }
 
-/* play (если добавишь позже видео) */
-function play(i,ep){
-const item=data[i].episodes[ep];
-if(!item.v) return;
-
-video.src=item.v;
-player.style.display="flex";
+function play(v){
+if(!v) return;
+video.src=v;
+player.style.display="block";
 video.play();
 }
 
 function closePlayer(){
-video.pause();
-video.src="";
 player.style.display="none";
+video.pause();
 }
 
 function back(){
@@ -251,10 +339,12 @@ page.style.display="none";
 home.style.display="grid";
 }
 
-/* search FIX (не ломает индексы) */
+function showAll(){render(data);}
+
+function resumeLast(){}
+
 function search(t){
-const filtered = data.filter(a=>a.title.toLowerCase().includes(t.toLowerCase()));
-render(filtered);
+render(data.filter(a=>a.title.toLowerCase().includes(t.toLowerCase())));
 }
 
 </script>
