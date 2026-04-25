@@ -13,7 +13,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* фон */
 body::before{
 content:"";
 position:fixed;
@@ -23,6 +22,7 @@ background-size:cover;
 background-position:center;
 z-index:-2;
 }
+
 body::after{
 content:"";
 position:fixed;
@@ -31,7 +31,6 @@ background:rgba(0,0,0,0.55);
 z-index:-1;
 }
 
-/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
@@ -59,7 +58,6 @@ width:40%;
 outline:none;
 }
 
-/* NAV */
 .nav{
 display:flex;
 flex-wrap:wrap;
@@ -74,15 +72,8 @@ border:none;
 padding:8px 12px;
 border-radius:10px;
 cursor:pointer;
-transition:0.2s;
 }
 
-.nav button:hover{
-transform:scale(1.05);
-background:#444;
-}
-
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
@@ -90,7 +81,6 @@ gap:12px;
 padding:10px;
 }
 
-/* CARD Netflix */
 .card{
 height:240px;
 border-radius:16px;
@@ -111,20 +101,18 @@ background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
 }
 
 .card:hover{
-transform:scale(1.07);
+transform:scale(1.05);
 z-index:5;
-filter:brightness(1.1);
 }
 
 .title{
 position:absolute;
 bottom:10px;
 left:10px;
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,0.7);
 padding:6px 10px;
 border-radius:10px;
 font-size:13px;
-backdrop-filter:blur(6px);
 }
 
 .badge{
@@ -137,7 +125,6 @@ padding:3px 6px;
 border-radius:6px;
 }
 
-/* PAGE */
 .page{
 display:none;
 padding:10px;
@@ -149,12 +136,6 @@ padding:10px;
 margin:6px 0;
 border-radius:10px;
 cursor:pointer;
-transition:0.2s;
-}
-
-.ep:hover{
-background:#333;
-transform:scale(1.02);
 }
 
 .lock{opacity:0.4;}
@@ -194,7 +175,6 @@ cursor:pointer;
 
 <div class="nav">
 <button onclick="showAll()">🏠 Главная</button>
-<button onclick="resumeLast()">▶️ Продолжить</button>
 
 <a href="https://vk.com/aniflex1"><button>VK</button></a>
 <a href="https://t.me/Animeflex1x"><button>TG</button></a>
@@ -205,25 +185,26 @@ cursor:pointer;
 <div id="page" class="page"></div>
 
 <div id="player" class="player">
-<video id="video" controls playsinline></video>
+<video id="video" controls></video>
 <button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
 
-const data=[
+const data = [
 
 {
 title:"Клинок рассекающих демонов",
 poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
-desc:"1 сезон",
-episodes:Array.from({length:26},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
+episodes:Array.from({length:26},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 },
 
 {
 title:"Гяруко",
 poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
-desc:"8 серий доступно",
 episodes:[
 {t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
 {t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
@@ -243,19 +224,18 @@ episodes:[
 {
 title:"Фарфоровая кукла",
 poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
-desc:"1 сезон",
 episodes:[
 {t:"1 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=VID_20260416_110510_423_o8ndmt"},
-{t:"2 серия (скоро)",v:""}
-{t:"3 серия (скоро)",v:""}
-{t:"4 серия (скоро)",v:""}
-{t:"5 серия (скоро)",v:""}
-{t:"6 серия (скоро)",v:""}
-{t:"7 серия (скоро)",v:""}
-{t:"8 серия (скоро)",v:""}
-{t:"9 серия (скоро)",v:""}
-{t:"10 серия (скоро)",v:""}
-{t:"11 серия (скоро)",v:""}
+{t:"2 серия (скоро)",v:""},
+{t:"3 серия (скоро)",v:""},
+{t:"4 серия (скоро)",v:""},
+{t:"5 серия (скоро)",v:""},
+{t:"6 серия (скоро)",v:""},
+{t:"7 серия (скоро)",v:""},
+{t:"8 серия (скоро)",v:""},
+{t:"9 серия (скоро)",v:""},
+{t:"10 серия (скоро)",v:""},
+{t:"11 серия (скоро)",v:""},
 {t:"12 серия (скоро)",v:""}
 ]
 },
@@ -263,22 +243,25 @@ episodes:[
 {
 title:"Сенко-сан",
 poster:"https://i.pinimg.com/736x/64/97/89/649789acb22b072a7fb783ca173d6408.jpg",
-desc:"1 сезон",
-episodes:Array.from({length:12},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
+episodes:Array.from({length:12},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 },
 
 {
 title:"Форма голоса",
 poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
-desc:"Фильм",
 episodes:[{t:"Фильм (скоро)",v:""}]
 },
 
 {
 title:"Вечера с кошкой",
 poster:"https://shikimori.one/uploads/poster/animes/51692/main-8f221f4b0e5d093ed375a5f6c8f62a6f.webp",
-desc:"30 серий",
-episodes:Array.from({length:30},(_,i)=>({t:`${i+1} серия (скоро)`,v:""}))
+episodes:Array.from({length:30},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 }
 
 ];
@@ -313,7 +296,6 @@ page.style.display="block";
 
 let html=`<button class="btn" onclick="back()">Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
-html+=`<p>${data[i].desc}</p>`;
 
 data[i].episodes.forEach(e=>{
 html+=`<div class="ep ${e.v?'':'lock'}" onclick="play('${e.v}')">${e.t}</div>`;
@@ -340,8 +322,6 @@ home.style.display="grid";
 }
 
 function showAll(){render(data);}
-
-function resumeLast(){}
 
 function search(t){
 render(data.filter(a=>a.title.toLowerCase().includes(t.toLowerCase())));
