@@ -93,16 +93,8 @@ transition:0.3s;
 box-shadow:0 8px 20px rgba(0,0,0,0.4);
 }
 
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-}
-
 .card:hover{
 transform:scale(1.05);
-z-index:5;
 }
 
 .title{
@@ -145,6 +137,7 @@ position:fixed;
 inset:0;
 background:black;
 display:none;
+flex-direction:column;
 z-index:999;
 }
 
@@ -185,8 +178,8 @@ cursor:pointer;
 <div id="page" class="page"></div>
 
 <div id="player" class="player">
+<button class="btn" onclick="closePlayer()">⬅ Назад</button>
 <video id="video" controls></video>
-<button class="btn" onclick="closePlayer()">Закрыть</button>
 </div>
 
 <script>
@@ -225,7 +218,10 @@ episodes:[
 title:"Фарфоровая кукла",
 poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
 episodes:[
-{t:"1 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=VID_20260416_110510_423_o8ndmt"},
+{
+t:"1 серия",
+v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"
+},
 {t:"2 серия (скоро)",v:""},
 {t:"3 серия (скоро)",v:""},
 {t:"4 серия (скоро)",v:""},
@@ -279,10 +275,7 @@ let i=data.indexOf(item);
 let div=document.createElement("div");
 div.className="card";
 div.style.backgroundImage=`url(${item.poster})`;
-div.innerHTML=`
-<div class="badge">ANIFLEX</div>
-<div class="title">${item.title}</div>
-`;
+div.innerHTML=`<div class="title">${item.title}</div>`;
 div.onclick=()=>open(i);
 home.appendChild(div);
 });
@@ -294,7 +287,7 @@ function open(i){
 home.style.display="none";
 page.style.display="block";
 
-let html=`<button class="btn" onclick="back()">Назад</button>`;
+let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
 
 data[i].episodes.forEach(e=>{
@@ -307,13 +300,14 @@ page.innerHTML=html;
 function play(v){
 if(!v) return;
 video.src=v;
-player.style.display="block";
+player.style.display="flex";
 video.play();
 }
 
 function closePlayer(){
 player.style.display="none";
 video.pause();
+video.src="";
 }
 
 function back(){
