@@ -103,7 +103,7 @@ overflow:hidden;
 content:"";
 position:absolute;
 inset:0;
-background:rgba(0,0,0,0.3);
+background:rgba(0,0,0,0.4);
 }
 
 .title{
@@ -114,10 +114,32 @@ border-radius:8px;
 font-size:13px;
 }
 
+/* рейтинг */
+.rating{
+position:absolute;
+top:8px;
+right:8px;
+background:rgba(0,0,0,0.7);
+padding:4px 6px;
+border-radius:6px;
+font-size:12px;
+}
+
 /* page */
 .page{
 display:none;
 padding:10px;
+background-size:cover;
+background-position:center;
+}
+
+/* затемнение страницы */
+.page::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
+z-index:-1;
 }
 
 /* описание */
@@ -215,39 +237,32 @@ cursor:pointer;
 const data = [
 
 {
-title:"Гяруко",
-poster:"https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
-desc:"Комедийное аниме про жизнь яркой школьницы Гяруко и её друзей.",
-episodes:[
-{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/1_серия_Расскажи_нам_Гяруко_is6ti6.mp4"},
-{t:"2 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254679/2_серия_Расскажи_нам_Гяруко_eroylf.mp4"},
-{t:"3 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254741/3_серия_Расскажи_нам_Гяруко_ibivet.mp4"},
-{t:"4 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254759/4_серия_Расскажи_нам_Гяруко_qzigwl.mp4"},
-{t:"5 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254740/5_серия_Расскажи_нам_Гяруко_crtolw.mp4"},
-{t:"6 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
-{t:"7 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
-{t:"8 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
-{t:"9 серия (есть в вк)",v:""},
-{t:"10 серия (есть в вк)",v:""},
-{t:"11 серия (есть в вк)",v:""},
-{t:"12 серия В РАЗРАБОДКЕ",v:""}
-]
+title:"Вечера с кошкой (1 сезон)",
+poster:"https://shikimori.io/uploads/poster/animes/51692/main-8f221f4b0e5d093ed375a5f6c8f62a6f.webp",
+desc:"Уютное аниме о повседневной жизни с милой кошкой и тёплых вечерах дома.",
+rating:"⭐ 8.5",
+episodes:Array.from({length:30},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 },
 
 {
-title:"Фарфоровая кукла (1 сезон)",
-poster:"https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
-desc:"Романтическая история про косплей, любовь и школьную жизнь.",
-episodes:[
-{t:"1 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"},
-...Array.from({length:11},(_,i)=>({t:`${i+2} серия (в разработке)`,v:""}))
-]
+title:"Клинок рассекающих демонов (1 сезон)",
+poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
+desc:"История Тандзиро, ставшего охотником на демонов ради спасения сестры.",
+rating:"⭐ 9.5",
+episodes:Array.from({length:26},(_,i)=>({
+t:`${i+1} серия (скоро)`,
+v:""
+}))
 },
 
 {
 title:"Сенко-сан",
 poster:"https://i.pinimg.com/736x/64/97/89/649789acb22b072a7fb783ca173d6408.jpg",
-desc:"Милая история о лисичке-духе, которая заботится о уставшем офисном работнике.",
+desc:"Лисичка-дух помогает уставшему офисному работнику.",
+rating:"⭐ 8.0",
 episodes:Array.from({length:12},(_,i)=>({
 t:`${i+1} серия (скоро)`,
 v:""
@@ -257,18 +272,9 @@ v:""
 {
 title:"Форма голоса (фильм)",
 poster:"https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
-desc:"Трогательная история о дружбе, травле и попытке исправить ошибки прошлого.",
+desc:"История о дружбе, ошибках и искуплении.",
+rating:"⭐ 9.0",
 episodes:[{t:"Фильм (скоро)",v:""}]
-},
-
-{
-title:"Клинок рассекающих демонов (1 сезон)",
-poster:"https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
-desc:"История Тандзиро, который становится охотником на демонов ради спасения сестры.",
-episodes:Array.from({length:26},(_,i)=>({
-t:`${i+1} серия (скоро)`,
-v:""
-}))
 }
 
 ];
@@ -289,7 +295,10 @@ const index = data.indexOf(item);
 const div=document.createElement("div");
 div.className="card";
 div.style.backgroundImage=`url(${item.poster})`;
-div.innerHTML=`<div class="title">${item.title}</div>`;
+div.innerHTML=`
+<div class="rating">${item.rating || ""}</div>
+<div class="title">${item.title}</div>
+`;
 div.onclick=()=>openAnime(index);
 
 home.appendChild(div);
@@ -302,8 +311,12 @@ function openAnime(i){
 home.style.display="none";
 page.style.display="block";
 
+/* фон страницы */
+page.style.backgroundImage=`url(${data[i].poster})`;
+
 let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
+html+=`<div class="rating">${data[i].rating}</div>`;
 
 html+=`
 <div class="info">
@@ -313,28 +326,10 @@ html+=`
 `;
 
 data[i].episodes.forEach((ep,idx)=>{
-html+=`<div class="ep ${ep.v?'':'lock'}" onclick="play(${i},${idx})">${ep.t}</div>`;
+html+=`<div class="ep ${ep.v?'':'lock'}">${ep.t}</div>`;
 });
 
 page.innerHTML=html;
-}
-
-function play(i,ep){
-const item = data[i].episodes[ep];
-if(!item.v) return;
-
-video.src = item.v;
-player.style.display="flex";
-video.play();
-
-last={i,ep};
-localStorage.setItem("last",JSON.stringify(last));
-}
-
-function closePlayer(){
-video.pause();
-video.src="";
-player.style.display="none";
 }
 
 function back(){
@@ -350,13 +345,6 @@ render(filtered);
 }
 
 function showAll(){render(data);}
-function showFav(){render(data.filter((_,i)=>fav.includes(i)));}
-
-function resumeLast(){
-const l=JSON.parse(localStorage.getItem("last"));
-if(!l) return;
-play(l.i,l.ep);
-}
 
 </script>
 
