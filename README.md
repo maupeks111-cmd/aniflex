@@ -178,8 +178,17 @@ cursor:pointer;
 <div id="page" class="page"></div>
 
 <div id="player" class="player">
+
 <button class="btn" onclick="closePlayer()">⬅ Назад</button>
+
 <video id="video" controls></video>
+
+<iframe id="iframePlayer"
+style="display:none;width:100%;height:100%;border:none;"
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+
 </div>
 
 <script>
@@ -254,10 +263,24 @@ episodes:[{t:"Фильм (скоро)",v:""}]
 {
 title:"Вечера с кошкой",
 poster:"https://static.kinoafisha.info/k/series_posters/480/upload/series/posters/4/7/4/13474/338468001759996357.jpg",
+
 episodes:[
-{t:"1 серия",v:"https://vkvideo.ru/video-231918162_456239031?pl=-231918162_4"},
-{t:"2 серия",v:"https://vkvideo.ru/video-231918162_456239032?pl=-231918162_4"},
-{t:"3 серия",v:"https://vkvideo.ru/video-231918162_456239033?pl=-231918162_4"},
+
+{
+t:"1 серия",
+v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=17869717768793_pusgyk"
+},
+
+{
+t:"2 серия",
+v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=16553542945455_hpd1zn"
+},
+
+{
+t:"3 серия",
+v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=17027855223413_ormpod"
+},
+
 {t:"4 серия (скоро)",v:""},
 {t:"5 серия (скоро)",v:""},
 {t:"6 серия (скоро)",v:""},
@@ -285,6 +308,7 @@ episodes:[
 {t:"28 серия (скоро)",v:""},
 {t:"29 серия (скоро)",v:""},
 {t:"30 серия (скоро)",v:""}
+
 ]
 }
 
@@ -326,21 +350,52 @@ page.innerHTML=html;
 }
 
 function play(v){
+
 if(!v) return;
 
-if(v.includes("vkvideo.ru")){
-window.open(v,"_blank");
+player.style.display="flex";
+
+
+let iframe=document.getElementById("iframePlayer");
+
+
+if(v.includes("player.cloudinary.com")){
+
+video.style.display="none";
+
+iframe.style.display="block";
+
+iframe.src=v;
+
 return;
+
 }
 
+
+iframe.style.display="none";
+iframe.src="";
+
+video.style.display="block";
+
 video.src=v;
-player.style.display="flex";
+
 video.play();
+
 }
 function closePlayer(){
+
 player.style.display="none";
+
 video.pause();
 video.src="";
+
+let iframe=document.getElementById("iframePlayer");
+
+iframe.src="";
+iframe.style.display="none";
+
+video.style.display="block";
+
 }
 
 function back(){
