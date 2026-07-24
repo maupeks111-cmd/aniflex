@@ -404,6 +404,7 @@ video.src=v;
 video.play();
 
 }
+
 function closePlayer(){
 
 player.style.display="none";
