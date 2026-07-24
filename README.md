@@ -220,7 +220,6 @@ episodes:[
 {t:"10 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=12_ud4aum"},
 {t:"11 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=11_px4jiv"},
 {t:"12 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=10_neqyxr"}
-]
 },
 
 {
