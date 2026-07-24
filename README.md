@@ -327,38 +327,49 @@ let div=document.createElement("div");
 div.className="card";
 div.style.backgroundImage=`url(${item.poster})`;
 div.innerHTML=`<div class="title">${item.title}</div>`;
-div.onclick=()=>open(i);
+div.onclick=()=>openAnime(i);
 home.appendChild(div);
 });
 }
 
 render(data);
 
-function open(i){
+function openAnime(i){
+
 home.style.display="none";
 page.style.display="block";
 
 let html=`<button class="btn" onclick="back()">⬅ Назад</button>`;
 html+=`<h2>${data[i].title}</h2>`;
 
-data[i].episodes.forEach(e=>{
-html+=`<div class="ep ${e.v?'':'lock'}" onclick="play('${e.v}')">${e.t}</div>`;
+data[i].episodes.forEach((e,index)=>{
+
+html+=`
+<div class="ep ${e.v?'':'lock'}" 
+onclick="playEpisode(${i},${index})">
+${e.t}
+</div>
+`;
+
 });
 
 page.innerHTML=html;
+
 }
 
-function play(v){
+function playEpisode(anime,episode){
+
+let v=data[anime].episodes[episode].v;
 
 if(!v) return;
 
-player.style.display="flex";
 
+player.style.display="flex";
 
 let iframe=document.getElementById("iframePlayer");
 
 
-if(v.includes("player.cloudinary.com")){
+if(v.includes("cloudinary.com/embed")){
 
 video.style.display="none";
 
@@ -367,6 +378,18 @@ iframe.style.display="block";
 iframe.src=v;
 
 return;
+
+}
+
+
+iframe.style.display="none";
+iframe.src="";
+
+video.style.display="block";
+
+video.src=v;
+
+video.play();
 
 }
 
