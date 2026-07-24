@@ -363,13 +363,12 @@ let v=data[anime].episodes[episode].v;
 
 if(!v) return;
 
-
 player.style.display="flex";
 
 let iframe=document.getElementById("iframePlayer");
 
 
-if(v.includes("cloudinary.com/embed")){
+if(v.includes("player.cloudinary.com/embed")){
 
 video.style.display="none";
 
@@ -381,6 +380,7 @@ return;
 
 }
 
+
 iframe.style.display="none";
 iframe.src="";
 
@@ -388,9 +388,10 @@ video.style.display="block";
 
 video.src=v;
 
-video.play();
+video.play().catch(()=>{});
 
 }
+
 
 function closePlayer(){
 
