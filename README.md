@@ -216,10 +216,10 @@ episodes:[
 {t:"6 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254747/6_серия_Расскажи_нам_Гяруко_jhnztd.mp4"},
 {t:"7 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254735/7_серия_Расскажи_нам_Гяруко_qhbmlj.mp4"},
 {t:"8 серия",v:"https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254751/8_серия_Расскажи_нам_Гяруко_wsdrnn.mp4"},
-{t:"9 (вк)",v:""},
-{t:"10 (вк)",v:""},
-{t:"11 (вк)",v:""},
-{t:"12 (вк)",v:""}
+{t:"9 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=9_dxhyvm"},
+{t:"10 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=12_ud4aum"},
+{t:"11 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=11_px4jiv"},
+{t:"12 серия",v:"https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=10_neqyxr"}
 ]
 },
 
