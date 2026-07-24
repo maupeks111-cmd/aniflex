@@ -381,19 +381,6 @@ return;
 
 }
 
-
-iframe.style.display="none";
-iframe.src="";
-
-video.style.display="block";
-
-video.src=v;
-
-video.play();
-
-}
-
-
 iframe.style.display="none";
 iframe.src="";
 
