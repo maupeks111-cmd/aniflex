@@ -521,7 +521,10 @@ const data = [
                 v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=17027855223413_ormpod"
             },
 
-            { t: "4 серия (скоро)", v: "" },
+            { 
+              t: "4 серия (скоро)",
+              v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=4_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_wrehoz" 
+            },
             { t: "5 серия (скоро)", v: "" },
             { t: "6 серия (скоро)", v: "" },
             { t: "7 серия (скоро)", v: "" },
