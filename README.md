@@ -50,9 +50,12 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 15px;
+
     padding: 12px 15px;
+
     background: rgba(255, 255, 255, 0.96);
     border-radius: 0 0 20px 20px;
+
     position: sticky;
     top: 0;
     z-index: 100;
@@ -114,12 +117,16 @@ header {
 .card {
     height: 240px;
     border-radius: 16px;
+
     background-size: cover;
     background-position: center;
+
     cursor: pointer;
     position: relative;
     overflow: hidden;
+
     transition: transform 0.25s, box-shadow 0.25s;
+
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -132,6 +139,7 @@ header {
     content: "";
     position: absolute;
     inset: 0;
+
     background: linear-gradient(
         transparent 45%,
         rgba(0, 0, 0, 0.8)
@@ -143,9 +151,11 @@ header {
     bottom: 10px;
     left: 10px;
     right: 10px;
+
     background: rgba(0, 0, 0, 0.75);
     padding: 7px 10px;
     border-radius: 10px;
+
     font-size: 13px;
     z-index: 2;
 }
@@ -183,10 +193,13 @@ header {
 .btn {
     padding: 9px 13px;
     margin: 5px 0;
+
     background: #222;
     color: white;
+
     border: none;
     border-radius: 8px;
+
     cursor: pointer;
 }
 
@@ -198,9 +211,12 @@ header {
 .player {
     position: fixed;
     inset: 0;
+
     background: #000;
+
     display: none;
     flex-direction: column;
+
     z-index: 9999;
 }
 
@@ -234,7 +250,6 @@ header {
 
 /* Телефон */
 @media (max-width: 600px) {
-
     header {
         flex-direction: column;
         align-items: stretch;
@@ -292,11 +307,9 @@ header {
         <button type="button">TG</button>
     </a>
 
-    <a
-        href="https://www.donationalerts.com/r/LaunchPlay"
-        target="_blank"
-        rel="noopener"
-    >
+    <a href="https://www.donationalerts.com/r/LaunchPlay"
+       target="_blank"
+       rel="noopener">
         <button type="button">💰 Донат</button>
     </a>
 
@@ -440,11 +453,9 @@ const data = [
                 v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"
             },
 
-            {
-                t: "2 серия",
-                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=20393775401637-compressed_e1ixjv"
+            { t: "2 серия",
+             v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=20393775401637-compressed_e1ixjv" 
             },
-
             { t: "3 серия (скоро)", v: "" },
             { t: "4 серия (скоро)", v: "" },
             { t: "5 серия (скоро)", v: "" },
@@ -472,7 +483,9 @@ const data = [
                 v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=%D1%81%D0%B5%D0%BD%D0%BA%D0%BE_1_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_isvv4w"
             },
 
-            { t: "2 серия (скоро)", v: "" },
+            { t: "2 серия (скоро)",
+             v: "" 
+            },
             { t: "3 серия (скоро)", v: "" },
             { t: "4 серия (скоро)", v: "" },
             { t: "5 серия (скоро)", v: "" },
@@ -525,6 +538,343 @@ const data = [
                 v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=17027855223413_ormpod"
             },
 
-            {
-                t: "4 серия",
-                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id
+            { 
+              t: "4 серия",
+              v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=4_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_wrehoz" 
+            },
+            { 
+                t: "5 серия",
+                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=5%D1%81_%D0%BA%D0%BE%D1%82_r3dack" 
+            },
+            { t: "6 серия",
+             v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=6%D1%81_%D0%BA%D0%BE%D1%82_x1fjrt" 
+            },
+            { t: "7 серия (скоро)", v: "" },
+            { t: "8 серия (скоро)", v: "" },
+            { t: "9 серия (скоро)", v: "" },
+            { t: "10 серия (скоро)", v: "" },
+            { t: "11 серия (скоро)", v: "" },
+            { t: "12 серия (скоро)", v: "" },
+            { t: "13 серия (скоро)", v: "" },
+            { t: "14 серия (скоро)", v: "" },
+            { t: "15 серия (скоро)", v: "" },
+            { t: "16 серия (скоро)", v: "" },
+            { t: "17 серия (скоро)", v: "" },
+            { t: "18 серия (скоро)", v: "" },
+            { t: "19 серия (скоро)", v: "" },
+            { t: "20 серия (скоро)", v: "" },
+            { t: "21 серия (скоро)", v: "" },
+            { t: "22 серия (скоро)", v: "" },
+            { t: "23 серия (скоро)", v: "" },
+            { t: "24 серия (скоро)", v: "" },
+            { t: "25 серия (скоро)", v: "" },
+            { t: "26 серия (скоро)", v: "" },
+            { t: "27 серия (скоро)", v: "" },
+            { t: "28 серия (скоро)", v: "" },
+            { t: "29 серия (скоро)", v: "" },
+            { t: "30 серия (скоро)", v: "" }
+
+        ]
+    }
+
+];
+
+
+/* ==========================================
+   ЭЛЕМЕНТЫ
+========================================== */
+
+const home = document.getElementById("home");
+const page = document.getElementById("page");
+const player = document.getElementById("player");
+
+const video = document.getElementById("video");
+const iframe = document.getElementById("iframePlayer");
+
+const searchInput = document.getElementById("searchInput");
+
+
+/* ==========================================
+   ГЛАВНАЯ
+========================================== */
+
+function render(list) {
+
+    home.innerHTML = "";
+
+    if (list.length === 0) {
+
+        home.innerHTML = `
+            <div class="empty">
+                Ничего не найдено 😔
+            </div>
+        `;
+
+        return;
+    }
+
+    list.forEach(item => {
+
+        const index = data.indexOf(item);
+
+        const card = document.createElement("div");
+
+        card.className = "card";
+
+        card.style.backgroundImage =
+            `url("${item.poster}")`;
+
+        card.innerHTML = `
+            <div class="title">
+                ${escapeHTML(item.title)}
+            </div>
+        `;
+
+        card.addEventListener("click", () => {
+            openAnime(index);
+        });
+
+        home.appendChild(card);
+    });
+}
+
+
+/* ==========================================
+   ОТКРЫТЬ АНИМЕ
+========================================== */
+
+function openAnime(index) {
+
+    const anime = data[index];
+
+    if (!anime) return;
+
+    home.style.display = "none";
+    page.style.display = "block";
+
+    let html = `
+        <button
+            class="btn"
+            type="button"
+            onclick="showAll()">
+            ⬅ Назад
+        </button>
+
+        <h2>${escapeHTML(anime.title)}</h2>
+    `;
+
+    anime.episodes.forEach((episode, episodeIndex) => {
+
+        const available = Boolean(episode.v);
+
+        html += `
+            <div
+                class="ep ${available ? "" : "lock"}"
+                ${available
+                    ? `onclick="playEpisode(${index}, ${episodeIndex})"`
+                    : ""}
+            >
+                ${escapeHTML(episode.t)}
+            </div>
+        `;
+    });
+
+    page.innerHTML = html;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* ==========================================
+   ЗАПУСК СЕРИИ
+========================================== */
+
+function playEpisode(animeIndex, episodeIndex) {
+
+    const anime = data[animeIndex];
+
+    if (!anime) return;
+
+    const episode = anime.episodes[episodeIndex];
+
+    if (!episode || !episode.v) {
+        return;
+    }
+
+    const url = episode.v;
+
+    /* Открываем плеер */
+    player.style.display = "flex";
+
+    /* Останавливаем всё старое */
+    video.pause();
+    video.removeAttribute("src");
+
+    iframe.removeAttribute("src");
+
+    video.style.display = "none";
+    iframe.style.display = "none";
+
+
+    /*
+       Cloudinary Embed
+    */
+
+    if (url.includes("player.cloudinary.com/embed")) {
+
+        iframe.src = url;
+        iframe.style.display = "block";
+
+        return;
+    }
+
+
+    /*
+       Обычное видео MP4
+    */
+
+    video.src = url;
+    video.style.display = "block";
+
+    video.load();
+
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise.catch(() => {
+            /*
+             Браузер может запретить
+             автоматический запуск.
+             Пользователь просто нажмёт Play.
+            */
+        });
+    }
+}
+
+
+/* ==========================================
+   ЗАКРЫТЬ ПЛЕЕР
+========================================== */
+
+function closePlayer() {
+
+    player.style.display = "none";
+
+    /* Останавливаем MP4 */
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+
+    /* Останавливаем iframe */
+    iframe.removeAttribute("src");
+
+    video.style.display = "none";
+    iframe.style.display = "none";
+}
+
+
+/* ==========================================
+   ГЛАВНАЯ
+========================================== */
+
+function showAll() {
+
+    closePlayer();
+
+    page.style.display = "none";
+    home.style.display = "grid";
+
+    render(data);
+
+    searchInput.value = "";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* ==========================================
+   ПОИСК
+========================================== */
+
+function search(text) {
+
+    const query = text
+        .trim()
+        .toLowerCase();
+
+    page.style.display = "none";
+    home.style.display = "grid";
+
+    if (!query) {
+
+        render(data);
+
+        return;
+    }
+
+    const result = data.filter(anime =>
+        anime.title
+            .toLowerCase()
+            .includes(query)
+    );
+
+    render(result);
+}
+
+
+/* ==========================================
+   ЗАЩИТА ТЕКСТА
+========================================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/* ==========================================
+   ОБРАБОТЧИК ПОИСКА
+========================================== */
+
+searchInput.addEventListener("input", function () {
+
+    search(this.value);
+
+});
+
+
+/* ==========================================
+   ESC — ЗАКРЫТЬ ПЛЕЕР
+========================================== */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closePlayer();
+    }
+
+});
+
+
+/* ==========================================
+   ЗАПУСК
+========================================== */
+
+render(data);
+
+</script>
+
+</body>
+</html>
