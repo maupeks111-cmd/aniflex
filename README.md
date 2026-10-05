@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -454,7 +453,9 @@ const data = [
                 v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"
             },
 
-            { t: "2 серия (скоро)", v: "" },
+            { t: "2 серия",
+             v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=20393775401637-compressed_e1ixjv" 
+            },
             { t: "3 серия (скоро)", v: "" },
             { t: "4 серия (скоро)", v: "" },
             { t: "5 серия (скоро)", v: "" },
@@ -522,11 +523,16 @@ const data = [
             },
 
             { 
-              t: "4 серия (скоро)",
+              t: "4 серия",
               v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=4_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_wrehoz" 
             },
-            { t: "5 серия (скоро)", v: "" },
-            { t: "6 серия (скоро)", v: "" },
+            { 
+                t: "5 серия",
+                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=5%D1%81_%D0%BA%D0%BE%D1%82_r3dack" 
+            },
+            { t: "6 серия",
+             v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=6%D1%81_%D0%BA%D0%BE%D1%82_x1fjrt" 
+            },
             { t: "7 серия (скоро)", v: "" },
             { t: "8 серия (скоро)", v: "" },
             { t: "9 серия (скоро)", v: "" },
