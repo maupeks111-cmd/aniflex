@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -791,11 +790,9 @@ header {
 }
 </style>
 </head>
-```
 
-### Основная разметка
 
-```html
+html
 <body>
 
 <header>
