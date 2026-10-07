@@ -1,25 +1,31 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ANIFLEX</title>
+<title>ANIFLEX — EDWIN</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 :root {
     --bg: #05030b;
-    --panel: rgba(12, 10, 24, .82);
-    --text: #f8f7ff;
-    --muted: #b9b4cc;
-    --pink: #ff2bd6;
+    --panel: rgba(9, 6, 20, .88);
     --cyan: #00f5ff;
-    --violet: #8b5cff;
-    --green: #58ff9a;
+    --pink: #ff2bd6;
+    --purple: #9b5cff;
+    --green: #4dff9b;
+    --orange: #ffb84d;
+    --red: #ff4f81;
+    --white: #ffffff;
+    --muted: #aaa4c0;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -27,230 +33,421 @@ html, body {
 
 body {
     font-family: Arial, sans-serif;
+    color: var(--white);
     background: var(--bg);
-    color: var(--text);
     overflow-x: hidden;
-    position: relative;
 }
+
+/* =====================================================
+   АНИМЕШНЫЙ НЕОНОВЫЙ ФОН
+===================================================== */
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
+    z-index: -3;
+
     background:
-        radial-gradient(circle at 15% 20%, rgba(255, 43, 214, .20), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(0, 245, 255, .18), transparent 28%),
-        radial-gradient(circle at 50% 100%, rgba(139, 92, 255, .20), transparent 38%),
-        linear-gradient(rgba(5,3,11,.72), rgba(5,3,11,.92)),
-        url("https://img.freepik.com/premium-photo/japanese-torii-gate-sunset-with-silhouetted-landscape_1282444-100316.jpg");
+        linear-gradient(
+            rgba(3, 1, 12, .40),
+            rgba(3, 1, 12, .88)
+        ),
+        url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=2200&q=85");
+
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    z-index: -2;
 }
 
 body::after {
     content: "";
     position: fixed;
     inset: 0;
-    background-image:
-        linear-gradient(rgba(0,245,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,43,214,.035) 1px, transparent 1px);
-    background-size: 35px 35px;
+    z-index: -2;
     pointer-events: none;
-    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(0,245,255,.18),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(255,43,214,.18),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(155,92,255,.18),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            rgba(0,245,255,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,43,214,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        auto,
+        auto,
+        auto,
+        38px 38px,
+        38px 38px;
 }
 
+/* =====================================================
+   ШАПКА
+===================================================== */
+
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    padding: 14px 18px;
-    margin: 0;
-    background: rgba(7, 5, 16, .90);
-    border-bottom: 1px solid rgba(0,245,255,.55);
-    box-shadow: 0 0 25px rgba(0,245,255,.14), 0 0 45px rgba(255,43,214,.10);
-    backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     z-index: 100;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 13px 18px;
+
+    background: rgba(5,3,13,.92);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(0,245,255,.55);
+
+    box-shadow:
+        0 0 25px rgba(0,245,255,.14),
+        0 0 45px rgba(255,43,214,.08);
 }
 
 .logo {
-    font-weight: 900;
     font-family: monospace;
-    color: #fff;
+    font-size: 24px;
+    font-weight: 900;
+
     letter-spacing: 4px;
     white-space: nowrap;
-    text-shadow: 0 0 7px var(--cyan), 0 0 18px var(--cyan), 0 0 30px var(--pink);
+
+    text-shadow:
+        0 0 7px var(--cyan),
+        0 0 18px var(--cyan),
+        0 0 30px var(--pink);
 }
 
-.owner-phone {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 11px;
-    border: 1px solid rgba(255,43,214,.75);
-    border-radius: 12px;
-    color: #fff;
-    background: rgba(255,43,214,.08);
-    box-shadow: inset 0 0 12px rgba(255,43,214,.08), 0 0 14px rgba(255,43,214,.18);
-    font-size: 12px;
+.search {
+    flex: 1;
+    max-width: 520px;
+
+    padding: 11px 14px;
+
+    color: white;
+    background: rgba(0,0,0,.45);
+
+    border:
+        1px solid rgba(0,245,255,.45);
+
+    border-radius: 13px;
+
+    outline: none;
+}
+
+.search:focus {
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 15px rgba(0,245,255,.25);
+}
+
+.owner-mini {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
     white-space: nowrap;
 }
 
-.owner-phone a { color: var(--cyan); text-decoration: none; font-weight: 700; }
-
-.search {
-    padding: 11px 14px;
-    border-radius: 13px;
-    border: 1px solid rgba(0,245,255,.45);
-    width: 40%;
-    min-width: 120px;
-    outline: none;
-    font-size: 14px;
+.owner-mini strong {
     color: white;
-    background: rgba(0,0,0,.45);
-    box-shadow: inset 0 0 12px rgba(0,245,255,.08), 0 0 10px rgba(0,245,255,.08);
 }
 
-.search::placeholder { color: #8e89a1; }
-.search:focus { border-color: var(--cyan); box-shadow: 0 0 18px rgba(0,245,255,.22); }
+.owner-mini a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* =====================================================
+   НАВИГАЦИЯ
+===================================================== */
 
 .nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 9px;
-    padding: 12px;
     justify-content: center;
+
+    gap: 9px;
+    padding: 13px;
 }
 
-.nav button, .btn {
-    background: rgba(12,10,24,.84);
+.nav a {
+    text-decoration: none;
+}
+
+.nav button,
+.btn {
+    padding: 10px 14px;
+
     color: white;
-    border: 1px solid rgba(0,245,255,.45);
-    padding: 9px 13px;
-    border-radius: 11px;
+    background: rgba(10,7,24,.90);
+
+    border:
+        1px solid rgba(0,245,255,.42);
+
+    border-radius: 12px;
+
     cursor: pointer;
+
+    font-weight: 700;
+
     transition: .2s;
-    box-shadow: 0 0 10px rgba(0,245,255,.08);
+
+    box-shadow:
+        0 0 12px rgba(0,245,255,.07);
 }
 
-.nav button:hover, .btn:hover {
-    border-color: var(--pink);
-    background: rgba(255,43,214,.10);
+.nav button:hover,
+.btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 18px rgba(255,43,214,.25), 0 0 10px rgba(0,245,255,.15);
+
+    border-color: var(--pink);
+
+    box-shadow:
+        0 0 18px rgba(255,43,214,.25),
+        0 0 12px rgba(0,245,255,.15);
 }
 
-.nav a { text-decoration: none; }
+/* =====================================================
+   ЗАГОЛОВОК
+===================================================== */
+
+.section-label {
+    text-align: center;
+
+    padding: 5px 15px 0;
+
+    color: #c8c2d9;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* =====================================================
+   КАРТОЧКИ АНИМЕ
+===================================================== */
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(175px, 1fr)
+        );
+
     gap: 18px;
+
     padding: 18px;
+
     max-width: 1500px;
+
     margin: auto;
 }
 
 .card {
-    height: 260px;
-    border-radius: 18px;
+    position: relative;
+
+    height: 265px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border-radius: 19px;
+
     background-size: cover;
     background-position: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform .25s, box-shadow .25s, border-color .25s;
-    border: 2px solid rgba(0,245,255,.72);
+
+    border: 2px solid rgba(0,245,255,.70);
+
     box-shadow:
-        0 0 0 1px rgba(255,43,214,.35),
-        0 0 14px rgba(0,245,255,.28),
-        0 0 30px rgba(255,43,214,.12);
+        0 0 0 1px rgba(255,43,214,.25),
+        0 0 18px rgba(0,245,255,.20);
+
+    transition:
+        transform .25s,
+        box-shadow .25s,
+        border-color .25s;
 }
+
+/* разные рамки */
 
 .card:nth-child(3n) {
-    border-color: rgba(255,43,214,.78);
-    box-shadow:
-        0 0 0 1px rgba(0,245,255,.30),
-        0 0 14px rgba(255,43,214,.30),
-        0 0 30px rgba(139,92,255,.16);
+    border-color: rgba(255,43,214,.80);
 }
 
-.card:nth-child(3n+1)::before,
-.card:nth-child(3n+2)::before,
-.card:nth-child(3n)::before {
+.card:nth-child(3n + 2) {
+    border-color: rgba(155,92,255,.85);
+}
+
+.card::before {
     content: "";
+
     position: absolute;
     inset: 5px;
-    border-radius: 13px;
-    pointer-events: none;
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    border-radius: 14px;
+
     z-index: 2;
-    border: 1px solid rgba(255,255,255,.18);
 }
 
 .card::after {
     content: "";
+
     position: absolute;
     inset: 0;
-    background: linear-gradient(transparent 35%, rgba(3,2,9,.08) 48%, rgba(3,2,9,.94) 100%);
+
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(2,1,8,.95) 100%
+        );
 }
 
 .card:hover {
-    transform: translateY(-7px) scale(1.025);
-    border-color: #fff;
+    transform:
+        translateY(-7px)
+        scale(1.025);
+
+    border-color: white;
+
     box-shadow:
-        0 0 8px #fff,
-        0 0 20px var(--cyan),
-        0 0 38px var(--pink);
+        0 0 8px white,
+        0 0 22px var(--cyan),
+        0 0 42px var(--pink);
 }
 
 .title {
     position: absolute;
-    bottom: 10px;
+
     left: 10px;
     right: 10px;
-    background: rgba(4,3,10,.78);
-    padding: 9px 11px;
-    border-radius: 11px;
-    font-size: 13px;
+    bottom: 10px;
+
     z-index: 3;
-    border-left: 3px solid var(--cyan);
-    border-right: 3px solid var(--pink);
+
+    padding: 9px 11px;
+
+    background: rgba(4,2,12,.80);
+
+    border-radius: 11px;
+
+    border-left:
+        3px solid var(--cyan);
+
+    border-right:
+        3px solid var(--pink);
+
     backdrop-filter: blur(8px);
-    box-shadow: 0 0 14px rgba(0,245,255,.13);
+
+    font-size: 13px;
 }
+
+/* =====================================================
+   СТРАНИЦЫ
+===================================================== */
 
 .page {
     display: none;
-    padding: 18px;
-    max-width: 900px;
+
+    max-width: 1000px;
+
     margin: auto;
+
+    padding: 18px;
 }
 
 .page h2 {
-    margin: 12px 0 18px;
-    text-shadow: 0 0 10px var(--pink), 0 0 22px var(--cyan);
+    text-align: center;
+
+    text-shadow:
+        0 0 10px var(--pink),
+        0 0 22px var(--cyan);
 }
 
+.panel {
+    padding: 20px;
+
+    background:
+        rgba(7,5,17,.88);
+
+    border:
+        1px solid rgba(0,245,255,.25);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 28px rgba(0,0,0,.35);
+
+    backdrop-filter: blur(12px);
+}
+
+/* =====================================================
+   СЕРИИ
+===================================================== */
+
 .ep {
-    background: linear-gradient(100deg, rgba(9,8,18,.94), rgba(22,10,30,.86));
-    padding: 14px;
     margin: 9px 0;
+
+    padding: 14px;
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(9,7,20,.94),
+            rgba(23,8,34,.90)
+        );
+
+    border:
+        1px solid rgba(0,245,255,.32);
+
     border-radius: 12px;
+
     cursor: pointer;
+
     transition: .2s;
-    border: 1px solid rgba(0,245,255,.34);
-    box-shadow: 0 0 12px rgba(0,245,255,.06);
 }
 
 .ep:hover:not(.lock) {
-    border-color: var(--pink);
-    background: rgba(255,43,214,.09);
     transform: translateX(5px);
-    box-shadow: 0 0 18px rgba(255,43,214,.18), 0 0 12px rgba(0,245,255,.10);
+
+    border-color:
+        var(--pink);
+
+    box-shadow:
+        0 0 18px
+        rgba(255,43,214,.18);
 }
 
 .lock {
@@ -258,72 +455,347 @@ header {
     cursor: not-allowed;
 }
 
+/* =====================================================
+   КОМАНДА
+===================================================== */
+
+.team-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap: 13px;
+
+    margin-top: 18px;
+}
+
+.member {
+    position: relative;
+
+    padding: 16px;
+
+    background:
+        rgba(13,9,28,.94);
+
+    border:
+        1px solid rgba(155,92,255,.42);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+.member::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background:
+        var(--purple);
+
+    box-shadow:
+        0 0 14px
+        var(--purple);
+}
+
+.member.work::before {
+    background: var(--green);
+
+    box-shadow:
+        0 0 14px
+        var(--green);
+}
+
+.member.vacation::before {
+    background: var(--orange);
+
+    box-shadow:
+        0 0 14px
+        var(--orange);
+}
+
+.member-name {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.member-real {
+    margin-top: 4px;
+
+    color: #c3bdd0;
+
+    font-size: 13px;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 10px;
+}
+
+.badge {
+    padding: 5px 8px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+/* уровни */
+
+.level1 {
+    color: #c6ccd8;
+
+    border: 1px solid #707889;
+
+    background:
+        rgba(112,120,137,.12);
+}
+
+.level2 {
+    color: #61dfff;
+
+    border: 1px solid #00a9cf;
+
+    background:
+        rgba(0,245,255,.08);
+}
+
+.level3 {
+    color: #72ffb0;
+
+    border: 1px solid #22d878;
+
+    background:
+        rgba(77,255,155,.08);
+}
+
+.level4 {
+    color: #c694ff;
+
+    border: 1px solid #9b5cff;
+
+    background:
+        rgba(155,92,255,.10);
+}
+
+.level5 {
+    color: #ff80e6;
+
+    border: 1px solid #ff2bd6;
+
+    background:
+        rgba(255,43,214,.10);
+}
+
+.level6 {
+    color: #ffd36b;
+
+    border: 1px solid #ffb84d;
+
+    background:
+        rgba(255,184,77,.10);
+}
+
+.level7 {
+    color: white;
+
+    border: 1px solid white;
+
+    background:
+        rgba(255,255,255,.08);
+
+    text-shadow:
+        0 0 8px var(--pink);
+}
+
+/* =====================================================
+   ПОДДЕРЖКА
+===================================================== */
+
+.support-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(240px,1fr)
+        );
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.support-card {
+    padding: 22px;
+
+    text-align: center;
+
+    background:
+        rgba(12,8,25,.92);
+
+    border:
+        1px solid rgba(255,43,214,.42);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,43,214,.08);
+}
+
+.support-icon {
+    font-size: 34px;
+}
+
+.tg-label {
+    margin-top: 10px;
+
+    color: #a8a2b9;
+
+    font-size: 11px;
+}
+
+/* =====================================================
+   ПОДВАЛ
+===================================================== */
+
+.footer {
+    padding: 28px 15px 38px;
+
+    text-align: center;
+
+    color: #9690aa;
+
+    font-size: 12px;
+}
+
+.footer strong {
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 8px var(--cyan);
+}
+
+.footer a {
+    color: var(--cyan);
+
+    text-decoration: none;
+}
+
+/* =====================================================
+   ПЛЕЕР
+===================================================== */
+
 .player {
     position: fixed;
+
     inset: 0;
-    background: #000;
+
     display: none;
+
     flex-direction: column;
+
+    background: black;
+
     z-index: 9999;
 }
 
 .player-top {
     position: absolute;
+
     top: 10px;
     left: 10px;
+
     z-index: 10;
 }
 
 #video {
     width: 100%;
     height: 100%;
+
     object-fit: contain;
-    background: #000;
+
+    background: black;
 }
 
 #iframePlayer {
     width: 100%;
     height: 100%;
+
     border: none;
-    background: #000;
+
+    background: black;
 }
 
-.empty {
-    text-align: center;
-    padding: 50px 10px;
-    color: var(--muted);
-}
+/* =====================================================
+   АДАПТАЦИЯ ТЕЛЕФОНА
+===================================================== */
 
-.footer {
-    text-align: center;
-    padding: 25px 15px 35px;
-    color: #9e99b0;
-    font-size: 12px;
-}
+@media (max-width: 700px) {
 
-.footer strong {
-    color: var(--cyan);
-    text-shadow: 0 0 8px var(--cyan);
-}
-
-@media (max-width: 600px) {
     header {
-        flex-direction: column;
-        align-items: stretch;
+        flex-wrap: wrap;
     }
-    .logo { text-align: center; }
-    .owner-phone { justify-content: center; }
-    .search { width: 100%; }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search {
+        order: 3;
+
+        flex-basis: 100%;
+
+        max-width: none;
+    }
+
+    .owner-mini {
+        margin-left: auto;
+    }
+
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2,1fr);
+
         gap: 10px;
+
         padding: 10px;
     }
-    .card { height: 225px; }
+
+    .card {
+        height: 225px;
+    }
+
+    .team-grid,
+    .support-options {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
+```
 
+### Основная разметка
+
+```html
 <body>
 
 <header>
@@ -332,66 +804,566 @@ header {
         ANIFLEX
     </div>
 
-    <div class="owner-phone">
-        👤 Владелец:
-        <a href="tel:+79233500539">8 923 350-05-39</a>
-    </div>
-
     <input
         id="searchInput"
         class="search"
         type="search"
-        placeholder="Поиск..."
+        placeholder="Поиск аниме..."
         autocomplete="off"
     >
 
+    <div class="owner-mini">
+        Создатель: <strong>EDWIN</strong><br>
+
+        <a href="tel:+79233500539">
+            8 923 350-05-39
+        </a>
+    </div>
+
 </header>
+
+
+<!-- =====================================================
+     МЕНЮ
+===================================================== -->
 
 <div class="nav">
 
-    <button type="button" onclick="showAll()">
+    <button onclick="showAll()">
         🏠 Главная
     </button>
 
-    <a href="https://vk.com/aniflex1" target="_blank" rel="noopener">
-        <button type="button">VK</button>
+    <button onclick="showTeam()">
+        👥 Команда
+    </button>
+
+    <button onclick="showSupport()">
+        💜 Поддержать
+    </button>
+
+    <button onclick="showApplication()">
+        🎙️ Подать заявку
+    </button>
+
+    <a
+        href="https://vk.com/aniflex1"
+        target="_blank"
+        rel="noopener"
+    >
+        <button>
+            🔵 VK
+        </button>
     </a>
 
-    <a href="https://t.me/Animeflex1x" target="_blank" rel="noopener">
-        <button type="button">TG</button>
-    </a>
-
-    <a href="https://www.donationalerts.com/r/LaunchPlay"
-       target="_blank"
-       rel="noopener">
-        <button type="button">💰 Донат</button>
+    <a
+        href="https://t.me/Animeflex1x"
+        target="_blank"
+        rel="noopener"
+    >
+        <button>
+            ✈️ TG
+        </button>
     </a>
 
 </div>
 
-<!-- Главная -->
-<div style="text-align:center;padding:8px 15px 0;color:#b9b4cc;font-size:12px;letter-spacing:1px;">
-    ✦ ANIFLEX NEON · твоя аниме-озвучка ✦
-</div>
-<div id="home" class="grid"></div>
 
-<!-- Страница аниме -->
-<div id="page" class="page"></div>
-
-<div class="footer">
-    <strong>ANIFLEX</strong> · Аниме с неоновым настроением · Владелец:
-    <a href="tel:+79233500539" style="color:#00f5ff;text-decoration:none;">8 923 350-05-39</a>
+<div class="section-label">
+    ✦ ANIFLEX NEON · АНИМЕ И ТВОЯ ОЗВУЧКА ✦
 </div>
 
 
-<!-- Плеер -->
-<div id="player" class="player">
+<!-- =====================================================
+     ГЛАВНАЯ
+===================================================== -->
 
-    <div class="player-top">
-        <button class="btn" type="button" onclick="closePlayer()">
+<div
+    id="home"
+    class="grid">
+</div>
+
+
+<!-- =====================================================
+     СТРАНИЦА АНИМЕ
+===================================================== -->
+
+<div
+    id="page"
+    class="page">
+</div>
+
+
+<!-- =====================================================
+     КОМАНДА
+===================================================== -->
+
+<div
+    id="teamPage"
+    class="page">
+
+    <div class="panel">
+
+        <button
+            class="btn"
+            onclick="showAll()">
             ⬅ Назад
         </button>
+
+        <h2>
+            👥 Команда ANIFLEX
+        </h2>
+
+        <p
+            style="
+                text-align:center;
+                color:#aaa4c0;
+            ">
+            Уровни, привилегии и текущий статус участников.
+        </p>
+
+
+        <div class="panel">
+
+            <h3>
+                🎖️ Система уровней
+            </h3>
+
+            <div class="badges">
+
+                <span class="badge level1">
+                    Новичок · 1 уровень
+                </span>
+
+                <span class="badge level2">
+                    Актёр · 2 уровень
+                </span>
+
+                <span class="badge level3">
+                    Опытный · 3 уровень
+                </span>
+
+                <span class="badge level4">
+                    Профи · 4 уровень
+                </span>
+
+                <span class="badge level5">
+                    Мастер · 5 уровень
+                </span>
+
+                <span class="badge level6">
+                    Ведущий · 6 уровень
+                </span>
+
+                <span class="badge level7">
+                    Звезда · 7 уровень
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="team-grid">
+
+
+            <!-- KATAKINA -->
+
+            <div class="member vacation">
+
+                <div class="member-name">
+                    KATAKINA
+                </div>
+
+                <div class="member-real">
+                    Катя
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level2">
+                        Актёр · 2 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟠 В отпуске
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAUSSADER -->
+
+            <div class="member work">
+
+                <div class="member-name">
+                    CAUSSADER
+                </div>
+
+                <div class="member-real">
+                    Илья
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- POZITIVNO -->
+
+            <div class="member work">
+
+                <div class="member-name">
+                    POZITIVNO
+                </div>
+
+                <div class="member-real">
+                    Ярик
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- КОТИК -->
+
+            <div class="member work">
+
+                <div class="member-name">
+                    Котик
+                </div>
+
+                <div class="member-real">
+                    Даша
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ХРАНИТЕЛЬ ТЬМЫ -->
+
+            <div class="member work">
+
+                <div class="member-name">
+                    Хранитель тьмы
+                </div>
+
+                <div class="member-real">
+                    Ира
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level2">
+                        Актёр · 2 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ФИЯ -->
+
+            <div class="member work">
+
+                <div class="member-name">
+                    Фия
+                </div>
+
+                <div class="member-real">
+                    София
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- KITSEY -->
+
+            <div class="member vacation">
+
+                <div class="member-name">
+                    KITSEY
+                </div>
+
+                <div class="member-real">
+                    Вика
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟠 В отпуске
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ЮЛИК -->
+
+            <div class="member vacation">
+
+                <div class="member-name">
+                    Юлик
+                </div>
+
+                <div class="member-real">
+                    Юля
+                </div>
+
+                <div class="badges">
+
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+
+                    <span class="badge">
+                        🟠 В отпуске
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
+</div>
+
+
+<!-- =====================================================
+     ПОДДЕРЖАТЬ
+===================================================== -->
+
+<div
+    id="supportPage"
+    class="page">
+
+    <div class="panel">
+
+        <button
+            class="btn"
+            onclick="showAll()">
+            ⬅ Назад
+        </button>
+
+        <h2>
+            💜 Поддержать ANIFLEX
+        </h2>
+
+        <p
+            style="
+                text-align:center;
+                color:#aaa4c0;
+            ">
+            Выбери удобный способ поддержки проекта.
+        </p>
+
+
+        <div class="support-options">
+
+
+            <!-- DONATIONALERTS -->
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    💰
+                </div>
+
+                <h3>
+                    DonationAlerts
+                </h3>
+
+                <p
+                    style="color:#aaa4c0">
+                    Поддержать проект через DonationAlerts.
+                </p>
+
+                <a
+                    href="https://www.donationalerts.com/r/LaunchPlay"
+                    target="_blank"
+                    rel="noopener">
+
+                    <button class="btn">
+                        💜 Поддержать
+                    </button>
+
+                </a>
+
+                <div class="tg-label">
+                    🔗 DonationAlerts
+                </div>
+
+            </div>
+
+
+            <!-- СБЕР -->
+
+            <div class="support-card">
+
+                <div class="support-icon">
+                    🏦
+                </div>
+
+                <h3>
+                    СберБанк
+                </h3>
+
+                <p
+                    style="color:#aaa4c0">
+                    Поддержка по номеру телефона.
+                </p>
+
+                <a href="tel:+79233500539">
+
+                    <button class="btn">
+                        📞 8 923 350-05-39
+                    </button>
+
+                </a>
+
+                <div class="tg-label">
+                    📱 Номер владельца
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ПОДАТЬ ЗАЯВКУ
+===================================================== -->
+
+<div
+    id="applicationPage"
+    class="page">
+
+    <div
+        class="panel"
+        style="text-align:center">
+
+        <button
+            class="btn"
+            onclick="showAll()">
+            ⬅ Назад
+        </button>
+
+        <h2>
+            🎙️ Подать заявку в озвучку
+        </h2>
+
+        <p
+            style="color:#aaa4c0">
+            Хочешь присоединиться к команде?
+            Напиши владельцу проекта.
+        </p>
+
+
+        <a
+            href="https://t.me/launchplay228"
+            target="_blank"
+            rel="noopener">
+
+            <button class="btn">
+
+                ✈️ Написать владельцу
+
+            </button>
+
+        </a>
+
+        <div class="tg-label">
+            Telegram: @launchplay228
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ПЛЕЕР
+===================================================== -->
+
+<div
+    id="player"
+    class="player">
+
+    <div class="player-top">
+
+        <button
+            class="btn"
+            onclick="closePlayer()">
+
+            ⬅ Назад
+
+        </button>
+
+    </div>
+
 
     <video
         id="video"
@@ -400,20 +1372,51 @@ header {
         preload="metadata">
     </video>
 
+
     <iframe
         id="iframePlayer"
-        style="display:none;"
+        style="display:none"
         allow="autoplay; fullscreen; picture-in-picture"
         allowfullscreen>
     </iframe>
 
 </div>
 
+
+<!-- =====================================================
+     ПОДВАЛ
+===================================================== -->
+
+<div class="footer">
+
+    <strong>
+        ANIFLEX
+    </strong>
+
+    · Создатель:
+    <strong>
+        EDWIN
+    </strong>
+
+    · Иванов Эрик Юрьевич
+
+    ·
+
+    <a href="tel:+79233500539">
+        8 923 350-05-39
+    </a>
+
+</div>
+```
+
+### JavaScript
+
+```html
 <script>
 
-/* ==========================================
-   ДАННЫЕ
-========================================== */
+/* =====================================================
+   ДАННЫЕ АНИМЕ
+===================================================== */
 
 const data = [
 
@@ -431,6 +1434,7 @@ const data = [
             })
         )
     },
+
 
     {
         title: "Гяруко",
@@ -503,6 +1507,7 @@ const data = [
         ]
     },
 
+
     {
         title: "Фарфоровая кукла",
 
@@ -516,9 +1521,11 @@ const data = [
                 v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1776254283/VID_20260416_110510_423_o8ndmt.mp4"
             },
 
-            { t: "2 серия",
-             v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=20393775401637-compressed_e1ixjv" 
+            {
+                t: "2 серия",
+                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=20393775401637-compressed_e1ixjv"
             },
+
             { t: "3 серия (скоро)", v: "" },
             { t: "4 серия (скоро)", v: "" },
             { t: "5 серия (скоро)", v: "" },
@@ -532,6 +1539,7 @@ const data = [
 
         ]
     },
+
 
     {
         title: "Сенко-сан",
@@ -546,9 +1554,7 @@ const data = [
                 v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=%D1%81%D0%B5%D0%BD%D0%BA%D0%BE_1_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_isvv4w"
             },
 
-            { t: "2 серия (скоро)",
-             v: "" 
-            },
+            { t: "2 серия (скоро)", v: "" },
             { t: "3 серия (скоро)", v: "" },
             { t: "4 серия (скоро)", v: "" },
             { t: "5 серия (скоро)", v: "" },
@@ -561,8 +1567,8 @@ const data = [
             { t: "12 серия (скоро)", v: "" }
 
         ]
-
     },
+
 
     {
         title: "Форма голоса",
@@ -577,6 +1583,7 @@ const data = [
             }
         ]
     },
+
 
     {
         title: "Вечера с кошкой",
@@ -601,17 +1608,21 @@ const data = [
                 v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=17027855223413_ormpod"
             },
 
-            { 
-              t: "4 серия",
-              v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=4_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_wrehoz" 
+            {
+                t: "4 серия",
+                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=4_%D1%81%D0%B5%D1%80%D0%B8%D1%8F_wrehoz"
             },
-            { 
+
+            {
                 t: "5 серия",
-                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=5%D1%81_%D0%BA%D0%BE%D1%82_r3dack" 
+                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=5%D1%81_%D0%BA%D0%BE%D1%82_r3dack"
             },
-            { t: "6 серия",
-             v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=6%D1%81_%D0%BA%D0%BE%D1%82_x1fjrt" 
+
+            {
+                t: "6 серия",
+                v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=6%D1%81_%D0%BA%D0%BE%D1%82_x1fjrt"
             },
+
             { t: "7 серия (скоро)", v: "" },
             { t: "8 серия (скоро)", v: "" },
             { t: "9 серия (скоро)", v: "" },
@@ -643,23 +1654,109 @@ const data = [
 ];
 
 
-/* ==========================================
+/* =====================================================
    ЭЛЕМЕНТЫ
-========================================== */
+===================================================== */
 
-const home = document.getElementById("home");
-const page = document.getElementById("page");
-const player = document.getElementById("player");
+const home =
+    document.getElementById("home");
 
-const video = document.getElementById("video");
-const iframe = document.getElementById("iframePlayer");
+const page =
+    document.getElementById("page");
 
-const searchInput = document.getElementById("searchInput");
+const player =
+    document.getElementById("player");
+
+const video =
+    document.getElementById("video");
+
+const iframe =
+    document.getElementById("iframePlayer");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const teamPage =
+    document.getElementById("teamPage");
+
+const supportPage =
+    document.getElementById("supportPage");
+
+const applicationPage =
+    document.getElementById("applicationPage");
 
 
-/* ==========================================
-   ГЛАВНАЯ
-========================================== */
+/* =====================================================
+   ДОПОЛНИТЕЛЬНЫЕ СТРАНИЦЫ
+===================================================== */
+
+function hideExtraPages() {
+
+    teamPage.style.display = "none";
+
+    supportPage.style.display = "none";
+
+    applicationPage.style.display = "none";
+}
+
+
+function showTeam() {
+
+    closePlayer();
+
+    home.style.display = "none";
+    page.style.display = "none";
+
+    hideExtraPages();
+
+    teamPage.style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function showSupport() {
+
+    closePlayer();
+
+    home.style.display = "none";
+    page.style.display = "none";
+
+    hideExtraPages();
+
+    supportPage.style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function showApplication() {
+
+    closePlayer();
+
+    home.style.display = "none";
+    page.style.display = "none";
+
+    hideExtraPages();
+
+    applicationPage.style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =====================================================
+   ЭКРАН ГЛАВНОЙ
+===================================================== */
 
 function render(list) {
 
@@ -676,13 +1773,17 @@ function render(list) {
         return;
     }
 
+
     list.forEach(item => {
 
-        const index = data.indexOf(item);
+        const index =
+            data.indexOf(item);
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
-        card.className = "card";
+        card.className =
+            "card";
 
         card.style.backgroundImage =
             `url("${item.poster}")`;
@@ -693,56 +1794,86 @@ function render(list) {
             </div>
         `;
 
-        card.addEventListener("click", () => {
-            openAnime(index);
-        });
+        card.addEventListener(
+            "click",
+            () => openAnime(index)
+        );
 
         home.appendChild(card);
+
     });
 }
 
 
-/* ==========================================
+/* =====================================================
    ОТКРЫТЬ АНИМЕ
-========================================== */
+===================================================== */
 
 function openAnime(index) {
 
-    const anime = data[index];
+    hideExtraPages();
 
-    if (!anime) return;
+    const anime =
+        data[index];
 
-    home.style.display = "none";
-    page.style.display = "block";
+    if (!anime) {
+        return;
+    }
+
+    home.style.display =
+        "none";
+
+    page.style.display =
+        "block";
+
 
     let html = `
+
         <button
             class="btn"
-            type="button"
             onclick="showAll()">
+
             ⬅ Назад
+
         </button>
 
-        <h2>${escapeHTML(anime.title)}</h2>
+        <h2>
+            ${escapeHTML(anime.title)}
+        </h2>
+
     `;
 
-    anime.episodes.forEach((episode, episodeIndex) => {
 
-        const available = Boolean(episode.v);
+    anime.episodes.forEach(
+        (episode, episodeIndex) => {
 
-        html += `
-            <div
-                class="ep ${available ? "" : "lock"}"
-                ${available
-                    ? `onclick="playEpisode(${index}, ${episodeIndex})"`
-                    : ""}
-            >
-                ${escapeHTML(episode.t)}
-            </div>
-        `;
-    });
+            const available =
+                Boolean(episode.v);
 
-    page.innerHTML = html;
+            html += `
+
+                <div
+                    class="ep ${available ? "" : "lock"}"
+
+                    ${
+                        available
+                        ? `onclick="playEpisode(${index}, ${episodeIndex})"`
+                        : ""
+                    }
+                >
+
+                    ${escapeHTML(episode.t)}
+
+                </div>
+
+            `;
+        }
+    );
+
+
+    page.innerHTML =
+        html;
+
 
     window.scrollTo({
         top: 0,
@@ -751,109 +1882,148 @@ function openAnime(index) {
 }
 
 
-/* ==========================================
+/* =====================================================
    ЗАПУСК СЕРИИ
-========================================== */
+===================================================== */
 
-function playEpisode(animeIndex, episodeIndex) {
+function playEpisode(
+    animeIndex,
+    episodeIndex
+) {
 
-    const anime = data[animeIndex];
+    const anime =
+        data[animeIndex];
 
-    if (!anime) return;
+    if (!anime) {
+        return;
+    }
 
-    const episode = anime.episodes[episodeIndex];
+
+    const episode =
+        anime.episodes[episodeIndex];
 
     if (!episode || !episode.v) {
         return;
     }
 
-    const url = episode.v;
 
-    /* Открываем плеер */
-    player.style.display = "flex";
+    const url =
+        episode.v;
 
-    /* Останавливаем всё старое */
+
+    player.style.display =
+        "flex";
+
+
     video.pause();
+
     video.removeAttribute("src");
 
     iframe.removeAttribute("src");
 
-    video.style.display = "none";
-    iframe.style.display = "none";
+
+    video.style.display =
+        "none";
+
+    iframe.style.display =
+        "none";
 
 
-    /*
-       Cloudinary Embed
-    */
+    /* Cloudinary */
 
-    if (url.includes("player.cloudinary.com/embed")) {
+    if (
+        url.includes(
+            "player.cloudinary.com/embed"
+        )
+    ) {
 
-        iframe.src = url;
-        iframe.style.display = "block";
+        iframe.src =
+            url;
+
+        iframe.style.display =
+            "block";
 
         return;
     }
 
 
-    /*
-       Обычное видео MP4
-    */
+    /* MP4 */
 
-    video.src = url;
-    video.style.display = "block";
+    video.src =
+        url;
+
+    video.style.display =
+        "block";
 
     video.load();
 
-    const playPromise = video.play();
+    const playPromise =
+        video.play();
 
-    if (playPromise !== undefined) {
 
-        playPromise.catch(() => {
-            /*
-             Браузер может запретить
-             автоматический запуск.
-             Пользователь просто нажмёт Play.
-            */
-        });
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise.catch(
+            () => {}
+        );
     }
 }
 
 
-/* ==========================================
+/* =====================================================
    ЗАКРЫТЬ ПЛЕЕР
-========================================== */
+===================================================== */
 
 function closePlayer() {
 
-    player.style.display = "none";
+    player.style.display =
+        "none";
 
-    /* Останавливаем MP4 */
+
     video.pause();
-    video.removeAttribute("src");
+
+    video.removeAttribute(
+        "src"
+    );
+
     video.load();
 
-    /* Останавливаем iframe */
-    iframe.removeAttribute("src");
 
-    video.style.display = "none";
-    iframe.style.display = "none";
+    iframe.removeAttribute(
+        "src"
+    );
+
+
+    video.style.display =
+        "none";
+
+    iframe.style.display =
+        "none";
 }
 
 
-/* ==========================================
+/* =====================================================
    ГЛАВНАЯ
-========================================== */
+===================================================== */
 
 function showAll() {
 
     closePlayer();
 
-    page.style.display = "none";
-    home.style.display = "grid";
+    hideExtraPages();
+
+    page.style.display =
+        "none";
+
+    home.style.display =
+        "grid";
 
     render(data);
 
-    searchInput.value = "";
+    searchInput.value =
+        "";
 
     window.scrollTo({
         top: 0,
@@ -862,18 +2032,26 @@ function showAll() {
 }
 
 
-/* ==========================================
+/* =====================================================
    ПОИСК
-========================================== */
+===================================================== */
 
 function search(text) {
 
-    const query = text
-        .trim()
-        .toLowerCase();
+    hideExtraPages();
 
-    page.style.display = "none";
-    home.style.display = "grid";
+    const query =
+        text
+            .trim()
+            .toLowerCase();
+
+
+    page.style.display =
+        "none";
+
+    home.style.display =
+        "grid";
+
 
     if (!query) {
 
@@ -882,58 +2060,94 @@ function search(text) {
         return;
     }
 
-    const result = data.filter(anime =>
-        anime.title
-            .toLowerCase()
-            .includes(query)
-    );
+
+    const result =
+        data.filter(
+            anime =>
+                anime.title
+                    .toLowerCase()
+                    .includes(query)
+        );
+
 
     render(result);
 }
 
 
-/* ==========================================
-   ЗАЩИТА ТЕКСТА
-========================================== */
+/* =====================================================
+   ЗАЩИТА HTML
+===================================================== */
 
 function escapeHTML(text) {
 
     return String(text)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 }
 
 
-/* ==========================================
-   ОБРАБОТЧИК ПОИСКА
-========================================== */
+/* =====================================================
+   ПОИСК
+===================================================== */
 
-searchInput.addEventListener("input", function () {
+searchInput.addEventListener(
+    "input",
+    function () {
 
-    search(this.value);
+        search(
+            this.value
+        );
 
-});
-
-
-/* ==========================================
-   ESC — ЗАКРЫТЬ ПЛЕЕР
-========================================== */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-        closePlayer();
     }
+);
 
-});
+
+/* =====================================================
+   ESC
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closePlayer();
+
+        }
+
+    }
+);
 
 
-/* ==========================================
+/* =====================================================
    ЗАПУСК
-========================================== */
+===================================================== */
 
 render(data);
 
