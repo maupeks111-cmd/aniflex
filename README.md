@@ -6,12 +6,20 @@
 <title>ANIFLEX</title>
 
 <style>
-* {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+
+:root {
+    --bg: #05030b;
+    --panel: rgba(12, 10, 24, .82);
+    --text: #f8f7ff;
+    --muted: #b9b4cc;
+    --pink: #ff2bd6;
+    --cyan: #00f5ff;
+    --violet: #8b5cff;
+    --green: #58ff9a;
 }
 
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -19,17 +27,22 @@ body {
 
 body {
     font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
+    background: var(--bg);
+    color: var(--text);
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Фон */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background-image: url("https://img.freepik.com/premium-photo/japanese-torii-gate-sunset-with-silhouetted-landscape_1282444-100316.jpg");
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 43, 214, .20), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(0, 245, 255, .18), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(139, 92, 255, .20), transparent 38%),
+        linear-gradient(rgba(5,3,11,.72), rgba(5,3,11,.92)),
+        url("https://img.freepik.com/premium-photo/japanese-torii-gate-sunset-with-silhouetted-landscape_1282444-100316.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -40,110 +53,158 @@ body::after {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background-image:
+        linear-gradient(rgba(0,245,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,43,214,.035) 1px, transparent 1px);
+    background-size: 35px 35px;
+    pointer-events: none;
     z-index: -1;
 }
 
-/* Шапка */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
-
-    padding: 12px 15px;
-
-    background: rgba(255, 255, 255, 0.96);
-    border-radius: 0 0 20px 20px;
-
+    padding: 14px 18px;
+    margin: 0;
+    background: rgba(7, 5, 16, .90);
+    border-bottom: 1px solid rgba(0,245,255,.55);
+    box-shadow: 0 0 25px rgba(0,245,255,.14), 0 0 45px rgba(255,43,214,.10);
+    backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .logo {
-    font-weight: bold;
+    font-weight: 900;
     font-family: monospace;
-    color: #000;
-    letter-spacing: 3px;
+    color: #fff;
+    letter-spacing: 4px;
+    white-space: nowrap;
+    text-shadow: 0 0 7px var(--cyan), 0 0 18px var(--cyan), 0 0 30px var(--pink);
+}
+
+.owner-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 11px;
+    border: 1px solid rgba(255,43,214,.75);
+    border-radius: 12px;
+    color: #fff;
+    background: rgba(255,43,214,.08);
+    box-shadow: inset 0 0 12px rgba(255,43,214,.08), 0 0 14px rgba(255,43,214,.18);
+    font-size: 12px;
     white-space: nowrap;
 }
 
+.owner-phone a { color: var(--cyan); text-decoration: none; font-weight: 700; }
+
 .search {
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: none;
+    padding: 11px 14px;
+    border-radius: 13px;
+    border: 1px solid rgba(0,245,255,.45);
     width: 40%;
     min-width: 120px;
     outline: none;
     font-size: 14px;
+    color: white;
+    background: rgba(0,0,0,.45);
+    box-shadow: inset 0 0 12px rgba(0,245,255,.08), 0 0 10px rgba(0,245,255,.08);
 }
 
-/* Навигация */
+.search::placeholder { color: #8e89a1; }
+.search:focus { border-color: var(--cyan); box-shadow: 0 0 18px rgba(0,245,255,.22); }
+
 .nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 10px;
+    gap: 9px;
+    padding: 12px;
+    justify-content: center;
 }
 
-.nav button {
-    background: #222;
+.nav button, .btn {
+    background: rgba(12,10,24,.84);
     color: white;
-    border: none;
+    border: 1px solid rgba(0,245,255,.45);
     padding: 9px 13px;
-    border-radius: 10px;
+    border-radius: 11px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: .2s;
+    box-shadow: 0 0 10px rgba(0,245,255,.08);
 }
 
-.nav button:hover {
-    background: #444;
-    transform: translateY(-1px);
+.nav button:hover, .btn:hover {
+    border-color: var(--pink);
+    background: rgba(255,43,214,.10);
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(255,43,214,.25), 0 0 10px rgba(0,245,255,.15);
 }
 
-.nav a {
-    text-decoration: none;
-}
+.nav a { text-decoration: none; }
 
-/* Карточки */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    padding: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 18px;
+    padding: 18px;
+    max-width: 1500px;
+    margin: auto;
 }
 
 .card {
-    height: 240px;
-    border-radius: 16px;
-
+    height: 260px;
+    border-radius: 18px;
     background-size: cover;
     background-position: center;
-
     cursor: pointer;
     position: relative;
     overflow: hidden;
-
-    transition: transform 0.25s, box-shadow 0.25s;
-
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    border: 2px solid rgba(0,245,255,.72);
+    box-shadow:
+        0 0 0 1px rgba(255,43,214,.35),
+        0 0 14px rgba(0,245,255,.28),
+        0 0 30px rgba(255,43,214,.12);
 }
 
-.card:hover {
-    transform: scale(1.04);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+.card:nth-child(3n) {
+    border-color: rgba(255,43,214,.78);
+    box-shadow:
+        0 0 0 1px rgba(0,245,255,.30),
+        0 0 14px rgba(255,43,214,.30),
+        0 0 30px rgba(139,92,255,.16);
+}
+
+.card:nth-child(3n+1)::before,
+.card:nth-child(3n+2)::before,
+.card:nth-child(3n)::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 13px;
+    pointer-events: none;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,.18);
 }
 
 .card::after {
     content: "";
     position: absolute;
     inset: 0;
+    background: linear-gradient(transparent 35%, rgba(3,2,9,.08) 48%, rgba(3,2,9,.94) 100%);
+}
 
-    background: linear-gradient(
-        transparent 45%,
-        rgba(0, 0, 0, 0.8)
-    );
+.card:hover {
+    transform: translateY(-7px) scale(1.025);
+    border-color: #fff;
+    box-shadow:
+        0 0 8px #fff,
+        0 0 20px var(--cyan),
+        0 0 38px var(--pink);
 }
 
 .title {
@@ -151,72 +212,58 @@ header {
     bottom: 10px;
     left: 10px;
     right: 10px;
-
-    background: rgba(0, 0, 0, 0.75);
-    padding: 7px 10px;
-    border-radius: 10px;
-
+    background: rgba(4,3,10,.78);
+    padding: 9px 11px;
+    border-radius: 11px;
     font-size: 13px;
-    z-index: 2;
+    z-index: 3;
+    border-left: 3px solid var(--cyan);
+    border-right: 3px solid var(--pink);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 14px rgba(0,245,255,.13);
 }
 
 .page {
     display: none;
-    padding: 10px;
+    padding: 18px;
+    max-width: 900px;
+    margin: auto;
 }
 
 .page h2 {
-    margin-top: 10px;
+    margin: 12px 0 18px;
+    text-shadow: 0 0 10px var(--pink), 0 0 22px var(--cyan);
 }
 
-/* Серии */
 .ep {
-    background: rgba(28, 28, 28, 0.95);
-    padding: 12px;
-    margin: 7px 0;
-    border-radius: 10px;
+    background: linear-gradient(100deg, rgba(9,8,18,.94), rgba(22,10,30,.86));
+    padding: 14px;
+    margin: 9px 0;
+    border-radius: 12px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: .2s;
+    border: 1px solid rgba(0,245,255,.34);
+    box-shadow: 0 0 12px rgba(0,245,255,.06);
 }
 
 .ep:hover:not(.lock) {
-    background: #333;
-    transform: translateX(3px);
+    border-color: var(--pink);
+    background: rgba(255,43,214,.09);
+    transform: translateX(5px);
+    box-shadow: 0 0 18px rgba(255,43,214,.18), 0 0 12px rgba(0,245,255,.10);
 }
 
 .lock {
-    opacity: 0.45;
+    opacity: .45;
     cursor: not-allowed;
 }
 
-/* Кнопки */
-.btn {
-    padding: 9px 13px;
-    margin: 5px 0;
-
-    background: #222;
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #444;
-}
-
-/* Плеер */
 .player {
     position: fixed;
     inset: 0;
-
     background: #000;
-
     display: none;
     flex-direction: column;
-
     z-index: 9999;
 }
 
@@ -241,36 +288,38 @@ header {
     background: #000;
 }
 
-/* Сообщение */
 .empty {
     text-align: center;
-    padding: 40px 10px;
-    color: #bbb;
+    padding: 50px 10px;
+    color: var(--muted);
 }
 
-/* Телефон */
+.footer {
+    text-align: center;
+    padding: 25px 15px 35px;
+    color: #9e99b0;
+    font-size: 12px;
+}
+
+.footer strong {
+    color: var(--cyan);
+    text-shadow: 0 0 8px var(--cyan);
+}
+
 @media (max-width: 600px) {
     header {
         flex-direction: column;
         align-items: stretch;
     }
-
-    .logo {
-        text-align: center;
-    }
-
-    .search {
-        width: 100%;
-    }
-
+    .logo { text-align: center; }
+    .owner-phone { justify-content: center; }
+    .search { width: 100%; }
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        gap: 10px;
+        padding: 10px;
     }
-
-    .card {
-        height: 220px;
-    }
+    .card { height: 225px; }
 }
 </style>
 </head>
@@ -281,6 +330,11 @@ header {
 
     <div class="logo">
         ANIFLEX
+    </div>
+
+    <div class="owner-phone">
+        👤 Владелец:
+        <a href="tel:+79233500539">8 923 350-05-39</a>
     </div>
 
     <input
@@ -316,10 +370,19 @@ header {
 </div>
 
 <!-- Главная -->
+<div style="text-align:center;padding:8px 15px 0;color:#b9b4cc;font-size:12px;letter-spacing:1px;">
+    ✦ ANIFLEX NEON · твоя аниме-озвучка ✦
+</div>
 <div id="home" class="grid"></div>
 
 <!-- Страница аниме -->
 <div id="page" class="page"></div>
+
+<div class="footer">
+    <strong>ANIFLEX</strong> · Аниме с неоновым настроением · Владелец:
+    <a href="tel:+79233500539" style="color:#00f5ff;text-decoration:none;">8 923 350-05-39</a>
+</div>
+
 
 <!-- Плеер -->
 <div id="player" class="player">
