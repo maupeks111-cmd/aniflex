@@ -863,7 +863,7 @@ header {
 
 
 <div class="section-label">
-    ✦ ANIFLEX NEON · АНИМЕ И ТВОЯ ОЗВУЧКА ✦
+    ✦ ANIFLEX · АНИМЕ ОЗВУЧКА ✦
 </div>
 
 
