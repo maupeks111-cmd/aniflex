@@ -1149,7 +1149,7 @@ header {
                         Актёр · 2 уровень
                     </span>
                     <span class="badge">
-                        🟠 В отпуске
+                        🟢 В работе
                     </span>
                 </div>
             </div>
