@@ -37,10 +37,6 @@ body {
     overflow-x: hidden;
 }
 
-/* =====================================================
-   АНИМЕШНЫЙ НЕОНОВЫЙ ФОН
-===================================================== */
-
 body::before {
     content: "";
     position: fixed;
@@ -72,24 +68,20 @@ body::after {
             rgba(0,245,255,.18),
             transparent 27%
         ),
-
         radial-gradient(
             circle at 90% 20%,
             rgba(255,43,214,.18),
             transparent 28%
         ),
-
         radial-gradient(
             circle at 50% 100%,
             rgba(155,92,255,.18),
             transparent 35%
         ),
-
         linear-gradient(
             rgba(0,245,255,.025) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(255,43,214,.025) 1px,
@@ -152,9 +144,7 @@ header {
     color: white;
     background: rgba(0,0,0,.45);
 
-    border:
-        1px solid rgba(0,245,255,.45);
-
+    border: 1px solid rgba(0,245,255,.45);
     border-radius: 13px;
 
     outline: none;
@@ -208,13 +198,10 @@ header {
     color: white;
     background: rgba(10,7,24,.90);
 
-    border:
-        1px solid rgba(0,245,255,.42);
-
+    border: 1px solid rgba(0,245,255,.42);
     border-radius: 12px;
 
     cursor: pointer;
-
     font-weight: 700;
 
     transition: .2s;
@@ -297,8 +284,6 @@ header {
         border-color .25s;
 }
 
-/* разные рамки */
-
 .card:nth-child(3n) {
     border-color: rgba(255,43,214,.80);
 }
@@ -313,9 +298,7 @@ header {
     position: absolute;
     inset: 5px;
 
-    border:
-        1px solid rgba(255,255,255,.18);
-
+    border: 1px solid rgba(255,255,255,.18);
     border-radius: 14px;
 
     z-index: 2;
@@ -362,11 +345,8 @@ header {
 
     border-radius: 11px;
 
-    border-left:
-        3px solid var(--cyan);
-
-    border-right:
-        3px solid var(--pink);
+    border-left: 3px solid var(--cyan);
+    border-right: 3px solid var(--pink);
 
     backdrop-filter: blur(8px);
 
@@ -401,8 +381,7 @@ header {
     background:
         rgba(7,5,17,.88);
 
-    border:
-        1px solid rgba(0,245,255,.25);
+    border: 1px solid rgba(0,245,255,.25);
 
     border-radius: 18px;
 
@@ -428,8 +407,7 @@ header {
             rgba(23,8,34,.90)
         );
 
-    border:
-        1px solid rgba(0,245,255,.32);
+    border: 1px solid rgba(0,245,255,.32);
 
     border-radius: 12px;
 
@@ -441,17 +419,163 @@ header {
 .ep:hover:not(.lock) {
     transform: translateX(5px);
 
-    border-color:
-        var(--pink);
+    border-color: var(--pink);
 
     box-shadow:
-        0 0 18px
-        rgba(255,43,214,.18);
+        0 0 18px rgba(255,43,214,.18);
 }
 
 .lock {
     opacity: .45;
     cursor: not-allowed;
+}
+
+/* =====================================================
+   РАСПИСАНИЕ / НОВОСТИ / ДОНАТЕРЫ
+===================================================== */
+
+.info-section {
+    max-width: 1500px;
+    margin: 25px auto;
+    padding: 0 18px;
+}
+
+.info-title {
+    text-align: center;
+
+    margin-bottom: 15px;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    text-shadow:
+        0 0 10px var(--cyan),
+        0 0 20px var(--pink);
+}
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 15px;
+}
+
+.info-card {
+    padding: 18px;
+
+    background:
+        rgba(7,5,17,.90);
+
+    border: 1px solid rgba(0,245,255,.30);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 20px rgba(0,245,255,.07);
+
+    backdrop-filter: blur(10px);
+}
+
+.info-card:hover {
+    border-color: var(--pink);
+
+    box-shadow:
+        0 0 20px rgba(255,43,214,.14);
+}
+
+.info-anime {
+    font-weight: 900;
+    color: white;
+}
+
+.info-episode {
+    color: var(--cyan);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.info-date {
+    color: var(--orange);
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.info-status {
+    display: inline-block;
+
+    margin-top: 9px;
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    color: var(--green);
+
+    border: 1px solid var(--green);
+
+    background:
+        rgba(77,255,155,.08);
+}
+
+.news-date {
+    color: var(--purple);
+    font-size: 11px;
+}
+
+.news-title {
+    margin-top: 5px;
+
+    font-weight: 900;
+}
+
+.news-text {
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.donor {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.donor-place {
+    width: 30px;
+
+    color: var(--orange);
+
+    font-weight: 900;
+}
+
+.donor-name {
+    flex: 1;
+
+    font-weight: 800;
+}
+
+.donor-amount {
+    color: var(--green);
+
+    font-weight: 900;
+
+    text-shadow:
+        0 0 8px rgba(77,255,155,.4);
 }
 
 /* =====================================================
@@ -554,8 +678,6 @@ header {
 
     font-weight: 800;
 }
-
-/* уровни */
 
 .level1 {
     color: #c6ccd8;
@@ -784,12 +906,14 @@ header {
     }
 
     .team-grid,
-    .support-options {
+    .support-options,
+    .info-grid {
         grid-template-columns: 1fr;
     }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -878,6 +1002,64 @@ header {
 
 
 <!-- =====================================================
+     РАСПИСАНИЕ
+===================================================== -->
+
+<div id="siteInfo">
+
+    <section class="info-section">
+
+        <div class="info-title">
+            📅 Расписание озвучки
+        </div>
+
+        <div
+            id="scheduleList"
+            class="info-grid">
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         НОВОСТИ
+    ================================================= -->
+
+    <section class="info-section">
+
+        <div class="info-title">
+            📰 Новости сайта
+        </div>
+
+        <div
+            id="newsList"
+            class="info-grid">
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ТОП ДОНАТЕРОВ
+    ================================================= -->
+
+    <section class="info-section">
+
+        <div class="info-title">
+            🏆 Топ донатеров
+        </div>
+
+        <div
+            id="donorList"
+            class="info-grid">
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
      СТРАНИЦА АНИМЕ
 ===================================================== -->
 
@@ -959,220 +1141,117 @@ header {
 
         <div class="team-grid">
 
-
-            <!-- KATAKINA -->
-
             <div class="member vacation">
-
-                <div class="member-name">
-                    KATAKINA
-                </div>
-
-                <div class="member-real">
-                    Катя
-                </div>
-
+                <div class="member-name">KATAKINA</div>
+                <div class="member-real">Катя</div>
                 <div class="badges">
-
                     <span class="badge level2">
                         Актёр · 2 уровень
                     </span>
-
                     <span class="badge">
                         🟠 В отпуске
                     </span>
-
                 </div>
-
             </div>
 
 
-            <!-- CAUSSADER -->
-
             <div class="member work">
-
-                <div class="member-name">
-                    CAUSSADER
-                </div>
-
-                <div class="member-real">
-                    Илья
-                </div>
-
+                <div class="member-name">CAUSSADER</div>
+                <div class="member-real">Илья</div>
                 <div class="badges">
-
                     <span class="badge level1">
                         Новичок · 1 уровень
                     </span>
-
                     <span class="badge">
                         🟢 В работе
                     </span>
-
                 </div>
-
             </div>
 
 
-            <!-- POZITIVNO -->
-
             <div class="member work">
-
-                <div class="member-name">
-                    POZITIVNO
-                </div>
-
-                <div class="member-real">
-                    Ярик
-                </div>
-
+                <div class="member-name">POZITIVNO</div>
+                <div class="member-real">Ярик</div>
                 <div class="badges">
-
                     <span class="badge level1">
                         Новичок · 1 уровень
                     </span>
-
                     <span class="badge">
                         🟢 В работе
                     </span>
-
                 </div>
-
             </div>
 
 
-            <!-- КОТИК -->
-
             <div class="member work">
-
-                <div class="member-name">
-                    Котик
-                </div>
-
-                <div class="member-real">
-                    Даша
-                </div>
-
+                <div class="member-name">Котик</div>
+                <div class="member-real">Даша</div>
                 <div class="badges">
-
                     <span class="badge level1">
                         Новичок · 1 уровень
                     </span>
-
                     <span class="badge">
                         🟢 В работе
                     </span>
-
                 </div>
-
             </div>
 
 
-            <!-- ХРАНИТЕЛЬ ТЬМЫ -->
-
             <div class="member work">
-
                 <div class="member-name">
                     Хранитель тьмы
                 </div>
-
-                <div class="member-real">
-                    Ира
-                </div>
-
+                <div class="member-real">Ира</div>
                 <div class="badges">
-
                     <span class="badge level2">
                         Актёр · 2 уровень
                     </span>
-
                     <span class="badge">
                         🟢 В работе
                     </span>
-
                 </div>
-
             </div>
 
-
-            <!-- ФИЯ -->
 
             <div class="member work">
-
-                <div class="member-name">
-                    Фия
-                </div>
-
-                <div class="member-real">
-                    София
-                </div>
-
+                <div class="member-name">Фия</div>
+                <div class="member-real">София</div>
                 <div class="badges">
-
                     <span class="badge level1">
                         Новичок · 1 уровень
                     </span>
-
                     <span class="badge">
                         🟢 В работе
                     </span>
-
                 </div>
-
             </div>
 
 
-            <!-- KITSEY -->
-
             <div class="member vacation">
-
-                <div class="member-name">
-                    KITSEY
-                </div>
-
-                <div class="member-real">
-                    Вика
-                </div>
-
+                <div class="member-name">KITSEY</div>
+                <div class="member-real">Вика</div>
                 <div class="badges">
-
                     <span class="badge level1">
                         Новичок · 1 уровень
                     </span>
-
                     <span class="badge">
                         🟠 В отпуске
                     </span>
-
                 </div>
-
             </div>
 
 
-            <!-- ЮЛИК -->
-
             <div class="member vacation">
-
-                <div class="member-name">
-                    Юлик
-                </div>
-
-                <div class="member-real">
-                    Юля
-                </div>
-
+                <div class="member-name">Юлик</div>
+                <div class="member-real">Юля</div>
                 <div class="badges">
-
                     <span class="badge level1">
                         Новичок · 1 уровень
                     </span>
-
                     <span class="badge">
                         🟠 В отпуске
                     </span>
-
                 </div>
-
             </div>
 
         </div>
@@ -1213,9 +1292,6 @@ header {
 
         <div class="support-options">
 
-
-            <!-- DONATIONALERTS -->
-
             <div class="support-card">
 
                 <div class="support-icon">
@@ -1226,8 +1302,7 @@ header {
                     DonationAlerts
                 </h3>
 
-                <p
-                    style="color:#aaa4c0">
+                <p style="color:#aaa4c0">
                     Поддержать проект через DonationAlerts.
                 </p>
 
@@ -1249,8 +1324,6 @@ header {
             </div>
 
 
-            <!-- СБЕР -->
-
             <div class="support-card">
 
                 <div class="support-icon">
@@ -1261,8 +1334,7 @@ header {
                     СберБанк
                 </h3>
 
-                <p
-                    style="color:#aaa4c0">
+                <p style="color:#aaa4c0">
                     Поддержка по номеру телефона.
                 </p>
 
@@ -1309,12 +1381,10 @@ header {
             🎙️ Подать заявку в озвучку
         </h2>
 
-        <p
-            style="color:#aaa4c0">
+        <p style="color:#aaa4c0">
             Хочешь присоединиться к команде?
             Напиши владельцу проекта.
         </p>
-
 
         <a
             href="https://t.me/launchplay228"
@@ -1322,9 +1392,7 @@ header {
             rel="noopener">
 
             <button class="btn">
-
                 ✈️ Написать владельцу
-
             </button>
 
         </a>
@@ -1358,14 +1426,12 @@ header {
 
     </div>
 
-
     <video
         id="video"
         controls
         playsinline
         preload="metadata">
     </video>
-
 
     <iframe
         id="iframePlayer"
@@ -1401,13 +1467,134 @@ header {
     </a>
 
 </div>
+
+
 <script>
+
+/* =====================================================
+   =====================================================
+   НАСТРОЙКИ САЙТА
+   =====================================================
+   
+   ВОТ ЗДЕСЬ ТЫ МОЖЕШЬ ЛЕГКО МЕНЯТЬ:
+
+   1. РАСПИСАНИЕ
+   2. НОВОСТИ
+   3. ТОП ДОНАТЕРОВ
+
+===================================================== */
+
+const siteInfo = {
+
+    /* =================================================
+       РАСПИСАНИЕ ОЗВУЧКИ
+    ================================================= */
+
+    schedule: [
+
+        {
+            anime: "Клинок рассекающих демонов",
+            episode: "1 серия",
+            date: "10 октября",
+            status: "В работе"
+        },
+
+        {
+            anime: "Гяруко",
+            episode: "13 серия",
+            date: "12 октября",
+            status: "Ожидается"
+        },
+
+        {
+            anime: "Фарфоровая кукла",
+            episode: "3 серия",
+            date: "14 октября",
+            status: "В работе"
+        },
+
+        {
+            anime: "Сенко-сан",
+            episode: "2 серия",
+            date: "15 октября",
+            status: "Ожидается"
+        }
+
+    ],
+
+
+    /* =================================================
+       НОВОСТИ САЙТА
+    ================================================= */
+
+    news: [
+
+        {
+            date: "08.10.2026",
+            title: "Обновление сайта",
+            text: "Добавлено новое расписание озвучки."
+        },
+
+        {
+            date: "07.10.2026",
+            title: "Новая серия",
+            text: "На сайте вышла новая серия Гяруко."
+        },
+
+        {
+            date: "05.10.2026",
+            title: "Обновление ANIFLEX",
+            text: "Добавлены новые разделы и улучшен плеер."
+        }
+
+    ],
+
+
+    /* =================================================
+       ТОП ДОНАТЕРОВ
+    ================================================= */
+
+    donors: [
+
+        {
+            name: "Игрок",
+            amount: "500 ₽"
+        },
+
+        {
+            name: "Аноним",
+            amount: "300 ₽"
+        },
+
+        {
+            name: "AnimeFan",
+            amount: "200 ₽"
+        }
+
+    ]
+
+};
+
 
 /* =====================================================
    ДАННЫЕ АНИМЕ
 ===================================================== */
 
 const data = [
+
+    /* =================================================
+       КЛИНОК РАССЕКАЮЩИХ ДЕМОНОВ
+
+       30 ОТДЕЛЬНЫХ СЕРИЙ
+       
+       Чтобы добавить видео:
+       
+       {
+           t: "1 серия",
+           v: "ССЫЛКА"
+       }
+
+    ================================================= */
 
     {
         title: "Клинок рассекающих демонов",
@@ -1416,7 +1603,7 @@ const data = [
         "https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
 
         episodes: Array.from(
-            { length: 26 },
+            { length: 30 },
             (_, i) => ({
                 t: `${i + 1} серия (скоро)`,
                 v: ""
@@ -1424,6 +1611,10 @@ const data = [
         )
     },
 
+
+    /* =================================================
+       ГЯРУКО
+    ================================================= */
 
     {
         title: "Гяруко",
@@ -1497,6 +1688,10 @@ const data = [
     },
 
 
+    /* =================================================
+       ФАРФОРОВАЯ КУКЛА
+    ================================================= */
+
     {
         title: "Фарфоровая кукла",
 
@@ -1530,6 +1725,10 @@ const data = [
     },
 
 
+    /* =================================================
+       СЕНКО-САН
+    ================================================= */
+
     {
         title: "Сенко-сан",
 
@@ -1559,6 +1758,10 @@ const data = [
     },
 
 
+    /* =================================================
+       ФОРМА ГОЛОСА
+    ================================================= */
+
     {
         title: "Форма голоса",
 
@@ -1566,13 +1769,19 @@ const data = [
         "https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
 
         episodes: [
+
             {
                 t: "Фильм (скоро)",
                 v: ""
             }
+
         ]
     },
 
+
+    /* =================================================
+       ВЕЧЕРА С КОШКОЙ
+    ================================================= */
 
     {
         title: "Вечера с кошкой",
@@ -1674,6 +1883,149 @@ const supportPage =
 const applicationPage =
     document.getElementById("applicationPage");
 
+const siteInfoBlock =
+    document.getElementById("siteInfo");
+
+
+/* =====================================================
+   ОТОБРАЖЕНИЕ РАСПИСАНИЯ
+===================================================== */
+
+function renderSchedule() {
+
+    const container =
+        document.getElementById("scheduleList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    siteInfo.schedule.forEach(item => {
+
+        container.innerHTML += `
+
+            <div class="info-card">
+
+                <div class="info-anime">
+                    ${escapeHTML(item.anime)}
+                </div>
+
+                <div class="info-episode">
+                    🎙️ ${escapeHTML(item.episode)}
+                </div>
+
+                <div class="info-date">
+                    📅 ${escapeHTML(item.date)}
+                </div>
+
+                <span class="info-status">
+                    ${escapeHTML(item.status)}
+                </span>
+
+            </div>
+
+        `;
+
+    });
+}
+
+
+/* =====================================================
+   ОТОБРАЖЕНИЕ НОВОСТЕЙ
+===================================================== */
+
+function renderNews() {
+
+    const container =
+        document.getElementById("newsList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    siteInfo.news.forEach(item => {
+
+        container.innerHTML += `
+
+            <div class="info-card">
+
+                <div class="news-date">
+                    ${escapeHTML(item.date)}
+                </div>
+
+                <div class="news-title">
+                    ${escapeHTML(item.title)}
+                </div>
+
+                <div class="news-text">
+                    ${escapeHTML(item.text)}
+                </div>
+
+            </div>
+
+        `;
+
+    });
+}
+
+
+/* =====================================================
+   ОТОБРАЖЕНИЕ ДОНАТЕРОВ
+===================================================== */
+
+function renderDonors() {
+
+    const container =
+        document.getElementById("donorList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    siteInfo.donors.forEach((donor, index) => {
+
+        container.innerHTML += `
+
+            <div class="info-card">
+
+                <div class="donor">
+
+                    <div class="donor-place">
+                        #${index + 1}
+                    </div>
+
+                    <div class="donor-name">
+                        ${escapeHTML(donor.name)}
+                    </div>
+
+                    <div class="donor-amount">
+                        ${escapeHTML(donor.amount)}
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+}
+
+
+/* =====================================================
+   ОТОБРАЖЕНИЕ ВСЕЙ ИНФОРМАЦИИ
+===================================================== */
+
+function renderSiteInfo() {
+
+    renderSchedule();
+
+    renderNews();
+
+    renderDonors();
+
+}
+
 
 /* =====================================================
    ДОПОЛНИТЕЛЬНЫЕ СТРАНИЦЫ
@@ -1695,6 +2047,7 @@ function showTeam() {
 
     home.style.display = "none";
     page.style.display = "none";
+    siteInfoBlock.style.display = "none";
 
     hideExtraPages();
 
@@ -1713,6 +2066,7 @@ function showSupport() {
 
     home.style.display = "none";
     page.style.display = "none";
+    siteInfoBlock.style.display = "none";
 
     hideExtraPages();
 
@@ -1731,6 +2085,7 @@ function showApplication() {
 
     home.style.display = "none";
     page.style.display = "none";
+    siteInfoBlock.style.display = "none";
 
     hideExtraPages();
 
@@ -1802,6 +2157,8 @@ function openAnime(index) {
 
     hideExtraPages();
 
+    siteInfoBlock.style.display = "none";
+
     const anime =
         data[index];
 
@@ -1809,11 +2166,9 @@ function openAnime(index) {
         return;
     }
 
-    home.style.display =
-        "none";
+    home.style.display = "none";
 
-    page.style.display =
-        "block";
+    page.style.display = "block";
 
 
     let html = `
@@ -2009,7 +2364,12 @@ function showAll() {
     home.style.display =
         "grid";
 
+    siteInfoBlock.style.display =
+        "block";
+
     render(data);
+
+    renderSiteInfo();
 
     searchInput.value =
         "";
@@ -2038,11 +2398,17 @@ function search(text) {
     page.style.display =
         "none";
 
+    siteInfoBlock.style.display =
+        "none";
+
     home.style.display =
         "grid";
 
 
     if (!query) {
+
+        siteInfoBlock.style.display =
+            "block";
 
         render(data);
 
@@ -2139,6 +2505,8 @@ document.addEventListener(
 ===================================================== */
 
 render(data);
+
+renderSiteInfo();
 
 </script>
 
