@@ -1141,7 +1141,7 @@ header {
 
         <div class="team-grid">
 
-            <div class="member vacation">
+            <div class="member work">
                 <div class="member-name">KATAKINA</div>
                 <div class="member-real">Катя</div>
                 <div class="badges">
