@@ -1557,17 +1557,17 @@ const siteInfo = {
     donors: [
 
         {
-            name: "???",
+            name: "?",
             amount: "0 ₽"
         },
 
         {
-            name: "???",
+            name: "?",
             amount: "0 ₽"
         },
 
         {
-            name: "???",
+            name: "?",
             amount: "0 ₽"
         }
 
