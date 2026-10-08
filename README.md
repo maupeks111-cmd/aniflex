@@ -1495,29 +1495,29 @@ const siteInfo = {
         {
             anime: "Клинок рассекающих демонов",
             episode: "1 серия",
-            date: "10 октября",
-            status: "В работе"
-        },
-
-        {
-            anime: "Гяруко",
-            episode: "13 серия",
-            date: "12 октября",
+            date: "Примерно начинать будем 15 октября",
             status: "Ожидается"
         },
 
         {
-            anime: "Фарфоровая кукла",
+            anime: "Форфоровая Куклв",
             episode: "3 серия",
-            date: "14 октября",
+            date: "12 октября",
             status: "В работе"
         },
 
         {
-            anime: "Сенко-сан",
+            anime: "Секнко Сан",
             episode: "2 серия",
             date: "15 октября",
-            status: "Ожидается"
+            status: "В работе"
+        },
+
+        {
+            anime: "",
+            episode: "",
+            date: "",
+            status: ""
         }
 
     ],
@@ -1536,9 +1536,9 @@ const siteInfo = {
         },
 
         {
-            date: "07.10.2026",
-            title: "Новая серия",
-            text: "На сайте вышла новая серия Гяруко."
+            date: "",
+            title: "",
+            text: ""
         },
 
         {
@@ -1557,18 +1557,18 @@ const siteInfo = {
     donors: [
 
         {
-            name: "Игрок",
-            amount: "500 ₽"
+            name: "???",
+            amount: "0 ₽"
         },
 
         {
-            name: "Аноним",
-            amount: "300 ₽"
+            name: "???",
+            amount: "0 ₽"
         },
 
         {
-            name: "AnimeFan",
-            amount: "200 ₽"
+            name: "???",
+            amount: "0 ₽"
         }
 
     ]
