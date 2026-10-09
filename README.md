@@ -1557,8 +1557,8 @@ const siteInfo = {
     donors: [
 
         {
-            name: "?",
-            amount: "0 ₽"
+            name: "Паша",
+            amount: "21 ₽"
         },
 
         {
