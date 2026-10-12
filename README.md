@@ -1329,7 +1329,7 @@ header {
                 <div class="member-real">ВЛАДЕЛЕЦ СТУДИИ-Эрик</div>
                 <div class="badges">
                     <span class="badge level7">
-                        Новичок · 1 уровень
+                        Звезда · 7 уровень
                     </span>
                     <span class="badge">
                         🟢 В работе
