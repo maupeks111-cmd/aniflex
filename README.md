@@ -1694,10 +1694,10 @@ const data = [
     ================================================= */
 
     {
-        title: "Клинок рассекающих демонов",
+        title: "Клинок, рассекающий демонов",
 
         poster:
-        "https://i.pinimg.com/originals/95/cf/8d/95cf8d3c3a0e41844941259f4247dc6f.jpg",
+        "https://shikimori.io/uploads/poster/animes/38000/eb6c9a5d46fa9b5a33a0e5960e329e2d.jpeg",
 
         episodes: Array.from(
             { length: 30 },
@@ -1714,10 +1714,10 @@ const data = [
     ================================================= */
 
     {
-        title: "Гяруко",
+        title: "Расскажи нам, Гяруко!",
 
         poster:
-        "https://m.media-amazon.com/images/M/MV5BMDYzZGQ4NTUtZjBhNS00ZTJhLTljNDEtOGExOTg2NmJkNmUxXkEyXkFqcGc@._V1_.jpg",
+        "https://shikimori.io/uploads/poster/animes/32013/034e5566dd883420b9620cb6fcd63ade.jpeg",
 
         episodes: [
 
@@ -1790,10 +1790,10 @@ const data = [
     ================================================= */
 
     {
-        title: "Фарфоровая кукла",
+        title: "Эта фарфоровая кукла влюбилась",
 
         poster:
-        "https://basket-29.wbbasket.ru/vol5784/part578411/578411360/images/big/1.webp",
+        "https://shikimori.io/uploads/poster/animes/48736/536021070760d16f823b485bc5b021a6.jpeg",
 
         episodes: [
 
@@ -1827,10 +1827,10 @@ const data = [
     ================================================= */
 
     {
-        title: "Сенко-сан",
+        title: "Заботливая 800-летняя жена!",
 
         poster:
-        "https://i.pinimg.com/736x/64/97/89/649789acb22b072a7fb783ca173d6408.jpg",
+        "https://shikimori.io/uploads/poster/animes/38759/927728952fc887e697b0f540facf9ce5.jpeg",
 
         episodes: [
 
@@ -1863,7 +1863,7 @@ const data = [
         title: "Форма голоса",
 
         poster:
-        "https://i.pinimg.com/originals/7f/0d/27/7f0d27d155877e62b2be68952401f329.jpg",
+        "https://shikimori.io/uploads/poster/animes/28851/a98ffda9b7409d610aae10147d35658a.jpeg",
 
         episodes: [
 
@@ -1884,7 +1884,7 @@ const data = [
         title: "Вечера с кошкой",
 
         poster:
-        "https://static.kinoafisha.info/k/series_posters/480/upload/series/posters/4/7/4/13474/338468001759996357.jpg",
+        "https://shikimori.io/uploads/poster/animes/51692/fbb0c6bb359e6e84006c0cbb624d6ebb.jpeg",
 
         episodes: [
 
