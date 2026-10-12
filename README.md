@@ -1323,6 +1323,20 @@ header {
                 </div>
             </div>
 
+
+            <div class="member work">
+                <div class="member-name">EDWIN</div>
+                <div class="member-real">ВЛАДЕЛЕЦ СТУДИИ-Эрик</div>
+                <div class="badges">
+                    <span class="badge level7">
+                        Новичок · 1 уровень
+                    </span>
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+                </div>
+            </div>
+
         </div>
 
     </div>
