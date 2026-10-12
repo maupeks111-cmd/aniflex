@@ -1281,19 +1281,6 @@ header {
                 </div>
             </div>
 
-            <div class="member vacation">
-                <div class="member-name">ZENO</div>
-                <div class="member-real">Рябцев Сергей</div>
-                <div class="badges">
-                    <span class="badge level1">
-                        Новичок · 1 уровень
-                    </span>
-                    <span class="badge">
-                        🟠 В отпуске
-                    </span>
-                </div>
-            </div>
-
         </div>
 
     </div>
