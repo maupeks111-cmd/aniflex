@@ -1184,7 +1184,7 @@ header {
 
 
             <div class="member work">
-                <div class="member-name">Котик</div>
+                <div class="member-name">KittyPaw</div>
                 <div class="member-real">Даша</div>
                 <div class="badges">
                     <span class="badge level1">
@@ -1199,7 +1199,7 @@ header {
 
             <div class="member work">
                 <div class="member-name">
-                    Хранитель тьмы
+                    DarkKeeper
                 </div>
                 <div class="member-real">Ира</div>
                 <div class="badges">
@@ -1214,7 +1214,7 @@ header {
 
 
             <div class="member work">
-                <div class="member-name">Фия</div>
+                <div class="member-name">Fia</div>
                 <div class="member-real">София</div>
                 <div class="badges">
                     <span class="badge level1">
@@ -1242,7 +1242,7 @@ header {
 
 
             <div class="member vacation">
-                <div class="member-name">Юлик</div>
+                <div class="member-name">Yulik</div>
                 <div class="member-real">Юля</div>
                 <div class="badges">
                     <span class="badge level1">
