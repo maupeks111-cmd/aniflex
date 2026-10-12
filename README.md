@@ -1142,7 +1142,7 @@ header {
         <div class="team-grid">
 
             <div class="member work">
-                <div class="member-name">KATAKINA</div>
+                <div class="member-name">KATALNA</div>
                 <div class="member-real">Катя</div>
                 <div class="badges">
                     <span class="badge level2">
@@ -1330,6 +1330,20 @@ header {
                 <div class="badges">
                     <span class="badge level7">
                         Звезда · 7 уровень
+                    </span>
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="member work">
+                <div class="member-name">Kat</div>
+                <div class="member-real">Катя</div>
+                <div class="badges">
+                    <span class="badge level1">
+                        Новичок · 1 уровень
                     </span>
                     <span class="badge">
                         🟢 В работе
