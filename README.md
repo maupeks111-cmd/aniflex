@@ -143,9 +143,136 @@ footer{max-width:var(--content);margin:38px auto 0;padding:25px clamp(14px,3vw,3
 @media(prefers-reduced-motion:reduce){.nav button,.nav a button,.info-title,.info-title::before,.info-title::after,.info-card::before,.info-status{animation:none!important}}
 
 </style>
+
+<style id="aniflex-max-visual">
+/* ANIFLEX MAX VISUAL: extra motion, without replacing the original background */
+:root{--afx-cyan:#00f5ff;--afx-pink:#ff35d3;--afx-purple:#9b5cff;--afx-gold:#ffd166}
+@keyframes afxFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes afxGlow{0%,100%{box-shadow:0 0 7px #00f5ff35, inset 0 0 5px #ff35d315}50%{box-shadow:0 0 20px #00f5ff75,0 0 34px #ff35d333,inset 0 0 12px #9b5cff22}}
+@keyframes afxShine{0%{background-position:-220% 0}100%{background-position:220% 0}}
+@keyframes afxTwinkle{0%,100%{opacity:.45;filter:drop-shadow(0 0 2px currentColor)}50%{opacity:1;filter:drop-shadow(0 0 9px currentColor)}}
+@keyframes afxBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes afxSpin{to{transform:rotate(360deg)}}
+button,a,.card,.anime-card,.info-card,.section-gif,.nav button,.nav a button{transition:transform .24s ease,filter .24s ease,box-shadow .24s ease}
+button:hover,a:hover,.card:hover,.anime-card:hover,.info-card:hover{filter:brightness(1.12) saturate(1.12)}
+button:hover,.nav a:hover button{transform:translateY(-2px);animation:afxGlow 1.8s ease-in-out infinite}
+button:active,.nav a:active button{transform:scale(.96)}
+.info-title,.aniflex-youtube-spotlight{animation:afxGlow 4s ease-in-out infinite}
+.info-title:after,.aniflex-youtube-button{background-size:220% 100%;animation:afxShine 5s linear infinite,afxGlow 3s ease-in-out infinite}
+.info-title:before,.section-gif,.aniflex-youtube-icon{animation:afxBob 3s ease-in-out infinite,afxTwinkle 3.5s ease-in-out infinite}
+.section-gif{border-radius:16px;filter:drop-shadow(0 0 8px #00f5ff55);max-width:100%;height:auto}
+img{transition:filter .25s ease,transform .25s ease} .anime-card img,.card img{filter:saturate(1.08)} .anime-card:hover img,.card:hover img{transform:scale(1.035);filter:saturate(1.25) drop-shadow(0 0 8px #ff35d355)}
+/* Tiny animated sparkle badge */
+.anime-badge,.status-badge,.level-badge{position:relative;isolation:isolate;overflow:hidden}
+.anime-badge:after,.status-badge:after,.level-badge:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 20%,#ffffff38 48%,transparent 68%);background-size:220% 100%;animation:afxShine 4.5s linear infinite}
+/* Ambient decorative stickers */
+.afx-sticker{display:inline-flex;align-items:center;justify-content:center;margin-inline:4px;animation:afxFloat 3.3s ease-in-out infinite,afxTwinkle 4s ease-in-out infinite;filter:drop-shadow(0 0 7px #ff35d355)}
+.info-section:nth-of-type(1) .afx-sticker{color:#00f5ff}.info-section:nth-of-type(2) .afx-sticker{color:#ff35d3}.info-section:nth-of-type(3) .afx-sticker{color:#ffd166}
+@media(hover:none){button:hover,.nav a:hover button{transform:none;animation:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+
+
+<style id="aniflex-anime-ui-upgrade">
+:root{--anime-glow:0 0 14px rgba(0,245,255,.22),0 0 34px rgba(255,43,214,.10)}
+body{background-attachment:fixed}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(22px) saturate(150%);background:rgba(5,3,15,.82)!important;border-bottom:1px solid rgba(0,245,255,.25);box-shadow:0 8px 30px rgba(0,0,0,.24)}
+.logo{letter-spacing:.12em;text-shadow:0 0 8px #00f5ff,0 0 24px rgba(0,245,255,.6),0 0 40px rgba(255,43,214,.28);animation:logoAura 4s ease-in-out infinite}
+.anime-badge{border-radius:999px!important;animation:badgeFloat 3.5s ease-in-out infinite;box-shadow:var(--anime-glow)}
+.nav{position:sticky;top:74px;z-index:90;backdrop-filter:blur(18px);background:rgba(7,4,18,.76)!important;border-bottom:1px solid rgba(155,92,255,.2)}
+.nav button,.hero-actions button,.btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease!important}
+.nav button::after,.hero-actions button::after,.btn::after{content:"";position:absolute;inset:-60% auto -60% -45%;width:35%;transform:rotate(20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent);transition:left .65s ease;z-index:-1}
+.nav button:hover::after,.hero-actions button:hover::after,.btn:hover::after{left:130%}
+.nav button:hover,.hero-actions button:hover,.btn:hover{transform:translateY(-3px) scale(1.025);box-shadow:0 0 14px rgba(0,245,255,.22),0 0 26px rgba(255,43,214,.16)}
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero::before{content:"✦   ✧   ·   ✦   ·   ✧";position:absolute;right:4%;top:16%;font-size:clamp(22px,4vw,48px);letter-spacing:.4em;color:rgba(255,255,255,.28);text-shadow:0 0 18px var(--cyan);animation:starDrift 9s ease-in-out infinite;pointer-events:none}
+.hero-inner{animation:heroEnter .85s cubic-bezier(.2,.8,.2,1) both}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(0,245,255,.25);border-radius:999px;background:rgba(0,245,255,.055);box-shadow:var(--anime-glow)}
+.catalog-head{scroll-margin-top:150px}
+.catalog-title,.info-section h2,.aniflex-youtube-spotlight h2{text-wrap:balance}
+.grid .card{transform-origin:center bottom;animation:cardRise .55s both;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s}
+.grid .card:nth-child(3n+2){animation-delay:.05s}.grid .card:nth-child(3n){animation-delay:.1s}
+.grid .card:hover{transform:translateY(-8px) scale(1.025);z-index:3;box-shadow:0 12px 35px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.22),0 0 28px rgba(0,245,255,.22)}
+.card-status{animation:statusPulse 3s ease-in-out infinite}
+.info-section,.aniflex-youtube-spotlight{position:relative;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
+.info-section:hover,.aniflex-youtube-spotlight:hover{transform:translateY(-3px);box-shadow:0 0 26px rgba(0,245,255,.12),0 12px 35px rgba(0,0,0,.2)}
+.info-section h2::first-letter{filter:drop-shadow(0 0 7px rgba(0,245,255,.5))}
+input:focus,select:focus{box-shadow:0 0 0 3px rgba(0,245,255,.1),0 0 20px rgba(0,245,255,.12)!important}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@keyframes logoAura{0%,100%{filter:drop-shadow(0 0 2px rgba(0,245,255,.2))}50%{filter:drop-shadow(0 0 9px rgba(0,245,255,.7)) drop-shadow(0 0 14px rgba(255,43,214,.25))}}
+@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes starDrift{0%,100%{transform:translate3d(0,0,0) rotate(0);opacity:.45}50%{transform:translate3d(-12px,10px,0) rotate(7deg);opacity:.9}}
+@keyframes heroEnter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardRise{from{opacity:.2;translate:0 10px}to{opacity:1;translate:0 0}}
+@keyframes statusPulse{0%,100%{box-shadow:0 0 0 rgba(255,184,77,0)}50%{box-shadow:0 0 12px rgba(255,184,77,.16)}}
+@media(max-width:680px){header{position:relative}.nav{top:0;display:flex;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin;padding-bottom:10px}.nav>a,.nav>button{flex:0 0 auto}.hero{padding-top:36px;padding-bottom:36px}.grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}.card{border-radius:15px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+
+<style id="aniflex-sakura-cinema">
+:root{--sakura:#ff9ed8;--ice:#91f5ff;--gold:#ffe6a3;--glass:rgba(12,8,29,.72)}
+body{background-color:#070513;background-image:radial-gradient(ellipse at 50% -10%,rgba(111,54,180,.22),transparent 55%)}
+body::before{filter:saturate(.82) hue-rotate(7deg);background-image:linear-gradient(180deg,rgba(6,3,19,.43) 0%,rgba(7,4,22,.67) 48%,rgba(4,3,13,.93) 100%),url("https://i.pinimg.com/originals/f2/41/1d/f2411d91b7b6c6e310fcfa94b1af00e3.jpg");transform:scale(1.025);animation:cinemaBg 32s ease-in-out infinite alternate}
+@keyframes cinemaBg{from{background-position:center center}to{background-position:52% 46%}}
+body::after{background:radial-gradient(ellipse at 15% 18%,rgba(0,245,255,.14),transparent 32%),radial-gradient(ellipse at 87% 23%,rgba(255,43,214,.16),transparent 32%),radial-gradient(ellipse at 48% 82%,rgba(155,92,255,.13),transparent 40%),linear-gradient(rgba(0,245,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.025) 1px,transparent 1px);background-size:auto,auto,auto,42px 42px,42px 42px;animation:gridDrift 24s linear infinite}
+@keyframes gridDrift{to{background-position:0 42px,0 0,0 0,42px 42px,42px 42px}}
+/* Sakura particles: decorative, lightweight and independent from page content */
+.sakura-cinema{position:fixed;inset:0;z-index:80;pointer-events:none;overflow:hidden;contain:strict}
+.sakura-petal{position:absolute;top:-12vh;left:var(--x);font-size:var(--size);opacity:0;color:var(--sakura);text-shadow:0 0 9px rgba(255,158,216,.8);animation:petalFall var(--dur) linear var(--delay) infinite;will-change:transform,opacity}
+@keyframes petalFall{0%{transform:translate3d(0,-5vh,0) rotate(0deg);opacity:0}8%{opacity:var(--alpha)}50%{transform:translate3d(var(--sway),52vh,0) rotate(300deg)}92%{opacity:var(--alpha)}100%{transform:translate3d(calc(var(--sway) * -1),112vh,0) rotate(650deg);opacity:0}}
+header{background:rgba(7,4,20,.78);border-bottom-color:rgba(255,158,216,.38);box-shadow:0 8px 36px rgba(0,0,0,.35),0 1px 0 rgba(0,245,255,.12);transition:background .25s,border-color .25s}
+.logo{background:linear-gradient(90deg,#fff,var(--ice),#fff,var(--sakura));background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:logoShimmer 6s linear infinite;filter:drop-shadow(0 0 9px rgba(0,245,255,.28))}
+@keyframes logoShimmer{to{background-position:220% center}}
+button,a,.card,.anime-card,.panel,.section-card{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,filter .22s ease}
+button:hover,a:hover{filter:brightness(1.12)}
+button:active{transform:scale(.97)}
+:where(.card,.anime-card,.panel,.section-card,[class*="card"]){backdrop-filter:blur(12px)}
+:where(.card,.anime-card,[class*="anime-card"]):hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.26),0 0 18px rgba(0,245,255,.12)}
+:focus-visible{outline:2px solid var(--ice)!important;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.sakura-cinema{display:none}}
+</style>
+
+<style id="aniflex-mascot-styles">
+
+#af-mascot-launcher{position:fixed;right:22px;bottom:22px;z-index:9998;width:72px;height:72px;border:2px solid #00f5ff;border-radius:50%;background:radial-gradient(circle at 35% 25%,#43206a,#090615 70%);box-shadow:0 0 14px #00f5ff,0 0 34px #a855f7;cursor:pointer;color:white;font-size:32px;animation:af-float 3s ease-in-out infinite;transition:transform .2s}
+#af-mascot-launcher:hover{transform:scale(1.12) rotate(-5deg)}
+#af-mascot-launcher:after{content:'AI';position:absolute;right:-2px;bottom:-1px;background:#ff2bd6;border:2px solid #fff;border-radius:12px;font:bold 10px Arial;padding:3px 5px;box-shadow:0 0 10px #ff2bd6}
+#af-chat{position:fixed;right:20px;bottom:108px;width:min(365px,calc(100vw - 28px));height:min(510px,calc(100vh - 145px));z-index:9999;display:none;flex-direction:column;overflow:hidden;border:1px solid #00f5ff;border-radius:20px;background:linear-gradient(160deg,rgba(18,10,39,.98),rgba(4,7,20,.98));box-shadow:0 0 18px #00f5ff66,0 0 45px #a855f744;backdrop-filter:blur(16px);color:#fff;font-family:Arial,sans-serif}
+#af-chat.af-open{display:flex;animation:af-pop .22s ease-out}
+#af-chat-head{display:flex;align-items:center;gap:10px;padding:13px 14px;border-bottom:1px solid #00f5ff55;background:linear-gradient(90deg,#16102c,#0a1c2b)}
+#af-avatar{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1px solid #ff8ddd;box-shadow:0 0 14px #ff2bd688;font-size:24px;background:#211035;animation:af-float 3s ease-in-out infinite}
+#af-headtext{flex:1} #af-headtext b{display:block;color:#9dfaff;font-size:14px;letter-spacing:.5px} #af-headtext small{color:#bcb3d3;font-size:11px}
+#af-close{border:0;background:transparent;color:#fff;font-size:24px;cursor:pointer}
+#af-messages{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.af-msg{max-width:91%;padding:10px 12px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.5;animation:af-msg-in .2s ease-out}
+.af-bot{align-self:flex-start;background:#17152b;border:1px solid #a855f755;border-bottom-left-radius:4px}
+.af-user{align-self:flex-end;background:#07303b;border:1px solid #00f5ff77;border-bottom-right-radius:4px}
+#af-chips{display:flex;gap:6px;overflow:auto;padding:0 12px 9px} .af-chip{white-space:nowrap;border:1px solid #a855f7aa;border-radius:16px;background:#1a1230;color:#f4eaff;padding:6px 9px;font-size:11px;cursor:pointer}
+#af-form{display:flex;gap:7px;padding:10px;border-top:1px solid #00f5ff44;background:#080817} #af-input{min-width:0;flex:1;border:1px solid #514275;border-radius:12px;padding:11px;background:#100d20;color:#fff;outline:none} #af-input:focus{border-color:#00f5ff;box-shadow:0 0 10px #00f5ff44} #af-send{border:0;border-radius:12px;padding:0 14px;background:linear-gradient(135deg,#00d9ee,#8b5cf6);color:#090619;font-weight:bold;cursor:pointer}
+#af-toast{position:fixed;z-index:10000;left:50%;top:18px;transform:translate(-50%,-20px);opacity:0;pointer-events:none;background:#150d28;border:1px solid #ff2bd6;color:#fff;padding:13px 18px;border-radius:14px;box-shadow:0 0 22px #ff2bd677;font: bold 15px Arial;transition:.25s} #af-toast.af-show{opacity:1;transform:translate(-50%,0)}
+@keyframes af-float{0%,100%{translate:0 0}50%{translate:0 -7px}} @keyframes af-pop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}} @keyframes af-msg-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:480px){#af-mascot-launcher{right:14px;bottom:14px;width:62px;height:62px}#af-chat{right:10px;bottom:88px;width:calc(100vw - 20px)}}
+@media(prefers-reduced-motion:reduce){#af-mascot-launcher,#af-avatar,.af-msg{animation:none!important;transition:none!important}}
+
+</style>
 </head>
 
 <body>
+<div class="sakura-cinema" aria-hidden="true">
+<span class="sakura-petal" style="--x:3%;--size:14px;--dur:17s;--delay:-2s;--sway:36px;--alpha:0.55">✿</span>
+<span class="sakura-petal" style="--x:11%;--size:20px;--dur:22s;--delay:-9s;--sway:-48px;--alpha:0.7">✿</span>
+<span class="sakura-petal" style="--x:19%;--size:12px;--dur:19s;--delay:-5s;--sway:30px;--alpha:0.48">✿</span>
+<span class="sakura-petal" style="--x:28%;--size:17px;--dur:24s;--delay:-13s;--sway:-42px;--alpha:0.62">✿</span>
+<span class="sakura-petal" style="--x:37%;--size:13px;--dur:18s;--delay:-1s;--sway:51px;--alpha:0.5">✿</span>
+<span class="sakura-petal" style="--x:46%;--size:22px;--dur:25s;--delay:-11s;--sway:-30px;--alpha:0.7">✿</span>
+<span class="sakura-petal" style="--x:55%;--size:15px;--dur:20s;--delay:-7s;--sway:44px;--alpha:0.58">✿</span>
+<span class="sakura-petal" style="--x:64%;--size:12px;--dur:23s;--delay:-16s;--sway:-52px;--alpha:0.5">✿</span>
+<span class="sakura-petal" style="--x:73%;--size:19px;--dur:18s;--delay:-4s;--sway:34px;--alpha:0.65">✿</span>
+<span class="sakura-petal" style="--x:82%;--size:14px;--dur:26s;--delay:-14s;--sway:-40px;--alpha:0.55">✿</span>
+<span class="sakura-petal" style="--x:91%;--size:21px;--dur:21s;--delay:-8s;--sway:48px;--alpha:0.7">✿</span>
+<span class="sakura-petal" style="--x:97%;--size:12px;--dur:19s;--delay:-3s;--sway:-32px;--alpha:0.48">✿</span>
+</div>
+
 <div id="sakuraOverlay" class="sakura-overlay" aria-hidden="true"></div>
 
 <header>
@@ -271,7 +398,7 @@ footer{max-width:var(--content);margin:38px auto 0;padding:25px clamp(14px,3vw,3
     <section class="info-section">
 
         <div class="info-title">
-            📅 Расписание озвучки
+            <span class="afx-sticker">🎧</span> 📅 Расписание озвучки
         </div>
 
         <div
@@ -289,7 +416,7 @@ footer{max-width:var(--content);margin:38px auto 0;padding:25px clamp(14px,3vw,3
     <section class="info-section">
 
         <div class="info-title">
-            📰 Новости сайта
+            <span class="afx-sticker">✨</span> 📰 Новости сайта
         </div>
 
         <div
@@ -307,7 +434,7 @@ footer{max-width:var(--content);margin:38px auto 0;padding:25px clamp(14px,3vw,3
     <section class="info-section">
 
         <div class="info-title">
-            🏆 Топ донатеров
+            <span class="afx-sticker">💫</span> 🏆 Топ донатеров
         </div>
 
         <div
@@ -1971,5 +2098,65 @@ renderSiteInfo();
 })();
 </script>
 
+
+<style>
+/* ANIFLEX YouTube spotlight */
+.aniflex-youtube-spotlight{position:relative;isolation:isolate;overflow:hidden;margin:30px auto;padding:clamp(18px,3vw,30px);max-width:1100px;border:1px solid rgba(255,45,125,.65);border-radius:22px;background:linear-gradient(125deg,rgba(20,12,38,.96),rgba(8,20,38,.96));box-shadow:0 0 22px rgba(0,225,255,.13),inset 0 0 24px rgba(255,45,125,.08);color:#fff}
+.aniflex-youtube-spotlight:before{content:"";position:absolute;z-index:-1;inset:-50%;background:conic-gradient(from 0deg,transparent 0 65%,rgba(0,245,255,.13),rgba(255,45,160,.15),transparent 78%);animation:aniflexYTOrbit 12s linear infinite}
+.aniflex-youtube-inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.aniflex-youtube-icon{flex:0 0 72px;width:72px;height:56px;display:grid;place-items:center;border-radius:17px;background:linear-gradient(135deg,#ff2d78,#ff1744);font-size:30px;box-shadow:0 0 18px rgba(255,30,90,.5);animation:aniflexYTBeat 2.2s ease-in-out infinite}.aniflex-youtube-copy{flex:1;min-width:220px}.aniflex-youtube-copy h2{margin:0 0 7px;font-size:clamp(19px,3vw,27px);text-shadow:0 0 12px rgba(0,245,255,.4)}.aniflex-youtube-copy p{margin:0;color:#d7e6f8;line-height:1.55}.aniflex-youtube-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border-radius:13px;text-decoration:none!important;color:#fff!important;font-weight:800;background:linear-gradient(100deg,#ff1744,#ff3986);box-shadow:0 0 17px rgba(255,23,68,.35);transition:transform .2s,box-shadow .2s;animation:aniflexYTGlow 3s ease-in-out infinite}.aniflex-youtube-button:hover{transform:translateY(-3px) scale(1.025);box-shadow:0 0 25px rgba(255,23,68,.65)}.aniflex-youtube-note{font-size:12px;color:#9eb2cc;margin-top:12px}
+@keyframes aniflexYTOrbit{to{transform:rotate(360deg)}}@keyframes aniflexYTBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}@keyframes aniflexYTGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}
+@media(prefers-reduced-motion:reduce){.aniflex-youtube-spotlight:before,.aniflex-youtube-icon,.aniflex-youtube-button{animation:none!important;transition:none!important}}
+</style>
+<section class="aniflex-youtube-spotlight" aria-label="Видео ANIFLEX на YouTube">
+ <div class="aniflex-youtube-inner">
+  <div class="aniflex-youtube-icon" aria-hidden="true">▶</div>
+  <div class="aniflex-youtube-copy">
+   <h2>🎬 Последние видео на YouTube</h2>
+   <p>Смотри свежие ролики по запросу ANIFLEX и возвращайся за новыми обновлениями сайта!</p>
+  </div>
+  <a class="aniflex-youtube-button" href="https://www.youtube.com/results?search_query=aniflex&amp;sp=EgIQAg%253D%253D" target="_blank" rel="noopener noreferrer">▶ Смотреть видео</a>
+ </div>
+ <div class="aniflex-youtube-note">Открывается YouTube с результатами поиска ANIFLEX, отсортированными по дате загрузки.</div>
+</section>
+
+
+<!-- ANIFLEX Sakura AI mascot merged from the companion file -->
+<button id="af-mascot-launcher" aria-label="Открыть ИИ-помощника ANIFLEX" title="Спросить маскота ANIFLEX">🌸</button>
+<section id="af-chat" role="dialog" aria-label="ИИ-помощник ANIFLEX" aria-modal="false">
+ <div id="af-chat-head"><div id="af-avatar">🐱</div><div id="af-headtext"><b>САКУРА · ANIFLEX AI</b><small>Помощник сайта · отвечает по данным страницы</small></div><button id="af-close" aria-label="Закрыть">×</button></div>
+ <div id="af-messages" aria-live="polite"></div>
+ <div id="af-chips"><button class="af-chip" data-q="Какая озвучка сейчас в работе?">🎙️ Озвучка</button><button class="af-chip" data-q="Кто топ донатеров?">🏆 Донатеры</button><button class="af-chip" data-q="Какие есть аниме?">🍥 Каталог</button><button class="af-chip" data-q="Кто владелец сайта?">👑 О сайте</button></div>
+ <form id="af-form"><input id="af-input" autocomplete="off" maxlength="240" placeholder="Спроси что-нибудь…" aria-label="Вопрос помощнику"><button id="af-send" type="submit">➤</button></form>
+</section><div id="af-toast" role="status"></div>
+
+<script id="aniflex-mascot-script">
+(()=>{
+ const launch=document.getElementById('af-mascot-launcher'), panel=document.getElementById('af-chat'), close=document.getElementById('af-close'), messages=document.getElementById('af-messages'), form=document.getElementById('af-form'), input=document.getElementById('af-input'), toast=document.getElementById('af-toast');
+ if(!launch||!panel||!messages||!form||!input)return;
+ let badCount=0, toastTimer=null;
+ const norm=x=>String(x??'').toLocaleLowerCase('ru').replace(/ё/g,'е').trim();
+ function say(text,who='bot'){const el=document.createElement('div');el.className='af-msg '+(who==='user'?'af-user':'af-bot');el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;}
+ function open(){panel.classList.add('af-open');if(!messages.dataset.welcomed){say('Привет! Я Сакура 🌸 — маскот ANIFLEX. Могу подсказать, что есть в каталоге, какие озвучки в работе и кто указан в топе донатеров. Спрашивай!');messages.dataset.welcomed='1';}setTimeout(()=>input.focus(),80)}
+ function notify(text){toast.textContent=text;toast.classList.add('af-show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('af-show'),3000)}
+ function getArr(key){try{return Array.isArray(window[key])?window[key]:[]}catch(e){return []}}
+ function getAnime(){try{return typeof data!=='undefined'&&Array.isArray(data)?data:getArr('data')}catch(e){return getArr('data')}}
+ function getInfo(){try{return typeof siteInfo!=='undefined'?siteInfo:(window.siteInfo||{})}catch(e){return window.siteInfo||{}}}
+ function answer(q){const n=norm(q), info=getInfo(), anime=getAnime();
+  if(/^(67|six.?seven|сик.?севен)$/.test(n)||n.includes('67 мем')){notify('SIX SEVEN! ✨');return '67! SIX SEVEN! 😹';}
+  if(/^(привет|здравствуй|хай|ку)\b/.test(n))return 'Привет-привет! 🌸 Что хочешь узнать про ANIFLEX?';
+  if(/владелец|создател|кто хозяин|администратор/.test(n))return 'В информации сайта не всегда указан владелец. Проверь раздел «О сайте» или ссылки на официальные соцсети, чтобы не получить неверный ответ.';
+  if(/ютуб|youtube|канал/.test(n))return 'Ссылку на YouTube лучше открыть через кнопку соцсетей на сайте. Я не буду угадывать адрес канала, если его нет в данных страницы.';
+  if(/донат|топ донат/.test(n)){const list=Array.isArray(info.donors)?info.donors:[];if(!list.length)return 'В данных страницы пока не нашёл список донатеров. Загляни в раздел «Топ донатеров».';return '🏆 Топ донатеров по данным сайта:\n'+list.slice(0,5).map((x,i)=>`${i+1}. ${x.name||'Без имени'} — ${x.amount||'сумма не указана'}`).join('\n');}
+  if(/озвуч|расписан|в работе|работает сейчас|вышла озвучка/.test(n)){const list=Array.isArray(info.schedule)?info.schedule:[];if(!list.length)return 'Расписание пока не найдено в данных страницы. Открой раздел «Расписание озвучки».';let filtered=list.filter(x=>!(/какая озвучка|расписан|в работе|вышла озвучка/.test(n))&&norm(x.anime).split(/\s+/).some(w=>w.length>3&&n.includes(w)));if(!filtered.length)filtered=list;return '🎙️ Расписание озвучки с сайта:\n'+filtered.slice(0,8).map(x=>`• ${x.anime||'Аниме'} — ${x.episode||'серия не указана'}\n  ${x.status||'Статус не указан'}${x.date?' · '+x.date:''}`).join('\n');}
+  if(/аниме|каталог|серия|серий|800 лет|жена/.test(n)){if(!anime.length)return 'Не удалось прочитать каталог из данных страницы. Открой каталог ANIFLEX.';let found=anime.filter(x=>{const title=norm(x.title);return (title&&n.split(/[^a-zа-я0-9]+/i).filter(w=>w.length>2).some(w=>title.includes(w)))||(/какие есть аниме|покажи аниме|каталог/.test(n)&&title)});if(!found.length&&/800 лет|жена/.test(n))return 'Не нашёл этот тайтл в текущем каталоге. Если добавишь его в список аниме на сайте, я смогу находить его по тем же данным. 🌸';if(!found.length)found=anime.slice(0,8);return '🍥 По каталогу ANIFLEX:\n'+found.slice(0,8).map(x=>{const eps=Array.isArray(x.e)?x.e.length:(Array.isArray(x.episodes)?x.episodes.length:null);return '• '+(x.title||'Без названия')+(eps!==null?' — '+eps+' сер.':'')}).join('\n');}
+  if(/заявк|команд|вступ|присоедин/.test(n))return '🎙️ Хочешь в команду? Нажми «Подать заявку» на сайте — там находится форма и актуальные условия.';
+  if(/поддерж|донат/.test(n))return '💜 Поддержать проект можно через кнопку «Поддержать» на сайте. Спасибо, что помогаешь ANIFLEX!';
+  if(/спасибо/.test(n))return 'Всегда пожалуйста! 🌸 Хорошего просмотра!';
+  return 'Хмм, я пока не нашла ответ в данных сайта. Попробуй спросить про каталог аниме, расписание озвучки, топ донатеров или заявку в команду. 🌸';
+ }
+ function submit(text){const value=String(text||'').trim();if(!value)return;say(value,'user');input.value='';const n=norm(value);const profanity=/(сука|бля|бляд|хуй|пизд|еба|нахуй|мудак)/i.test(n);const gibberish=value.length>12&&!/[аеёиоуыэюяa-z]/i.test(value);if(profanity||gibberish){badCount++;if(badCount===1){say('Эй! 😾 Давай без грубостей и загадочных заклинаний. Спроси нормально — я же стараюсь помочь!');return;}if(badCount===2){say('Последнее предупреждение, нyaa! 😼 Напиши понятный вопрос, а то включу режим испуганного котика.');return;}badCount=0;notify('БУ! 👻 Неожиданность от Сакуры!');say('А-А-А! 👻 Ладно, это был маленький сюрприз! Давай теперь дружно и по делу 🌸');return;}say(answer(value));}
+ launch.addEventListener('click',()=>panel.classList.contains('af-open')?panel.classList.remove('af-open'):open());close.addEventListener('click',()=>panel.classList.remove('af-open'));form.addEventListener('submit',e=>{e.preventDefault();submit(input.value)});document.querySelectorAll('.af-chip').forEach(b=>b.addEventListener('click',()=>submit(b.dataset.q||'')));
+})();
+</script>
 </body>
 </html>
