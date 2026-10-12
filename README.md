@@ -1254,6 +1254,20 @@ header {
                 </div>
             </div>
 
+            
+            <div class="member work">
+                <div class="member-name">SEIN</div>
+                <div class="member-real">Серый</div>
+                <div class="badges">
+                    <span class="badge level2">
+                        Актёр · 2 уровень
+                    </span>
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+                </div>
+            </div>
+
         </div>
 
     </div>
