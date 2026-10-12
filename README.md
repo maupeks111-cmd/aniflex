@@ -2008,7 +2008,7 @@ const data = [
         title: "Чудачества любви не помеха!",
 
         poster:
-        "https://shikimori.io/uploads/poster/animes/14741/7377d642150b43c6454b77972e594a44.jpeg",
+        "https://images.openai.com/static-rsc-4/FktSXRc7U2ugBdy27g98lAEXBwt3bF31mPPN051-BZOOgnk3SqX6zcQQn0vsgusf6rDh_HdXW1glWtp4KUGCHb6VRReO3hNpRe3jNkDvw--npTzKYggwXB0gIXZo_osn7jsEuZAtgaklGOr8aeeaaTdBd9nG-Ic268rjQJpEvvCDh943j8G8D22kbCcn8j8e?purpose=fullsize",
 
         episodes: Array.from(
             { length: 12 },
@@ -2027,7 +2027,7 @@ const data = [
         title: "Торадора!",
 
         poster:
-        "https://shikimori.io/uploads/poster/animes/4224/ee965886debe76031ab2a1a9cf816c75.jpeg",
+        "https://images.openai.com/static-rsc-4/n7QUhayie7PFUmeq3z9I_1ACGA_aBZYAxuqRsgmd2NwtUjRl8612_jCKT2BV3x0gcvy4eYsx2CqdpvvlaWSIGOQB4_5zdNY-P12UapqEd0xzFzfsdYFd6O0iCu9Z6_ECpzqTCFLX1hBMu5ZUU1xGwKIKwUd1fh48OsI5aii5up1RdELM-ZepW5kIIie2isGy?purpose=fullsize",
 
         episodes: Array.from(
             { length: 25 },
