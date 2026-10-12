@@ -1281,6 +1281,48 @@ header {
                 </div>
             </div>
 
+
+            <div class="member work">
+                <div class="member-name">MainLife</div>
+                <div class="member-real">Макс</div>
+                <div class="badges">
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="member work">
+                <div class="member-name">Draka</div>
+                <div class="member-real">Эдик</div>
+                <div class="badges">
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="member work">
+                <div class="member-name">Dark Warden</div>
+                <div class="member-real">Данил</div>
+                <div class="badges">
+                    <span class="badge level1">
+                        Новичок · 1 уровень
+                    </span>
+                    <span class="badge">
+                        🟢 В работе
+                    </span>
+                </div>
+            </div>
+
         </div>
 
     </div>
