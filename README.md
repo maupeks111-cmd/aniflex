@@ -637,7 +637,7 @@ button:active{transform:scale(.97)}
                         Новичок · 1 уровень
                     </span>
                     <span class="badge">
-                        🟠 В отпуске
+                        🟢 В работе
                     </span>
                 </div>
             </div>
