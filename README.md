@@ -2114,7 +2114,7 @@ renderSiteInfo();
    <h2>🎬 Последние видео на YouTube</h2>
    <p>Смотри свежие ролики по запросу ANIFLEX и возвращайся за новыми обновлениями сайта!</p>
   </div>
-  <a class="aniflex-youtube-button" href="https://www.youtube.com/results?search_query=aniflex&amp;sp=EgIQAg%253D%253D" target="_blank" rel="noopener noreferrer">▶ Смотреть видео</a>
+  <a class="aniflex-youtube-button" href="https://www.youtube.com/@ANIFLEX111/shorts" target="_blank" rel="noopener noreferrer">▶ Смотреть видео</a>
  </div>
  <div class="aniflex-youtube-note">Открывается YouTube с результатами поиска ANIFLEX, отсортированными по дате загрузки.</div>
 </section>
