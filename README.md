@@ -629,7 +629,7 @@ button:active{transform:scale(.97)}
             </div>
 
 
-            <div class="member vacation">
+            <div class="member work">
                 <div class="member-name">Yulik</div>
                 <div class="member-real">Юля</div>
                 <div class="badges">
