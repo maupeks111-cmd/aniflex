@@ -986,10 +986,10 @@ const siteInfo = {
         },
 
         {
-            anime: "Вечера с котом",
-            episode: "7-10 серии",
-            date: "15 октября в 20:00",
-            status: "ГОТОВО"
+            anime: "",
+            episode: "",
+            date: "",
+            status: ""
         }
 
     ],
@@ -1002,9 +1002,9 @@ const siteInfo = {
     news: [
 
         {
-            date: "08.10.2026",
-            title: "Обновление сайта",
-            text: "Добавлено новое расписание озвучки."
+            date: "15.10.2026",
+            title: "НОВЫЕ СЕРИИ",
+            text: "Добавлено новые серии в ночь с кошкой 7-10 серии."
         },
 
         {
@@ -1287,10 +1287,10 @@ const data = [
                 v: "https://player.cloudinary.com/embed/?cloud_name=ds3njxeoe&public_id=6%D1%81_%D0%BA%D0%BE%D1%82_x1fjrt"
             },
 
-            { t: "7 серия (скоро)", v: "" },
-            { t: "8 серия (скоро)", v: "" },
-            { t: "9 серия (скоро)", v: "" },
-            { t: "10 серия (скоро)", v: "" },
+            { t: "7 серия", v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1792066360/7_%D0%BA%D0%BE%D1%82_lknj2z.mp4" },
+            { t: "8 серия", v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1792066377/8_%D0%BA%D0%BE%D1%82_a5lzfv.mp4" },
+            { t: "9 серия", v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1792066377/9_%D0%BA%D0%BE%D1%82_lmv0kg.mp4" },
+            { t: "10 серия", v: "https://res.cloudinary.com/ds3njxeoe/video/upload/v1792066378/10_%D0%BA%D0%BE%D1%82_dptmfc.mp4" },
             { t: "11 серия (скоро)", v: "" },
             { t: "12 серия (скоро)", v: "" },
             { t: "13 серия (скоро)", v: "" },
