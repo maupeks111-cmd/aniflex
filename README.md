@@ -630,20 +630,6 @@ button:active{transform:scale(.97)}
 
 
             <div class="member work">
-                <div class="member-name">Yulik</div>
-                <div class="member-real">Юля</div>
-                <div class="badges">
-                    <span class="badge level1">
-                        Новичок · 1 уровень
-                    </span>
-                    <span class="badge">
-                        🟢 В работе
-                    </span>
-                </div>
-            </div>
-
-            
-            <div class="member work">
                 <div class="member-name">SEIN</div>
                 <div class="member-real">Серый</div>
                 <div class="badges">
