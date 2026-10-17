@@ -974,22 +974,22 @@ const siteInfo = {
         {
             anime: "Фарфоровая кукла",
             episode: "3 серия",
-            date: "22 октября",
+            date: "1 ноября",
             status: "В работе"
         },
 
         {
             anime: "Сэнко-сан",
             episode: "2 серия",
-            date: "19 октября",
+            date: "15 ноября",
             status: "В работе"
         },
 
         {
-            anime: "",
-            episode: "",
-            date: "",
-            status: ""
+            anime: "Кошечка из Сакурасо",
+            episode: "1 серия",
+            date: "1 декабря",
+            status: "Подбираем людей"
         }
 
     ],
