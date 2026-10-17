@@ -615,7 +615,7 @@ button:active{transform:scale(.97)}
             </div>
 
 
-            <div class="member vacation">
+            <div class="member work">
                 <div class="member-name">KITSEY</div>
                 <div class="member-real">Вика</div>
                 <div class="badges">
@@ -623,7 +623,7 @@ button:active{transform:scale(.97)}
                         Новичок · 1 уровень
                     </span>
                     <span class="badge">
-                        🟠 В отпуске
+                        🟢 В работе
                     </span>
                 </div>
             </div>
@@ -989,7 +989,7 @@ const siteInfo = {
             anime: "Кошечка из Сакурасо",
             episode: "1 серия",
             date: "1 декабря",
-            status: "Подбираем людей"
+            status: "Пишем текст"
         }
 
     ],
