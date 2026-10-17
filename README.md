@@ -543,7 +543,7 @@ button:active{transform:scale(.97)}
             </div>
 
 
-            <div class="member work">
+            <div class="member vacation">
                 <div class="member-name">CAUSSADER</div>
                 <div class="member-real">Илья</div>
                 <div class="badges">
